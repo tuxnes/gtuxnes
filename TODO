@@ -1,0 +1,3 @@
+Clean up the code 
+
+Add the ability to use multiple config files with GTuxNES (instead of the default ~/.gtuxnes).
