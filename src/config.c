@@ -5,8 +5,6 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation.  Please see the file COPYING for the
  * full text of the License.
- *
- * $Id: config.c,v 1.2 2001/04/17 04:16:44 sdweber Exp $
 */
 
 /* Config File Format:
