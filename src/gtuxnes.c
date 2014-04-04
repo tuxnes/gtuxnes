@@ -49,7 +49,7 @@ gint update_wait_progress(gpointer progress)
 	return (curr_val < 100);
 	}
 
-GtkWidget *create_wait_dialog()
+void create_wait_dialog(void)
 	{
 	GtkWidget *lbl;
 	GtkWidget *progress;
@@ -489,12 +489,10 @@ void run_tuxnes( GtkWidget *w, gpointer data )
 	else
 		{
 		/* GTuxNES Parent */
-		int i;
-
 		if (tuxnes_pid < 0)
 			popup_info_dialog("ERROR: coudln't fork!\n");
 		else
-			create_wait_dialog(i);
+			create_wait_dialog();
 
 		cleanup(options, needs_freeing, j, FALSE);
 		}
