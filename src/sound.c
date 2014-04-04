@@ -66,7 +66,6 @@ GtkWidget *create_sound_options_page()
 	GtkWidget *hbox;
 	GtkWidget *vbox;
 	GtkWidget *button;
-	GtkWidget *combo;
 	GtkWidget *lbl;
 	GList *glist=NULL;
 	

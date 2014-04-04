@@ -11,11 +11,8 @@
 
 GtkWidget *create_debug_options_page()
 	{
-	GtkWidget *hbox;
 	GtkWidget *vbox;
 	GtkWidget *button;
-	GtkWidget *entry;
-	GtkWidget *lbl;
 	
 
 	frame = gtk_frame_new(NULL);

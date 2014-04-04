@@ -87,10 +87,9 @@ void cleanup(char *free_me[], int index[], int size, gboolean was_error)
 void run_tuxnes( GtkWidget *w, gpointer data )
 	{
 	int i = 1;
-	int j = 0, q;
+	int j = 0;
 	int needs_freeing[NUM_OF_ENTRIES-1];
 	char *options[num_opts+3];
-	int file_des[2];
 	pid_t tuxnes_pid;
 
 	options[0] = "tuxnes";
@@ -524,7 +523,6 @@ int main( int argc, char *argv[] )
 	GtkWidget *notebook;
 	GtkWidget *vbox;
 	GtkWidget *bbox;
-	int i;
 
 	gtk_init (&argc, &argv);
 

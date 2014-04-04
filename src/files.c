@@ -17,7 +17,6 @@ void end_dlg(GtkWidget *w, gpointer dlg)
 GtkWidget *create_file_selection_dlg( gchar *title )
 	{
 	GtkWidget *temp;
-	gchar *dirname;
 
 	temp = gtk_file_selection_new(title);
 
