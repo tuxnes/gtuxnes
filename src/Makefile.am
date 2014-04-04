@@ -1,3 +1,4 @@
+AM_CFLAGS = -std=c99
 AM_CPPFLAGS = $(GTK_CFLAGS)
 
 bin_PROGRAMS = gtuxnes
