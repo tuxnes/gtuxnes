@@ -37,8 +37,8 @@
 #include "video.h"
 #include "config.h"
 
-#define NUM_OF_TOGGLES	31	/* = lastnum + 1 */
-#define VERBOSE 	0
+#define NUM_OF_TOGGLES  31      /* = lastnum + 1 */
+#define VERBOSE          0
 /* 1 reserved for MAPPER (see below) */
 /* 2 reserved for GAMEGENIE (see below) */
 /* 3 reserved for SNDDEV (see below) */
@@ -56,42 +56,42 @@
 /* 15 reserved for JOY2 (see below) */
 /* 16 reserved for DISPLAY (see below) */
 /* 17 reserved for JOYREMAP (see below) */
-#define NTSC		18
+#define NTSC            18
 /* 19 reserved for NTSCTINT (see below) */
-#define FIXMAPPER 	20
-#define SHOWHEADER 	21
-#define DISASM 		22
-#define LINK 		23
-#define MUTESOUND	24
-#define DISPINROOT	25
-#define STATCOLOR	26
-#define GRAYSCALE	27
-#define STICKYKEYS	28
-#define SWAPINPUT	29
-#define IGNOREINST	30
+#define FIXMAPPER       20
+#define SHOWHEADER      21
+#define DISASM          22
+#define LINK            23
+#define MUTESOUND       24
+#define DISPINROOT      25
+#define STATCOLOR       26
+#define GRAYSCALE       27
+#define STICKYKEYS      28
+#define SWAPINPUT       29
+#define IGNOREINST      30
 
 
-#define NUM_OF_ENTRIES	20	/* = lastnum + 1 */
-#define ROMNAME		0
-#define MAPPER		1
-#define GAMEGENIE	2
-#define SNDDEV		3
-#define SNDFORMAT	4
-#define SNDRATE		5
-#define SNDDELAY	6
-#define RENDERER	7
-#define MIRROR		8
-#define BLTINPAL	9
-#define PALFILE		10
-#define GEOMETRY	11
-#define SCANLINES	12
-#define ENLARGE		13
-#define JOY1		14
-#define JOY2		15
-#define DISPLAY		16
-#define JOYREMAP	17
-#define NTSCHUE		18
-#define NTSCTINT	19
+#define NUM_OF_ENTRIES  20      /* = lastnum + 1 */
+#define ROMNAME          0
+#define MAPPER           1
+#define GAMEGENIE        2
+#define SNDDEV           3
+#define SNDFORMAT        4
+#define SNDRATE          5
+#define SNDDELAY         6
+#define RENDERER         7
+#define MIRROR           8
+#define BLTINPAL         9
+#define PALFILE         10
+#define GEOMETRY        11
+#define SCANLINES       12
+#define ENLARGE         13
+#define JOY1            14
+#define JOY2            15
+#define DISPLAY         16
+#define JOYREMAP        17
+#define NTSCHUE         18
+#define NTSCTINT        19
 
 GtkWidget *frame;
 GtkWidget *toggles[NUM_OF_TOGGLES];

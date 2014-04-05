@@ -550,8 +550,8 @@ int main( int argc, char *argv[] )
 	bbox = gtk_hbutton_box_new();
 	gtk_hbutton_box_set_spacing_default(10);
 	gtk_hbutton_box_set_layout_default(GTK_BUTTONBOX_END);
-
-/* 	button = gtk_button_new_with_label("Save Config");
+/*
+	button = gtk_button_new_with_label("Save Config");
 	gtk_container_add(GTK_CONTAINER(bbox), button);
 	gtk_signal_connect(GTK_OBJECT(button), "clicked",
 				GTK_SIGNAL_FUNC(write_config_file), NULL);
