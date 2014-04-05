@@ -18,16 +18,12 @@ gchar *translate_sound_combo(int box)
 			switch(combo_text[6]) {
 			case 'M':
 				return "mu8";
-				break;
 			case 'U':
 				return "8";
-				break;
 			case 'S':
 				return "8s";
-				break;
 			default:
 				return NULL;
-				break;
 			}
 		} else {
 			switch(combo_text[7]) {
@@ -37,17 +33,14 @@ gchar *translate_sound_combo(int box)
 								"le16u" : "be16u");
 				else
 					return "16u";
-				break;
 			case 'S':
 				if (strlen(combo_text) > 13)
 					return (combo_text[15] == 'l' ?
 								"le16" : "be16");
 				else
 					return "16";
-				break;
 			default:
 				return NULL;
-				break;
 			}
 		}
 	} else {

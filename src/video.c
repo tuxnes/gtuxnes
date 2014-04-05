@@ -17,46 +17,33 @@ gchar *translate_video_combo(int box)
 		switch(combo_text[0]) {
 		case 'A':
 			return "auto";
-			break;
 		case 'X':
 			return "x11";
-			break;
 		case 'D':
 			return "diff";
-			break;
 		case 'T':
 			return "old";
-			break;
 		case 'G':
 			return "ggi";
-			break;
 		case 'W':
 			return "w";
-			break;
 		case 'N':
 			return "none";
-			break;
 		default:
 			return NULL;
-			break;
 		}
 	} else if (box == MIRROR) {
 		switch(combo_text[0]) {
 		case 'V':
 			return "v";
-			break;
 		case 'H':
 			return "h";
-			break;
 		case 'S':
 			return "s";
-			break;
 		case 'N':
 			return "n";
-			break;
 		default:
 			return NULL;
-			break;
 		}
 	} else {
 		return NULL;
