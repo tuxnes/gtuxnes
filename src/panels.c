@@ -36,13 +36,13 @@ static void enable_button_toggled(GtkWidget *button, gpointer e)
 	{
 	if (GTK_TOGGLE_BUTTON(button)->active)
 		{
-		gtk_widget_set_sensitive(GTK_WIDGET(widgets[(int)e]),
+		gtk_widget_set_sensitive(GTK_WIDGET(widgets[(intptr_t)e]),
 								TRUE);
 		num_opts++;
 		}
 	else
 		{
-		gtk_widget_set_sensitive(GTK_WIDGET(widgets[(int)e]),
+		gtk_widget_set_sensitive(GTK_WIDGET(widgets[(intptr_t)e]),
 								FALSE);
 		num_opts--;
 		}
@@ -62,17 +62,17 @@ static void button_toggled(GtkWidget *button, gpointer option)
 
 void browse_files(GtkWidget *w, gpointer data)
 	{
-	if ((int)data == ROMNAME)
+	if ((intptr_t)data == ROMNAME)
 		create_file_selection_with_ok_handler("Choose ROM File",
 					GTK_SIGNAL_FUNC(update_romname),
 					ROMNAME );
-	else if ((int)data == PALFILE)
+	else if ((intptr_t)data == PALFILE)
 		create_file_selection_with_ok_handler("Choose Palette File",
 					GTK_SIGNAL_FUNC(update_palfile),
 					PALFILE );
 	}
 
-GtkWidget *create_toggle(char *name, int id)
+GtkWidget *create_toggle(char *name, intptr_t id)
 	{
 	toggles[id] = gtk_check_button_new_with_label(name);
 	gtk_signal_connect(GTK_OBJECT(toggles[id]), "toggled", 
@@ -82,7 +82,7 @@ GtkWidget *create_toggle(char *name, int id)
 	return toggles[id];
 	}
 
-GtkWidget *create_toggled_entry(char *name, int id, gint width)
+GtkWidget *create_toggled_entry(char *name, intptr_t id, gint width)
 	{
 	GtkWidget *entry;
 	GtkWidget *hbox;
@@ -107,7 +107,7 @@ GtkWidget *create_toggled_entry(char *name, int id, gint width)
 	return hbox;
 	}
 
-GtkWidget *create_toggled_combo(char *name, int id, gint width, 
+GtkWidget *create_toggled_combo(char *name, intptr_t id, gint width,
 				GList *glist, gboolean editable)
 	{
 	GtkWidget *combo;

@@ -73,7 +73,7 @@ void correct_ntsc_value(GtkWidget *entry, gpointer item)
 	double entry_val;
 	entry_val = atof(gtk_entry_get_text(GTK_ENTRY(entry)));
 	
-	if ((int)item == NTSCHUE)
+	if ((intptr_t)item == NTSCHUE)
 		{
 		if (entry_val > 360.0)
 			gtk_entry_set_text(GTK_ENTRY(entry), "360.0");
