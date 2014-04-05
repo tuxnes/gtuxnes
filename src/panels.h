@@ -8,11 +8,7 @@
 */
 
 void browse_files(GtkWidget *w, gpointer data);
-void update_romname(GtkWidget *b, gpointer fs);
-void update_palfile(GtkWidget *b, gpointer fs);
 void entry_edited(GtkWidget *entry, gpointer option);
-void enable_button_toggled(GtkWidget *button, gpointer e);
-void button_toggled(GtkWidget *button, gpointer option);
 
 GtkWidget *create_toggle(char *name, int id);
 GtkWidget *create_toggled_entry(char *name, int id, gint width);

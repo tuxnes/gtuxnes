@@ -89,7 +89,7 @@ void correct_ntsc_value(GtkWidget *entry, gpointer item)
 		}
 	}
 
-void ntsc_toggle(GtkWidget *button, gpointer w)
+static void ntsc_toggle(GtkWidget *button, gpointer w)
 	{
 	if (GTK_TOGGLE_BUTTON(button)->active)
 		{
@@ -105,7 +105,7 @@ void ntsc_toggle(GtkWidget *button, gpointer w)
 		}
 	}
 	
-void pal_file_toggle(GtkWidget *button, gpointer w)
+static void pal_file_toggle(GtkWidget *button, gpointer w)
 	{
 	if (GTK_TOGGLE_BUTTON(button)->active)
 		{

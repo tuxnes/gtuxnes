@@ -9,26 +9,14 @@
 
 #include "gtuxnes.h"
 
-void browse_files(GtkWidget *w, gpointer data)
-	{
-	if ((int)data == ROMNAME)
-		create_file_selection_with_ok_handler("Choose ROM File",
-					GTK_SIGNAL_FUNC(update_romname),
-					ROMNAME );
-	else if ((int)data == PALFILE)
-		create_file_selection_with_ok_handler("Choose Palette File",
-					GTK_SIGNAL_FUNC(update_palfile),
-					PALFILE );
-	}
-
-void update_romname(GtkWidget *b, gpointer fs)
+static void update_romname(GtkWidget *b, gpointer fs)
 	{
 	gtk_entry_set_text(GTK_ENTRY(widgets[ROMNAME]), 
 		gtk_file_selection_get_filename(GTK_FILE_SELECTION(fs)));
 	end_dlg(NULL, fs);
 	}
 
-void update_palfile(GtkWidget *b, gpointer fs)
+static void update_palfile(GtkWidget *b, gpointer fs)
 	{
 	gtk_entry_set_text(GTK_ENTRY(widgets[PALFILE]), 
 		gtk_file_selection_get_filename(GTK_FILE_SELECTION(fs)));
@@ -44,7 +32,7 @@ void entry_edited(GtkWidget *entry, gpointer option)
 	*/
 	}
 
-void enable_button_toggled(GtkWidget *button, gpointer e)
+static void enable_button_toggled(GtkWidget *button, gpointer e)
 	{
 	if (GTK_TOGGLE_BUTTON(button)->active)
 		{
@@ -60,7 +48,7 @@ void enable_button_toggled(GtkWidget *button, gpointer e)
 		}
 	}
 
-void button_toggled(GtkWidget *button, gpointer option)
+static void button_toggled(GtkWidget *button, gpointer option)
 	{
 	if (GTK_TOGGLE_BUTTON(button)->active)
 		{
@@ -70,6 +58,18 @@ void button_toggled(GtkWidget *button, gpointer option)
 		{
 		num_opts--;
 		}
+	}
+
+void browse_files(GtkWidget *w, gpointer data)
+	{
+	if ((int)data == ROMNAME)
+		create_file_selection_with_ok_handler("Choose ROM File",
+					GTK_SIGNAL_FUNC(update_romname),
+					ROMNAME );
+	else if ((int)data == PALFILE)
+		create_file_selection_with_ok_handler("Choose Palette File",
+					GTK_SIGNAL_FUNC(update_palfile),
+					PALFILE );
 	}
 
 GtkWidget *create_toggle(char *name, int id)
