@@ -32,11 +32,8 @@
 #include <sys/types.h>
 #include "panels.h"
 #include "files.h"
-#include "general.h"
 #include "sound.h"
 #include "video.h"
-#include "input.h"
-#include "debug.h"
 #include "config.h"
 
 #define NUM_OF_TOGGLES	31	/* = lastnum + 1 */
@@ -100,5 +97,11 @@ GtkWidget *toggles[NUM_OF_TOGGLES];
 GtkWidget *widgets[NUM_OF_ENTRIES];
 extern int num_opts;
 extern char config_file_name[513];
+
+GtkWidget *create_general_options_page();
+GtkWidget *create_input_options_page();
+GtkWidget *create_sound_options_page();
+GtkWidget *create_video_options_page();
+GtkWidget *create_debug_options_page();
 
 #endif /* GTUXNES_H */

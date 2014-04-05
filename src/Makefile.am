@@ -4,11 +4,11 @@ bin_PROGRAMS = gtuxnes
 
 gtuxnes_SOURCES = \
 	config.c config.h \
-	debug.c debug.h \
+	debug.c \
 	files.c files.h \
-	general.c general.h \
+	general.c \
 	gtuxnes.c gtuxnes.h \
-	input.c input.h \
+	input.c \
 	panels.c panels.h \
 	sound.c sound.h \
 	video.c video.h

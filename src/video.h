@@ -11,5 +11,3 @@ gchar *translate_video_combo(int box);
 void correct_ntsc_value(GtkWidget *entry, gpointer item);
 void ntsc_toggle(GtkWidget *button, gpointer w);
 void pal_file_toggle(GtkWidget *button, gpointer w);
-
-GtkWidget *create_video_options_page();

@@ -8,4 +8,3 @@
 */
 
 gchar *translate_sound_combo(int box);
-GtkWidget *create_sound_options_page();
