@@ -14,7 +14,7 @@ void end_dlg(GtkWidget *w, gpointer dlg)
 	gtk_widget_destroy(GTK_WIDGET( dlg ));
 }
 
-GtkWidget *create_file_selection_dlg( gchar *title )
+GtkWidget *create_file_selection_dlg(const gchar *title)
 {
 	GtkWidget *temp;
 
@@ -30,8 +30,8 @@ GtkWidget *create_file_selection_dlg( gchar *title )
 	return temp;
 }
 
-void create_file_selection_with_ok_handler( gchar *title,
-				GtkSignalFunc ok_handler,  int entry)
+void create_file_selection_with_ok_handler(const gchar *title,
+				GtkSignalFunc ok_handler, int entry)
 {
 	GtkWidget *file_dlg;
 

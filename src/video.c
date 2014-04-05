@@ -9,7 +9,7 @@
 
 #include "gtuxnes.h"
 
-gchar *translate_video_combo(int box)
+const gchar *translate_video_combo(int box)
 {
 	char *combo_text;
 	combo_text = gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(widgets[box])->entry));

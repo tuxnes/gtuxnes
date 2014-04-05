@@ -7,4 +7,4 @@
  * full text of the License.
 */
 
-gchar *translate_sound_combo(int box);
+const gchar *translate_sound_combo(int box);

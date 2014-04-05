@@ -14,7 +14,7 @@ char config_file_name[513];
 GtkWidget *main_window;
 GtkWidget *wait_dlg;
 
-static void popup_info_dialog(char *msg)
+static void popup_info_dialog(const char *msg)
 {
 	GtkWidget *dlg;
 	GtkWidget *lbl;
@@ -65,7 +65,7 @@ static void create_wait_dialog(void)
 	gtk_timeout_add(10, update_wait_progress, progress);
 }
 
-static char *allocate_and_copy(char *cmdln_switch, GtkEntry *entry)
+static char *allocate_and_copy(const char *cmdln_switch, GtkEntry *entry)
 {
 	char *temp;
 
@@ -211,7 +211,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		i++;
 	}
 	if (GTK_TOGGLE_BUTTON(toggles[MIRROR])->active) {
-		char *temp = translate_video_combo(MIRROR);
+		const char *temp = translate_video_combo(MIRROR);
 		if (temp == NULL) {
 			cleanup(options, needs_freeing, j, TRUE);
 			return;
@@ -227,7 +227,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		i++;
 	}
 	if (GTK_TOGGLE_BUTTON(toggles[RENDERER])->active) {
-		char *temp = translate_video_combo(RENDERER);
+		const char *temp = translate_video_combo(RENDERER);
 		if (temp == NULL) {
 			cleanup(options, needs_freeing, j, TRUE);
 			return;
@@ -261,7 +261,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 			i++;
 		}
 		if (GTK_TOGGLE_BUTTON(toggles[SNDFORMAT])->active) {
-			gchar *temp = translate_sound_combo(SNDFORMAT);
+			const gchar *temp = translate_sound_combo(SNDFORMAT);
 			if (temp == NULL) {
 				cleanup(options, needs_freeing, j, TRUE);
 				return;
@@ -439,7 +439,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 	}
 }
 
-static void add_page(GtkWidget *book, GtkWidget *page, gchar *title)
+static void add_page(GtkWidget *book, GtkWidget *page, const gchar *title)
 {
 	GtkWidget *label;
 	gtk_container_set_border_width(GTK_CONTAINER(page), 10);

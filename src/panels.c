@@ -66,7 +66,7 @@ void browse_files(GtkWidget *w, gpointer data)
 					PALFILE );
 }
 
-GtkWidget *create_toggle(char *name, intptr_t id)
+GtkWidget *create_toggle(const char *name, intptr_t id)
 {
 	toggles[id] = gtk_check_button_new_with_label(name);
 	gtk_signal_connect(GTK_OBJECT(toggles[id]), "toggled",
@@ -76,7 +76,7 @@ GtkWidget *create_toggle(char *name, intptr_t id)
 	return toggles[id];
 }
 
-GtkWidget *create_toggled_entry(char *name, intptr_t id, gint width)
+GtkWidget *create_toggled_entry(const char *name, intptr_t id, gint width)
 {
 	GtkWidget *entry;
 	GtkWidget *hbox;
@@ -101,7 +101,7 @@ GtkWidget *create_toggled_entry(char *name, intptr_t id, gint width)
 	return hbox;
 }
 
-GtkWidget *create_toggled_combo(char *name, intptr_t id, gint width,
+GtkWidget *create_toggled_combo(const char *name, intptr_t id, gint width,
 				GList *glist, gboolean editable)
 {
 	GtkWidget *combo;

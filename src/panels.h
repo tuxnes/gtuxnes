@@ -10,7 +10,7 @@
 void browse_files(GtkWidget *w, gpointer data);
 void entry_edited(GtkWidget *entry, gpointer option);
 
-GtkWidget *create_toggle(char *name, intptr_t id);
-GtkWidget *create_toggled_entry(char *name, intptr_t id, gint width);
-GtkWidget *create_toggled_combo(char *name, intptr_t id, gint width,
+GtkWidget *create_toggle(const char *name, intptr_t id);
+GtkWidget *create_toggled_entry(const char *name, intptr_t id, gint width);
+GtkWidget *create_toggled_combo(const char *name, intptr_t id, gint width,
 				GList *glist, gboolean editable);

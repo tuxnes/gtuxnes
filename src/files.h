@@ -9,8 +9,7 @@
 
 void end_dlg(GtkWidget *w, gpointer dlg);
 
-GtkWidget *create_file_selection_dlg( gchar *title );
+GtkWidget *create_file_selection_dlg(const gchar *title);
 
-void create_file_selection_with_ok_handler( gchar *title,
-						GtkSignalFunc ok_handler,
-						int entry );
+void create_file_selection_with_ok_handler(const gchar *title,
+				GtkSignalFunc ok_handler, int entry);

@@ -9,7 +9,7 @@
 
 #include "gtuxnes.h"
 
-gchar *translate_sound_combo(int box)
+const gchar *translate_sound_combo(int box)
 {
 	char *combo_text;
 	if (box == SNDFORMAT) {

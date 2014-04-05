@@ -7,5 +7,5 @@
  * full text of the License.
 */
 
-gchar *translate_video_combo(int box);
+const gchar *translate_video_combo(int box);
 void correct_ntsc_value(GtkWidget *entry, gpointer item);
