@@ -1,4 +1,4 @@
-/*    
+/*
  * Copyright (C) 2000-2001  Scott Weber  <scott@scottweber.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -31,11 +31,11 @@ static void popup_info_dialog(char *msg)
 
 	gtk_widget_show_all(dlg);
 	}
-	
+
 static gint update_wait_progress(gpointer progress)
 	{
 	gint curr_val;
-	
+
 	curr_val = gtk_progress_get_value(GTK_PROGRESS(progress));
 	gtk_progress_set_value(GTK_PROGRESS(progress), curr_val+1);
 
@@ -125,7 +125,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		needs_freeing[j] = i;
 		j++;
 		i++;
-		}		
+		}
 	if (GTK_TOGGLE_BUTTON(toggles[NTSC])->active)
 		{
 		char *temp, *temp2;
@@ -143,7 +143,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 			cleanup(options, needs_freeing, j, TRUE);
 			return;
 			}
-			
+
 		temp2 = (char*) g_malloc(sizeof(char) * (strlen(temp)+2));
 		if (temp2 == NULL)
 			{
@@ -166,7 +166,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		needs_freeing[j] = i;
 		j++;
 		i++;
-		}		
+		}
 	if (GTK_TOGGLE_BUTTON(toggles[GEOMETRY])->active)
 		{
 		g_print("-G%s ",
@@ -311,7 +311,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 			{
 			g_print("-D%s ",
 				gtk_entry_get_text(GTK_ENTRY(widgets[SNDDELAY])));
-			options[i] = allocate_and_copy("-D", 
+			options[i] = allocate_and_copy("-D",
 							GTK_ENTRY(widgets[SNDDELAY]));
 			if (options[i] == NULL)
 				{
@@ -351,11 +351,11 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		needs_freeing[j] = i;
 		j++;
 		i++;
-		}	
+		}
 	if (GTK_TOGGLE_BUTTON(toggles[GAMEGENIE])->active)
 		{
 		g_print("-g%s ",gtk_entry_get_text(GTK_ENTRY(widgets[GAMEGENIE])));
-		options[i] = allocate_and_copy("-g", 
+		options[i] = allocate_and_copy("-g",
 					GTK_ENTRY(widgets[GAMEGENIE]));
 		if (options[i] == NULL)
 			{
@@ -365,7 +365,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		needs_freeing[j] = i;
 		j++;
 		i++;
-		}	
+		}
 	if (GTK_TOGGLE_BUTTON(toggles[STICKYKEYS])->active)
 		{
 		g_print("-K ");
@@ -479,11 +479,11 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		}
 	g_print("%s\n", gtk_entry_get_text(GTK_ENTRY(widgets[ROMNAME])));
 
-	
+
 	if ((tuxnes_pid = fork()) == 0)
 		{
 		/* TuxNES child */
-		execvp("tuxnes", options); 
+		execvp("tuxnes", options);
 		exit(1);
 		}
 	else
@@ -529,7 +529,7 @@ int main( int argc, char *argv[] )
 	gtk_signal_connect (GTK_OBJECT (main_window), "delete_event",
 				GTK_SIGNAL_FUNC (quit_gtuxnes), NULL);
 	gtk_container_set_border_width (GTK_CONTAINER (main_window), 10);
-	
+
 	vbox = gtk_vbox_new(FALSE, 5);
 
 
@@ -538,13 +538,13 @@ int main( int argc, char *argv[] )
 	gtk_notebook_set_tab_pos(GTK_NOTEBOOK (notebook), GTK_POS_TOP);
 	gtk_box_pack_start(GTK_BOX(vbox), notebook, FALSE, FALSE, 0);
 	gtk_widget_show(notebook);
-    
+
 	add_page(notebook, create_general_options_page(), "General");
 	add_page(notebook, create_sound_options_page(),   "Sound");
 	add_page(notebook, create_video_options_page(),   "Video");
 	add_page(notebook, create_input_options_page(),   "Input");
 	add_page(notebook, create_debug_options_page(),   "Debug");
-      
+
 
     /* Create the Save, Run and Quit buttons */
 	bbox = gtk_hbutton_box_new();
@@ -562,7 +562,7 @@ int main( int argc, char *argv[] )
 			       GTK_SIGNAL_FUNC(run_tuxnes), NULL);
 	gtk_container_add(GTK_CONTAINER(bbox), button);
 	gtk_widget_show(button);
-    
+
 	button = gtk_button_new_with_label("Quit");
 	gtk_signal_connect(GTK_OBJECT(button), "clicked",
 			       GTK_SIGNAL_FUNC(quit_gtuxnes), NULL);

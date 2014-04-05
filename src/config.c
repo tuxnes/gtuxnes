@@ -1,4 +1,4 @@
-/*    
+/*
  * Copyright (C) 2000-2001  Scott Weber  <scott@scottweber.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -11,8 +11,8 @@
  *   Line 1: /full/path/to/rom
  *   Line X: KEY0000000[=VALUE]
  *
- *  All keys are exactly 10 characters long (padded with '0's if necessary).  
- *  A key with no value is assumed to have the value 1 or 'on'.  A key which 
+ *  All keys are exactly 10 characters long (padded with '0's if necessary).
+ *  A key with no value is assumed to have the value 1 or 'on'.  A key which
  *  does not appear in the file is assumed to have the value 0 or 'off'.
 */
 
@@ -32,9 +32,9 @@ void read_config_file(void)
 	char raw_data[513];
 	char str_opname[11];
 	int toggle_id, i;
-	
+
 	config_file = fopen(config_file_name,"r");
-	
+
 	if (config_file == NULL)
 		return;
 
@@ -50,7 +50,7 @@ void read_config_file(void)
 		i++;
 		}
 	gtk_entry_set_text(GTK_ENTRY(widgets[ROMNAME]), raw_data);
-	
+
 	while (!feof(config_file))
 		{
 		raw_data[0] = '\0';
@@ -59,7 +59,7 @@ void read_config_file(void)
 			break;
 		strncpy(str_opname, raw_data, 10);
 		str_opname[10] = '\0';
-	
+
 		if (strcmp(str_opname, option_names[NTSCHUE]) == 0)
 			{
 			gtk_widget_set_sensitive(widgets[NTSCHUE], TRUE);
@@ -113,7 +113,7 @@ void write_config_file(void)
 	int i;
 
 	config_file = fopen(config_file_name, "w");
-	
+
 	if (config_file == NULL)
 		{
 		g_print("Error: Could not open '%s' for writing.\n"
@@ -133,7 +133,7 @@ void write_config_file(void)
 				{
 				fprintf(config_file, "=");
 				if (GTK_IS_COMBO(widgets[i]))
-					fprintf(config_file, "%s", 
+					fprintf(config_file, "%s",
 							gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(widgets[i])->entry))
 						);
 				else

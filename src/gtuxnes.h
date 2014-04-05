@@ -1,15 +1,15 @@
 /* GTuxNES - A GUI launcher built for TuxNES.
  * version: 0.3.0
  * tuxnes version: devel (3/5/2001)
- * 
+ *
  * Please see the file AUTHORS.
- * 
+ *
  * cmd-line options implemented:
  * v f M g H d l i m G E L S r I K X s F R D p P b 1 2 N J
  * --display=
  *
  * cmd-line options not yet implemented:
- * 
+ *
  *
  * Copyright (C) 2000-2001  Scott Weber  <scott@scottweber.com>
  *

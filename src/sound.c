@@ -1,4 +1,4 @@
-/*    
+/*
  * Copyright (C) 2000-2001  Scott Weber  <scott@scottweber.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -39,7 +39,7 @@ gchar *translate_sound_combo(int box)
 				{
 				case 'U':
 					if (strlen(combo_text) > 15)
-						return (combo_text[17] == 'l' ? 
+						return (combo_text[17] == 'l' ?
 									"le16u" : "be16u");
 					else
 						return "16u";
@@ -68,12 +68,12 @@ GtkWidget *create_sound_options_page(void)
 	GtkWidget *button;
 	GtkWidget *lbl;
 	GList *glist=NULL;
-	
+
 
 	frame = gtk_frame_new(NULL);
-	
+
 	vbox = gtk_vbox_new(FALSE, 5);
-	
+
 	button = create_toggle("Mute Sound", MUTESOUND);
 	gtk_box_pack_start(GTK_BOX(vbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
@@ -126,6 +126,6 @@ GtkWidget *create_sound_options_page(void)
 
 	gtk_container_add(GTK_CONTAINER(frame), vbox);
 	gtk_widget_show(vbox);
-	
+
 	return frame;
 	}

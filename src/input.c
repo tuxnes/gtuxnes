@@ -1,4 +1,4 @@
-/*    
+/*
  * Copyright (C) 2000-2001  Scott Weber  <scott@scottweber.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -14,10 +14,10 @@ GtkWidget *create_input_options_page(void)
 	GtkWidget *hbox;
 	GtkWidget *vbox;
 	GtkWidget *button;
-	
+
 
 	frame = gtk_frame_new(NULL);
-	
+
 	vbox = gtk_vbox_new(FALSE, 5);
 
 	button = create_toggle("Sticky Keys", STICKYKEYS);
@@ -45,6 +45,6 @@ GtkWidget *create_input_options_page(void)
 
 	gtk_container_add(GTK_CONTAINER(frame), vbox);
 	gtk_widget_show(vbox);
-	
+
 	return frame;
 	}

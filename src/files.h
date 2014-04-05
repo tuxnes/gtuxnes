@@ -1,4 +1,4 @@
-/*    
+/*
  * Copyright (C) 2000-2001  Scott Weber  <scott@scottweber.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -11,6 +11,6 @@ void end_dlg(GtkWidget *w, gpointer dlg);
 
 GtkWidget *create_file_selection_dlg( gchar *title );
 
-void create_file_selection_with_ok_handler( gchar *title, 
+void create_file_selection_with_ok_handler( gchar *title,
 						GtkSignalFunc ok_handler,
 						int entry );

@@ -1,4 +1,4 @@
-/*    
+/*
  * Copyright (C) 2000-2001  Scott Weber  <scott@scottweber.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -23,18 +23,18 @@ GtkWidget *create_file_selection_dlg( gchar *title )
 	gtk_signal_connect( GTK_OBJECT(temp), "destroy",
 				GTK_SIGNAL_FUNC(end_dlg), (gpointer) temp );
 	gtk_signal_connect( GTK_OBJECT (GTK_FILE_SELECTION (temp)->cancel_button), "clicked",
-				GTK_SIGNAL_FUNC(end_dlg), (gpointer) temp ); 
-	
+				GTK_SIGNAL_FUNC(end_dlg), (gpointer) temp );
+
 	/* TODO: connect help button? */
 
 	return temp;
 	}
 
-void create_file_selection_with_ok_handler( gchar *title, 
+void create_file_selection_with_ok_handler( gchar *title,
 				GtkSignalFunc ok_handler,  int entry)
 	{
 	GtkWidget *file_dlg;
-	
+
 	file_dlg = create_file_selection_dlg(title);
 	gtk_file_selection_set_filename(GTK_FILE_SELECTION(file_dlg),
 					gtk_entry_get_text(GTK_ENTRY(widgets[entry])) );

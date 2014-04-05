@@ -1,4 +1,4 @@
-/*    
+/*
  * Copyright (C) 2000-2001  Scott Weber  <scott@scottweber.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -11,21 +11,21 @@
 
 static void update_romname(GtkWidget *b, gpointer fs)
 	{
-	gtk_entry_set_text(GTK_ENTRY(widgets[ROMNAME]), 
+	gtk_entry_set_text(GTK_ENTRY(widgets[ROMNAME]),
 		gtk_file_selection_get_filename(GTK_FILE_SELECTION(fs)));
 	end_dlg(NULL, fs);
 	}
 
 static void update_palfile(GtkWidget *b, gpointer fs)
 	{
-	gtk_entry_set_text(GTK_ENTRY(widgets[PALFILE]), 
+	gtk_entry_set_text(GTK_ENTRY(widgets[PALFILE]),
 		gtk_file_selection_get_filename(GTK_FILE_SELECTION(fs)));
 	end_dlg(NULL, fs);
 	}
 
 void entry_edited(GtkWidget *entry, gpointer option)
 	{
-	/* 
+	/*
 	g_free();
 	g_malloc();
 	strcpy();
@@ -75,7 +75,7 @@ void browse_files(GtkWidget *w, gpointer data)
 GtkWidget *create_toggle(char *name, intptr_t id)
 	{
 	toggles[id] = gtk_check_button_new_with_label(name);
-	gtk_signal_connect(GTK_OBJECT(toggles[id]), "toggled", 
+	gtk_signal_connect(GTK_OBJECT(toggles[id]), "toggled",
 				GTK_SIGNAL_FUNC(button_toggled),
 				(gpointer) id);
 
@@ -89,8 +89,8 @@ GtkWidget *create_toggled_entry(char *name, intptr_t id, gint width)
 
 	hbox = gtk_hbox_new(FALSE, 3);
 	toggles[id] = gtk_check_button_new_with_label(name);
-	gtk_signal_connect(GTK_OBJECT(toggles[id]), "toggled", 
-				GTK_SIGNAL_FUNC(enable_button_toggled), 
+	gtk_signal_connect(GTK_OBJECT(toggles[id]), "toggled",
+				GTK_SIGNAL_FUNC(enable_button_toggled),
 				(gpointer) id);
 	gtk_box_pack_start(GTK_BOX(hbox), toggles[id], FALSE, FALSE, 0);
 	gtk_widget_show(toggles[id]);
@@ -98,7 +98,7 @@ GtkWidget *create_toggled_entry(char *name, intptr_t id, gint width)
 	gtk_widget_set_sensitive(entry, FALSE);
 	gtk_widget_set_usize(entry, width, 20);
 	gtk_signal_connect(GTK_OBJECT(entry), "activate",
-				GTK_SIGNAL_FUNC(entry_edited), 
+				GTK_SIGNAL_FUNC(entry_edited),
 				(gpointer) id);
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[id] = entry;
@@ -115,8 +115,8 @@ GtkWidget *create_toggled_combo(char *name, intptr_t id, gint width,
 
 	hbox = gtk_hbox_new(FALSE, 3);
 	toggles[id] = gtk_check_button_new_with_label(name);
-	gtk_signal_connect(GTK_OBJECT(toggles[id]), "toggled", 
-				GTK_SIGNAL_FUNC(enable_button_toggled), 
+	gtk_signal_connect(GTK_OBJECT(toggles[id]), "toggled",
+				GTK_SIGNAL_FUNC(enable_button_toggled),
 				(gpointer) id);
 	gtk_box_pack_start(GTK_BOX(hbox), toggles[id], FALSE, FALSE, 0);
 	gtk_widget_show(toggles[id]);

@@ -1,4 +1,4 @@
-/*    
+/*
  * Copyright (C) 2000-2001  Scott Weber  <scott@scottweber.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -16,10 +16,10 @@ GtkWidget *create_general_options_page(void)
 	GtkWidget *button;
 	GtkWidget *entry;
 	GtkWidget *lbl;
-	
+
 
 	frame = gtk_frame_new(NULL);
-	
+
 	vbox = gtk_vbox_new(FALSE, 5);
 
 	hbox = gtk_hbox_new(FALSE, 3);
@@ -28,7 +28,7 @@ GtkWidget *create_general_options_page(void)
 	gtk_widget_show(lbl);
 	entry = gtk_entry_new();
 	gtk_signal_connect(GTK_OBJECT(entry), "activate",
-				GTK_SIGNAL_FUNC(entry_edited), 
+				GTK_SIGNAL_FUNC(entry_edited),
 				(gpointer) ROMNAME);
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[ROMNAME] = entry;
@@ -63,6 +63,6 @@ GtkWidget *create_general_options_page(void)
 
 	gtk_container_add(GTK_CONTAINER(frame), vbox);
 	gtk_widget_show(vbox);
-	
+
 	return frame;
 	}

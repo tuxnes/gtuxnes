@@ -1,4 +1,4 @@
-/*    
+/*
  * Copyright (C) 2000-2001  Scott Weber  <scott@scottweber.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -72,7 +72,7 @@ void correct_ntsc_value(GtkWidget *entry, gpointer item)
 	{
 	double entry_val;
 	entry_val = atof(gtk_entry_get_text(GTK_ENTRY(entry)));
-	
+
 	if ((intptr_t)item == NTSCHUE)
 		{
 		if (entry_val > 360.0)
@@ -104,7 +104,7 @@ static void ntsc_toggle(GtkWidget *button, gpointer w)
 		num_opts--;
 		}
 	}
-	
+
 static void pal_file_toggle(GtkWidget *button, gpointer w)
 	{
 	if (GTK_TOGGLE_BUTTON(button)->active)
@@ -129,10 +129,10 @@ GtkWidget *create_video_options_page(void)
 	GtkWidget *button2;
 	GtkWidget *entry;
 	GtkWidget *lbl;
-	GList *glist = NULL;	
+	GList *glist = NULL;
 
 	frame = gtk_frame_new(NULL);
-	
+
 	vbox = gtk_vbox_new(FALSE, 5);
 
 	glist = g_list_append(glist, "Automatically Choose");
@@ -161,7 +161,7 @@ GtkWidget *create_video_options_page(void)
 	gtk_entry_set_text(GTK_ENTRY(widgets[GEOMETRY]), "640x480");
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 	gtk_widget_show(hbox);
-	
+
 	hbox = create_toggled_entry("Enlarge:", ENLARGE, 30);
 	gtk_entry_set_text(GTK_ENTRY(widgets[ENLARGE]), "2");
 	lbl = gtk_label_new("x");
@@ -179,13 +179,13 @@ GtkWidget *create_video_options_page(void)
 	glist = g_list_append(glist, "Horizontal");
 	glist = g_list_append(glist, "Single-Screen");
 	glist = g_list_append(glist, "None");
-	hbox = create_toggled_combo("Specify Mirroring", MIRROR, 80, 
+	hbox = create_toggled_combo("Specify Mirroring", MIRROR, 80,
 								glist, FALSE);
 	g_list_free(glist);
 	glist = NULL;
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 	gtk_widget_show(hbox);
-	
+
 	glist = g_list_append(glist, "loopy");
 	glist = g_list_append(glist, "quor");
 	glist = g_list_append(glist, "chris");
@@ -219,7 +219,7 @@ GtkWidget *create_video_options_page(void)
 				GTK_SIGNAL_FUNC(pal_file_toggle),
 				(gpointer) button2);
 	gtk_signal_connect(GTK_OBJECT(button2), "clicked",
-				GTK_SIGNAL_FUNC(browse_files), 
+				GTK_SIGNAL_FUNC(browse_files),
 				(gpointer) PALFILE);
 	gtk_widget_set_sensitive(button2, FALSE);
 	gtk_box_pack_start(GTK_BOX(hbox), button2, FALSE, FALSE, 0);
@@ -278,7 +278,6 @@ GtkWidget *create_video_options_page(void)
 
 	gtk_container_add(GTK_CONTAINER(frame), vbox);
 	gtk_widget_show(vbox);
-	
+
 	return frame;
 	}
-
