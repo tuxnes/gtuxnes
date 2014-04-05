@@ -14,7 +14,7 @@ char config_file_name[513];
 GtkWidget *main_window;
 GtkWidget *wait_dlg;
 
-void popup_info_dialog(char *msg)
+static void popup_info_dialog(char *msg)
 	{
 	GtkWidget *dlg;
 	GtkWidget *lbl;
@@ -32,7 +32,7 @@ void popup_info_dialog(char *msg)
 	gtk_widget_show_all(dlg);
 	}
 	
-gint update_wait_progress(gpointer progress)
+static gint update_wait_progress(gpointer progress)
 	{
 	gint curr_val;
 	
@@ -49,7 +49,7 @@ gint update_wait_progress(gpointer progress)
 	return (curr_val < 100);
 	}
 
-void create_wait_dialog(void)
+static void create_wait_dialog(void)
 	{
 	GtkWidget *lbl;
 	GtkWidget *progress;
@@ -66,7 +66,7 @@ void create_wait_dialog(void)
 	gtk_timeout_add(10, update_wait_progress, progress);
 	}
 
-char *allocate_and_copy(char *cmdln_switch, GtkEntry *entry)
+static char *allocate_and_copy(char *cmdln_switch, GtkEntry *entry)
 	{
 	char *temp;
 
@@ -75,7 +75,7 @@ char *allocate_and_copy(char *cmdln_switch, GtkEntry *entry)
 	return temp;
 	}
 
-void cleanup(char *free_me[], int index[], int size, gboolean was_error)
+static void cleanup(char *free_me[], int index[], int size, gboolean was_error)
 	{
 	int j;
 	if (was_error)
@@ -84,7 +84,7 @@ void cleanup(char *free_me[], int index[], int size, gboolean was_error)
 		g_free(free_me[index[j]]);
 	}
 
-void run_tuxnes( GtkWidget *w, gpointer data )
+static void run_tuxnes( GtkWidget *w, gpointer data )
 	{
 	int i = 1;
 	int j = 0;
@@ -498,7 +498,7 @@ void run_tuxnes( GtkWidget *w, gpointer data )
 		}
 	}
 
-void add_page(GtkWidget *book, GtkWidget *page, gchar *title)
+static void add_page(GtkWidget *book, GtkWidget *page, gchar *title)
 	{
 	GtkWidget *label;
 	gtk_container_set_border_width(GTK_CONTAINER(page), 10);
@@ -508,7 +508,7 @@ void add_page(GtkWidget *book, GtkWidget *page, gchar *title)
 	gtk_notebook_append_page (GTK_NOTEBOOK(book), page, label);
 	}
 
-gint quit_gtuxnes( GtkWidget *w, gpointer data )
+static gint quit_gtuxnes( GtkWidget *w, gpointer data )
 	{
 	write_config_file();
 	gtk_main_quit();
