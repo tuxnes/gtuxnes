@@ -10,12 +10,12 @@
 #include "gtuxnes.h"
 
 void end_dlg(GtkWidget *w, gpointer dlg)
-	{
+{
 	gtk_widget_destroy(GTK_WIDGET( dlg ));
-	}
+}
 
 GtkWidget *create_file_selection_dlg( gchar *title )
-	{
+{
 	GtkWidget *temp;
 
 	temp = gtk_file_selection_new(title);
@@ -28,11 +28,11 @@ GtkWidget *create_file_selection_dlg( gchar *title )
 	/* TODO: connect help button? */
 
 	return temp;
-	}
+}
 
 void create_file_selection_with_ok_handler( gchar *title,
 				GtkSignalFunc ok_handler,  int entry)
-	{
+{
 	GtkWidget *file_dlg;
 
 	file_dlg = create_file_selection_dlg(title);
@@ -41,4 +41,4 @@ void create_file_selection_with_ok_handler( gchar *title,
 	gtk_signal_connect( GTK_OBJECT(GTK_FILE_SELECTION(file_dlg)->ok_button), "clicked",
 				ok_handler, (gpointer) file_dlg );
 	gtk_widget_show(file_dlg);
-	}
+}

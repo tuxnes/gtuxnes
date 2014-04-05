@@ -10,7 +10,7 @@
 #include "gtuxnes.h"
 
 GtkWidget *create_input_options_page(void)
-	{
+{
 	GtkWidget *hbox;
 	GtkWidget *vbox;
 	GtkWidget *button;
@@ -47,4 +47,4 @@ GtkWidget *create_input_options_page(void)
 	gtk_widget_show(vbox);
 
 	return frame;
-	}
+}

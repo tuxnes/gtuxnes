@@ -10,119 +10,105 @@
 #include "gtuxnes.h"
 
 gchar *translate_video_combo(int box)
-	{
+{
 	char *combo_text;
 	combo_text = gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(widgets[box])->entry));
-	if (box == RENDERER)
-		{
-		switch(combo_text[0])
-			{
-			case 'A':
-				return "auto";
-				break;
-			case 'X':
-				return "x11";
-				break;
-			case 'D':
-				return "diff";
-				break;
-			case 'T':
-				return "old";
-				break;
-			case 'G':
-				return "ggi";
-				break;
-			case 'W':
-				return "w";
-				break;
-			case 'N':
-				return "none";
-				break;
-			default:
-				return NULL;
-				break;
-			}
+	if (box == RENDERER) {
+		switch(combo_text[0]) {
+		case 'A':
+			return "auto";
+			break;
+		case 'X':
+			return "x11";
+			break;
+		case 'D':
+			return "diff";
+			break;
+		case 'T':
+			return "old";
+			break;
+		case 'G':
+			return "ggi";
+			break;
+		case 'W':
+			return "w";
+			break;
+		case 'N':
+			return "none";
+			break;
+		default:
+			return NULL;
+			break;
 		}
-	else if (box == MIRROR)
-		{
-		switch(combo_text[0])
-			{
-			case 'V':
-				return "v";
-				break;
-			case 'H':
-				return "h";
-				break;
-			case 'S':
-				return "s";
-				break;
-			case 'N':
-				return "n";
-				break;
-			default:
-				return NULL;
-				break;
-			}
+	} else if (box == MIRROR) {
+		switch(combo_text[0]) {
+		case 'V':
+			return "v";
+			break;
+		case 'H':
+			return "h";
+			break;
+		case 'S':
+			return "s";
+			break;
+		case 'N':
+			return "n";
+			break;
+		default:
+			return NULL;
+			break;
 		}
-	else
+	} else {
 		return NULL;
 	}
+}
 
 void correct_ntsc_value(GtkWidget *entry, gpointer item)
-	{
+{
 	double entry_val;
 	entry_val = atof(gtk_entry_get_text(GTK_ENTRY(entry)));
 
-	if ((intptr_t)item == NTSCHUE)
-		{
+	if ((intptr_t)item == NTSCHUE) {
 		if (entry_val > 360.0)
 			gtk_entry_set_text(GTK_ENTRY(entry), "360.0");
 		if (entry_val < 0.0)
 			gtk_entry_set_text(GTK_ENTRY(entry), "0.0");
-		}
-	else /* item == NTSCTINT */
-		{
+	} else /* item == NTSCTINT */ {
 		if (entry_val > 1.0)
 			gtk_entry_set_text(GTK_ENTRY(entry), "1.0");
 		if (entry_val < 0.0)
 			gtk_entry_set_text(GTK_ENTRY(entry), "0.0");
-		}
 	}
+}
 
 static void ntsc_toggle(GtkWidget *button, gpointer w)
-	{
-	if (GTK_TOGGLE_BUTTON(button)->active)
-		{
+{
+	if (GTK_TOGGLE_BUTTON(button)->active) {
 		gtk_widget_set_sensitive(widgets[NTSCHUE], TRUE);
 		gtk_widget_set_sensitive(widgets[NTSCTINT], TRUE);
 		num_opts++;
-		}
-	else
-		{
+	} else {
 		gtk_widget_set_sensitive(widgets[NTSCHUE], FALSE);
 		gtk_widget_set_sensitive(widgets[NTSCTINT], FALSE);
 		num_opts--;
-		}
 	}
+}
 
 static void pal_file_toggle(GtkWidget *button, gpointer w)
-	{
-	if (GTK_TOGGLE_BUTTON(button)->active)
-		{
+{
+	if (GTK_TOGGLE_BUTTON(button)->active) {
 		gtk_widget_set_sensitive(widgets[PALFILE], TRUE);
 		gtk_widget_set_sensitive(GTK_WIDGET(w), TRUE);
 		num_opts++;
-		}
-	else
-		{
+	} else {
 		gtk_widget_set_sensitive(widgets[PALFILE], FALSE);
 		gtk_widget_set_sensitive(GTK_WIDGET(w), FALSE);
 		num_opts--;
-		}
 	}
+}
 
 GtkWidget *create_video_options_page(void)
-	{
+{
 	GtkWidget *hbox;
 	GtkWidget *vbox;
 	GtkWidget *button;
@@ -280,4 +266,4 @@ GtkWidget *create_video_options_page(void)
 	gtk_widget_show(vbox);
 
 	return frame;
-	}
+}

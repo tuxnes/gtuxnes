@@ -10,59 +10,53 @@
 #include "gtuxnes.h"
 
 gchar *translate_sound_combo(int box)
-	{
+{
 	char *combo_text;
-	if (box == SNDFORMAT)
-		{
+	if (box == SNDFORMAT) {
 		combo_text = gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(widgets[SNDFORMAT])->entry));
-		if (combo_text[0] == '8')
-			{
-			switch(combo_text[6])
-				{
-				case 'M':
-					return "mu8";
-					break;
-				case 'U':
-					return "8";
-					break;
-				case 'S':
-					return "8s";
-					break;
-				default:
-					return NULL;
-					break;
-				}
+		if (combo_text[0] == '8') {
+			switch(combo_text[6]) {
+			case 'M':
+				return "mu8";
+				break;
+			case 'U':
+				return "8";
+				break;
+			case 'S':
+				return "8s";
+				break;
+			default:
+				return NULL;
+				break;
 			}
-		else
-			{
-			switch(combo_text[7])
-				{
-				case 'U':
-					if (strlen(combo_text) > 15)
-						return (combo_text[17] == 'l' ?
-									"le16u" : "be16u");
-					else
-						return "16u";
-					break;
-				case 'S':
-					if (strlen(combo_text) > 13)
-						return (combo_text[15] == 'l' ?
-									"le16" : "be16");
-					else
-						return "16";
-					break;
-				default:
-					return NULL;
-					break;
-				}
+		} else {
+			switch(combo_text[7]) {
+			case 'U':
+				if (strlen(combo_text) > 15)
+					return (combo_text[17] == 'l' ?
+								"le16u" : "be16u");
+				else
+					return "16u";
+				break;
+			case 'S':
+				if (strlen(combo_text) > 13)
+					return (combo_text[15] == 'l' ?
+								"le16" : "be16");
+				else
+					return "16";
+				break;
+			default:
+				return NULL;
+				break;
 			}
 		}
-	else
+	} else {
 		return NULL;
 	}
+}
 
 GtkWidget *create_sound_options_page(void)
-	{
+{
 	GtkWidget *hbox;
 	GtkWidget *vbox;
 	GtkWidget *button;
@@ -128,4 +122,4 @@ GtkWidget *create_sound_options_page(void)
 	gtk_widget_show(vbox);
 
 	return frame;
-	}
+}

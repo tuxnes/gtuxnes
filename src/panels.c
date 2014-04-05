@@ -10,58 +10,52 @@
 #include "gtuxnes.h"
 
 static void update_romname(GtkWidget *b, gpointer fs)
-	{
+{
 	gtk_entry_set_text(GTK_ENTRY(widgets[ROMNAME]),
 		gtk_file_selection_get_filename(GTK_FILE_SELECTION(fs)));
 	end_dlg(NULL, fs);
-	}
+}
 
 static void update_palfile(GtkWidget *b, gpointer fs)
-	{
+{
 	gtk_entry_set_text(GTK_ENTRY(widgets[PALFILE]),
 		gtk_file_selection_get_filename(GTK_FILE_SELECTION(fs)));
 	end_dlg(NULL, fs);
-	}
+}
 
 void entry_edited(GtkWidget *entry, gpointer option)
-	{
+{
 	/*
 	g_free();
 	g_malloc();
 	strcpy();
 	*/
-	}
+}
 
 static void enable_button_toggled(GtkWidget *button, gpointer e)
-	{
-	if (GTK_TOGGLE_BUTTON(button)->active)
-		{
+{
+	if (GTK_TOGGLE_BUTTON(button)->active) {
 		gtk_widget_set_sensitive(GTK_WIDGET(widgets[(intptr_t)e]),
 								TRUE);
 		num_opts++;
-		}
-	else
-		{
+	} else {
 		gtk_widget_set_sensitive(GTK_WIDGET(widgets[(intptr_t)e]),
 								FALSE);
 		num_opts--;
-		}
 	}
+}
 
 static void button_toggled(GtkWidget *button, gpointer option)
-	{
-	if (GTK_TOGGLE_BUTTON(button)->active)
-		{
+{
+	if (GTK_TOGGLE_BUTTON(button)->active) {
 		num_opts++;
-		}
-	else
-		{
+	} else {
 		num_opts--;
-		}
 	}
+}
 
 void browse_files(GtkWidget *w, gpointer data)
-	{
+{
 	if ((intptr_t)data == ROMNAME)
 		create_file_selection_with_ok_handler("Choose ROM File",
 					GTK_SIGNAL_FUNC(update_romname),
@@ -70,20 +64,20 @@ void browse_files(GtkWidget *w, gpointer data)
 		create_file_selection_with_ok_handler("Choose Palette File",
 					GTK_SIGNAL_FUNC(update_palfile),
 					PALFILE );
-	}
+}
 
 GtkWidget *create_toggle(char *name, intptr_t id)
-	{
+{
 	toggles[id] = gtk_check_button_new_with_label(name);
 	gtk_signal_connect(GTK_OBJECT(toggles[id]), "toggled",
 				GTK_SIGNAL_FUNC(button_toggled),
 				(gpointer) id);
 
 	return toggles[id];
-	}
+}
 
 GtkWidget *create_toggled_entry(char *name, intptr_t id, gint width)
-	{
+{
 	GtkWidget *entry;
 	GtkWidget *hbox;
 
@@ -105,11 +99,11 @@ GtkWidget *create_toggled_entry(char *name, intptr_t id, gint width)
 	gtk_widget_show(entry);
 
 	return hbox;
-	}
+}
 
 GtkWidget *create_toggled_combo(char *name, intptr_t id, gint width,
 				GList *glist, gboolean editable)
-	{
+{
 	GtkWidget *combo;
 	GtkWidget *hbox;
 
@@ -130,4 +124,4 @@ GtkWidget *create_toggled_combo(char *name, intptr_t id, gint width,
 	gtk_widget_show(combo);
 
 	return hbox;
-	}
+}
