@@ -26,7 +26,7 @@ char *option_names[NUM_OF_TOGGLES] =
 "STICKYKEYS","SWAPINPUT0","IGNOREINST"};
 
 
-void read_config_file()
+void read_config_file(void)
 	{
 	FILE *config_file;
 	char raw_data[513];
@@ -107,7 +107,7 @@ void read_config_file()
 	fclose(config_file);
 	}
 
-void write_config_file()
+void write_config_file(void)
 	{
 	FILE *config_file;
 	int i;

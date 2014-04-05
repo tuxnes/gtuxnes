@@ -7,5 +7,5 @@
  * full text of the License.
 */
 
-void read_config_file();
-void write_config_file();
+void read_config_file(void);
+void write_config_file(void);

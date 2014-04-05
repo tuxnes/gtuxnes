@@ -121,7 +121,7 @@ static void pal_file_toggle(GtkWidget *button, gpointer w)
 		}
 	}
 
-GtkWidget *create_video_options_page()
+GtkWidget *create_video_options_page(void)
 	{
 	GtkWidget *hbox;
 	GtkWidget *vbox;

@@ -61,7 +61,7 @@ gchar *translate_sound_combo(int box)
 		return NULL;
 	}
 
-GtkWidget *create_sound_options_page()
+GtkWidget *create_sound_options_page(void)
 	{
 	GtkWidget *hbox;
 	GtkWidget *vbox;

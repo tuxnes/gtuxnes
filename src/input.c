@@ -9,7 +9,7 @@
 
 #include "gtuxnes.h"
 
-GtkWidget *create_input_options_page()
+GtkWidget *create_input_options_page(void)
 	{
 	GtkWidget *hbox;
 	GtkWidget *vbox;

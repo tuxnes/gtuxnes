@@ -99,10 +99,10 @@ GtkWidget *widgets[NUM_OF_ENTRIES];
 extern int num_opts;
 extern char config_file_name[513];
 
-GtkWidget *create_general_options_page();
-GtkWidget *create_input_options_page();
-GtkWidget *create_sound_options_page();
-GtkWidget *create_video_options_page();
-GtkWidget *create_debug_options_page();
+GtkWidget *create_general_options_page(void);
+GtkWidget *create_input_options_page(void);
+GtkWidget *create_sound_options_page(void);
+GtkWidget *create_video_options_page(void);
+GtkWidget *create_debug_options_page(void);
 
 #endif /* GTUXNES_H */
