@@ -12,9 +12,9 @@ AC_PROG_CC
 PKG_PROG_PKG_CONFIG
 
 # Checks for libraries.
-PKG_CHECK_MODULES([GTK],[gtk+],
+PKG_CHECK_MODULES([GTK],[gtk+-2.0],
 	[],
-	[AC_MSG_ERROR([cannot find gtk+])])
+	[AC_MSG_ERROR([cannot find gtk+-2.0])])
 
 # Checks for header files.
 AC_CHECK_HEADERS([stdlib.h string.h sys/ioctl.h unistd.h])
