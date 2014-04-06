@@ -11,7 +11,7 @@
 
 const gchar *translate_video_combo(int box)
 {
-	char *combo_text;
+	const char *combo_text;
 	combo_text = gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(widgets[box])->entry));
 	if (box == RENDERER) {
 		switch(combo_text[0]) {

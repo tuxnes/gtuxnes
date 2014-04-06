@@ -80,7 +80,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 	int j = 0;
 	int k;
 	char *needs_freeing[NUM_OF_ENTRIES-1];
-	char *options[num_opts+3];
+	const char *options[num_opts+3];
 	pid_t tuxnes_pid;
 	gboolean alloc_error = FALSE;
 
@@ -324,7 +324,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 
 	if ((tuxnes_pid = fork()) == 0) {
 		/* TuxNES child */
-		execvp(options[0], options);
+		execvp(options[0], (char *const *)options);
 		exit(1);
 	} else {
 		/* GTuxNES Parent */

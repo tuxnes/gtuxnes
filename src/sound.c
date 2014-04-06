@@ -11,7 +11,7 @@
 
 const gchar *translate_sound_combo(int box)
 {
-	char *combo_text;
+	const char *combo_text;
 	if (box == SNDFORMAT) {
 		combo_text = gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(widgets[SNDFORMAT])->entry));
 		if (combo_text[0] == '8') {
