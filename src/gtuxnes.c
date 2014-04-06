@@ -24,8 +24,7 @@ static void popup_info_dialog(const char *msg)
 	lbl = gtk_label_new(msg);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), lbl, TRUE, TRUE, 0);
 	button = gtk_button_new_with_label("Okay");
-	gtk_signal_connect(GTK_OBJECT(button), "clicked",
-				GTK_SIGNAL_FUNC(end_dlg), dlg);
+	g_signal_connect(button, "clicked", G_CALLBACK(end_dlg), dlg);
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->action_area), button,
 				TRUE, TRUE, 0);
 
@@ -366,8 +365,7 @@ int main( int argc, char *argv[] )
 
 	main_window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title(GTK_WINDOW(main_window), "GTuxNES");
-	gtk_signal_connect (GTK_OBJECT (main_window), "delete_event",
-				GTK_SIGNAL_FUNC (quit_gtuxnes), NULL);
+	g_signal_connect(main_window, "delete_event", G_CALLBACK(quit_gtuxnes), NULL);
 	gtk_container_set_border_width (GTK_CONTAINER (main_window), 10);
 
 	vbox = gtk_vbox_new(FALSE, 5);
@@ -393,19 +391,16 @@ int main( int argc, char *argv[] )
 /*
 	button = gtk_button_new_with_label("Save Config");
 	gtk_container_add(GTK_CONTAINER(bbox), button);
-	gtk_signal_connect(GTK_OBJECT(button), "clicked",
-				GTK_SIGNAL_FUNC(write_config_file), NULL);
+	g_signal_connect(button, "clicked", G_CALLBACK(write_config_file), NULL);
 	gtk_widget_show(button);
 */
 	button = gtk_button_new_with_label("Run");
-	gtk_signal_connect(GTK_OBJECT(button), "clicked",
-			       GTK_SIGNAL_FUNC(run_tuxnes), NULL);
+	g_signal_connect(button, "clicked", G_CALLBACK(run_tuxnes), NULL);
 	gtk_container_add(GTK_CONTAINER(bbox), button);
 	gtk_widget_show(button);
 
 	button = gtk_button_new_with_label("Quit");
-	gtk_signal_connect(GTK_OBJECT(button), "clicked",
-			       GTK_SIGNAL_FUNC(quit_gtuxnes), NULL);
+	g_signal_connect(button, "clicked", G_CALLBACK(quit_gtuxnes), NULL);
 	gtk_container_add(GTK_CONTAINER(bbox), button);
 	gtk_widget_show(button);
 

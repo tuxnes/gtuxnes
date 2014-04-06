@@ -56,22 +56,20 @@ static void button_toggled(GtkWidget *button, gpointer option)
 
 void browse_files(GtkWidget *w, gpointer data)
 {
-	if ((intptr_t)data == ROMNAME)
+	if (GPOINTER_TO_INT(data) == ROMNAME)
 		create_file_selection_with_ok_handler("Choose ROM File",
-					GTK_SIGNAL_FUNC(update_romname),
+					G_CALLBACK(update_romname),
 					ROMNAME );
-	else if ((intptr_t)data == PALFILE)
+	else if (GPOINTER_TO_INT(data) == PALFILE)
 		create_file_selection_with_ok_handler("Choose Palette File",
-					GTK_SIGNAL_FUNC(update_palfile),
+					G_CALLBACK(update_palfile),
 					PALFILE );
 }
 
 GtkWidget *create_toggle(const char *name, intptr_t id)
 {
 	toggles[id] = gtk_check_button_new_with_label(name);
-	gtk_signal_connect(GTK_OBJECT(toggles[id]), "toggled",
-				GTK_SIGNAL_FUNC(button_toggled),
-				(gpointer) id);
+	g_signal_connect(toggles[id], "toggled", G_CALLBACK(button_toggled), (gpointer)id);
 
 	return toggles[id];
 }
@@ -83,17 +81,13 @@ GtkWidget *create_toggled_entry(const char *name, intptr_t id, gint width)
 
 	hbox = gtk_hbox_new(FALSE, 3);
 	toggles[id] = gtk_check_button_new_with_label(name);
-	gtk_signal_connect(GTK_OBJECT(toggles[id]), "toggled",
-				GTK_SIGNAL_FUNC(enable_button_toggled),
-				(gpointer) id);
+	g_signal_connect(toggles[id], "toggled", G_CALLBACK(enable_button_toggled), (gpointer)id);
 	gtk_box_pack_start(GTK_BOX(hbox), toggles[id], FALSE, FALSE, 0);
 	gtk_widget_show(toggles[id]);
 	entry = gtk_entry_new();
 	gtk_widget_set_sensitive(entry, FALSE);
 	gtk_widget_set_usize(entry, width, 20);
-	gtk_signal_connect(GTK_OBJECT(entry), "activate",
-				GTK_SIGNAL_FUNC(entry_edited),
-				(gpointer) id);
+	g_signal_connect(entry, "activate", G_CALLBACK(entry_edited), (gpointer)id);
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[id] = entry;
 	gtk_widget_show(entry);
@@ -109,9 +103,7 @@ GtkWidget *create_toggled_combo(const char *name, intptr_t id, gint width,
 
 	hbox = gtk_hbox_new(FALSE, 3);
 	toggles[id] = gtk_check_button_new_with_label(name);
-	gtk_signal_connect(GTK_OBJECT(toggles[id]), "toggled",
-				GTK_SIGNAL_FUNC(enable_button_toggled),
-				(gpointer) id);
+	g_signal_connect(toggles[id], "toggled", G_CALLBACK(enable_button_toggled), (gpointer)id);
 	gtk_box_pack_start(GTK_BOX(hbox), toggles[id], FALSE, FALSE, 0);
 	gtk_widget_show(toggles[id]);
 	combo = gtk_combo_new();

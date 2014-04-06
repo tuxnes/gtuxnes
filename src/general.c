@@ -27,15 +27,12 @@ GtkWidget *create_general_options_page(void)
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
 	gtk_widget_show(lbl);
 	entry = gtk_entry_new();
-	gtk_signal_connect(GTK_OBJECT(entry), "activate",
-				GTK_SIGNAL_FUNC(entry_edited),
-				(gpointer) ROMNAME);
+	g_signal_connect(entry, "activate", G_CALLBACK(entry_edited), GINT_TO_POINTER(ROMNAME));
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[ROMNAME] = entry;
 	gtk_widget_show(entry);
 	button = gtk_button_new_with_label("Browse...");
-	gtk_signal_connect(GTK_OBJECT(button), "clicked",
-				GTK_SIGNAL_FUNC(browse_files), NULL);
+	g_signal_connect(button, "clicked", G_CALLBACK(browse_files), NULL);
 	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);

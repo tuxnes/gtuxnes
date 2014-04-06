@@ -55,7 +55,7 @@ void correct_ntsc_value(GtkWidget *entry, gpointer item)
 	double entry_val;
 	entry_val = atof(gtk_entry_get_text(GTK_ENTRY(entry)));
 
-	if ((intptr_t)item == NTSCHUE) {
+	if (GPOINTER_TO_INT(item) == NTSCHUE) {
 		if (entry_val > 360.0)
 			gtk_entry_set_text(GTK_ENTRY(entry), "360.0");
 		if (entry_val < 0.0)
@@ -188,12 +188,8 @@ GtkWidget *create_video_options_page(void)
 	widgets[PALFILE] = entry;
 	gtk_widget_show(entry);
 	button2 = gtk_button_new_with_label("Browse...");
-	gtk_signal_connect(GTK_OBJECT(toggles[PALFILE]), "clicked",
-				GTK_SIGNAL_FUNC(pal_file_toggle),
-				(gpointer) button2);
-	gtk_signal_connect(GTK_OBJECT(button2), "clicked",
-				GTK_SIGNAL_FUNC(browse_files),
-				(gpointer) PALFILE);
+	g_signal_connect(toggles[PALFILE], "clicked", G_CALLBACK(pal_file_toggle), button2);
+	g_signal_connect(button2, "clicked", G_CALLBACK(browse_files), GINT_TO_POINTER(PALFILE));
 	gtk_widget_set_sensitive(button2, FALSE);
 	gtk_box_pack_start(GTK_BOX(hbox), button2, FALSE, FALSE, 0);
 	gtk_widget_show(button2);
@@ -204,9 +200,7 @@ GtkWidget *create_video_options_page(void)
 	toggles[NTSC] = gtk_check_button_new_with_label("NTSC Palette:");
 	toggles[NTSC+1] = toggles[NTSC];
 	gtk_box_pack_start(GTK_BOX(hbox), toggles[NTSC], FALSE, FALSE, 0);
-	gtk_signal_connect(GTK_OBJECT(toggles[NTSC]), "clicked",
-				GTK_SIGNAL_FUNC(ntsc_toggle),
-				(gpointer) NULL);
+	g_signal_connect(toggles[NTSC], "clicked", G_CALLBACK(ntsc_toggle), NULL);
 	gtk_widget_show(toggles[NTSC]);
 	lbl = gtk_label_new("Hue Angle:");
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
@@ -217,9 +211,7 @@ GtkWidget *create_video_options_page(void)
 	gtk_entry_set_text(GTK_ENTRY(entry), "332.0");
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[NTSCHUE] = entry;
-	gtk_signal_connect(GTK_OBJECT(entry), "activate",
-				GTK_SIGNAL_FUNC(correct_ntsc_value),
-				(gpointer) NTSCHUE);
+	g_signal_connect(entry, "activate", G_CALLBACK(correct_ntsc_value), GINT_TO_POINTER(NTSCHUE));
 	gtk_widget_show(entry);
 	lbl = gtk_label_new("Tint Level:");
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
@@ -230,9 +222,7 @@ GtkWidget *create_video_options_page(void)
 	gtk_entry_set_text(GTK_ENTRY(entry), "0.5");
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[NTSCTINT] = entry;
-	gtk_signal_connect(GTK_OBJECT(entry), "activate",
-				GTK_SIGNAL_FUNC(correct_ntsc_value),
-				(gpointer) NTSCTINT);
+	g_signal_connect(entry, "activate", G_CALLBACK(correct_ntsc_value), GINT_TO_POINTER(NTSCTINT));
 	gtk_widget_show(entry);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 	gtk_widget_show(hbox);

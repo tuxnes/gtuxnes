@@ -20,10 +20,8 @@ GtkWidget *create_file_selection_dlg(const gchar *title)
 
 	temp = gtk_file_selection_new(title);
 
-	gtk_signal_connect( GTK_OBJECT(temp), "destroy",
-				GTK_SIGNAL_FUNC(end_dlg), (gpointer) temp );
-	gtk_signal_connect( GTK_OBJECT (GTK_FILE_SELECTION (temp)->cancel_button), "clicked",
-				GTK_SIGNAL_FUNC(end_dlg), (gpointer) temp );
+	g_signal_connect(temp, "destroy", G_CALLBACK(end_dlg), temp);
+	g_signal_connect(GTK_FILE_SELECTION(temp)->cancel_button, "clicked", G_CALLBACK(end_dlg), temp);
 
 	/* TODO: connect help button? */
 
@@ -31,14 +29,13 @@ GtkWidget *create_file_selection_dlg(const gchar *title)
 }
 
 void create_file_selection_with_ok_handler(const gchar *title,
-				GtkSignalFunc ok_handler, int entry)
+				GCallback ok_handler, int entry)
 {
 	GtkWidget *file_dlg;
 
 	file_dlg = create_file_selection_dlg(title);
 	gtk_file_selection_set_filename(GTK_FILE_SELECTION(file_dlg),
 					gtk_entry_get_text(GTK_ENTRY(widgets[entry])) );
-	gtk_signal_connect( GTK_OBJECT(GTK_FILE_SELECTION(file_dlg)->ok_button), "clicked",
-				ok_handler, (gpointer) file_dlg );
+	g_signal_connect(GTK_FILE_SELECTION(file_dlg)->ok_button, "clicked", ok_handler, file_dlg);
 	gtk_widget_show(file_dlg);
 }
