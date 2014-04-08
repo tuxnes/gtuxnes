@@ -29,73 +29,74 @@ const char *option_names[NUM_OF_TOGGLES] = {
 
 void read_config_file(void)
 {
-	FILE *config_file;
-	char raw_data[513];
-	char str_opname[11];
-	int toggle_id, i;
+	gchar *raw_data;
+	gchar **lines, **line;
 
-	config_file = fopen(config_file_name,"r");
-
-	if (config_file == NULL)
+	if (!g_file_get_contents(config_file_name, &raw_data, NULL, NULL))
 		return;
 
-	fgets(raw_data, 512, config_file);
-	i = 0;
-	while (i < 513) {
-		if (raw_data[i] == '\n') {
-			raw_data[i] = '\0';
+	lines = g_strsplit(raw_data, "\n", 0);
+	g_free(raw_data);
+
+	line = lines;
+	if (*line != NULL)
+		gtk_entry_set_text(GTK_ENTRY(widgets[ROMNAME]), *line++);
+
+	while (*line != NULL) {
+		gchar *key = *line++;
+		gchar *value = NULL;
+		size_t len = strlen(key);
+		int toggle_id;
+
+		if (len < 10)
 			break;
+		else if (len > 10) {
+			if (key[10] != '=')
+				break;
+			key[10] = '\0';
+			value = &key[11];
 		}
-		i++;
-	}
-	gtk_entry_set_text(GTK_ENTRY(widgets[ROMNAME]), raw_data);
 
-	while (!feof(config_file)) {
-		raw_data[0] = '\0';
-		fscanf(config_file, "%s\n", raw_data);
-		if (strlen(raw_data) < 10)
-			break;
-		strncpy(str_opname, raw_data, 10);
-		str_opname[10] = '\0';
+		for(toggle_id = 0; toggle_id < NUM_OF_TOGGLES; ++toggle_id)
+			if (strcmp(key, option_names[toggle_id]) == 0)
+				goto found;
+		break;
+found:
 
-		if (strcmp(str_opname, option_names[NTSCHUE]) == 0) {
+		if (toggle_id == NTSCHUE) {
 			gtk_widget_set_sensitive(widgets[NTSCHUE], TRUE);
 			gtk_widget_set_sensitive(widgets[NTSCTINT], TRUE);
-			gtk_entry_set_text(GTK_ENTRY(widgets[NTSCHUE]), &raw_data[11]);
+			gtk_entry_set_text(GTK_ENTRY(widgets[NTSCHUE]), value);
 
 			if (GTK_TOGGLE_BUTTON(toggles[NTSC])->active == TRUE)
 				continue;
 			else
 				toggle_id = NTSC;
-		} else if (strcmp(str_opname, option_names[NTSCTINT]) == 0) {
+		} else if (toggle_id == NTSCTINT) {
 			gtk_widget_set_sensitive(widgets[NTSCHUE], TRUE);
 			gtk_widget_set_sensitive(widgets[NTSCTINT], TRUE);
-			gtk_entry_set_text(GTK_ENTRY(widgets[NTSCTINT]), &raw_data[11]);
+			gtk_entry_set_text(GTK_ENTRY(widgets[NTSCTINT]), value);
 
 			if (GTK_TOGGLE_BUTTON(toggles[NTSC])->active == TRUE)
 				continue;
 			else
 				toggle_id = NTSC;
-		} else {
-			toggle_id = 0;
-			while (strcmp(str_opname, option_names[toggle_id]) != 0)
-				toggle_id++;
 		}
 
 		GTK_TOGGLE_BUTTON(toggles[toggle_id])->active = TRUE;
 		num_opts++;
-		if (toggle_id < NUM_OF_ENTRIES && toggle_id > 0) {
+		if (toggle_id > 0 && toggle_id < NUM_OF_ENTRIES) {
 			gtk_widget_set_sensitive(widgets[toggle_id], TRUE);
-			if (raw_data[10] == '=') {
+			if (value != NULL) {
 				if (GTK_IS_COMBO(widgets[toggle_id]))
-					gtk_entry_set_text(GTK_ENTRY(GTK_COMBO(widgets[toggle_id])->entry), &raw_data[11]);
+					gtk_entry_set_text(GTK_ENTRY(GTK_COMBO(widgets[toggle_id])->entry), value);
 				else
-					gtk_entry_set_text(GTK_ENTRY(widgets[toggle_id]), &raw_data[11]);
+					gtk_entry_set_text(GTK_ENTRY(widgets[toggle_id]), value);
 			}
 		}
 	}
 
-	fclose(config_file);
+	g_strfreev(lines);
 }
 
 void write_config_file(void)
