@@ -63,7 +63,6 @@ GtkWidget *create_sound_options_page(void)
 
 	button = create_toggle("Mute Sound", MUTESOUND);
 	gtk_box_pack_start(GTK_BOX(vbox), button, FALSE, FALSE, 0);
-	gtk_widget_show(button);
 
 	glist = g_list_append(glist, "/dev/dsp");
 	glist = g_list_append(glist, "/dev/audio");
@@ -71,7 +70,6 @@ GtkWidget *create_sound_options_page(void)
 	g_list_free(glist);
 	glist = NULL;
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-	gtk_widget_show(hbox);
 
 	glist = g_list_append(glist, "8-bit Mu-Law");
 	glist = g_list_append(glist, "8-bit Unsigned");
@@ -87,7 +85,6 @@ GtkWidget *create_sound_options_page(void)
 	g_list_free(glist);
 	glist = NULL;
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-	gtk_widget_show(hbox);
 
 	glist = g_list_append(glist, "8000");
 	glist = g_list_append(glist, "11025");
@@ -98,21 +95,16 @@ GtkWidget *create_sound_options_page(void)
 	glist = NULL;
 	lbl = gtk_label_new("Hz");
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
-	gtk_widget_show(lbl);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 	gtk_entry_set_text(GTK_ENTRY(GTK_COMBO(widgets[SNDRATE])->entry), "44100");
-	gtk_widget_show(hbox);
 
 	hbox = create_toggled_entry("Specify Maximum Delay:", SNDDELAY, 30);
 	lbl = gtk_label_new("seconds");
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
-	gtk_widget_show(lbl);
 	gtk_entry_set_text(GTK_ENTRY(widgets[SNDDELAY]), ".5");
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-	gtk_widget_show(hbox);
 
 	gtk_container_add(GTK_CONTAINER(frame), vbox);
-	gtk_widget_show(vbox);
 
 	return frame;
 }

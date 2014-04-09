@@ -120,33 +120,26 @@ GtkWidget *create_video_options_page(void)
 	g_list_free(glist);
 	glist = NULL;
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-	gtk_widget_show(hbox);
 
 	hbox = create_toggled_entry("Scanlines   Intensity:", SCANLINES, 30);
 	gtk_entry_set_text(GTK_ENTRY(widgets[SCANLINES]), "0");
 	lbl = gtk_label_new("%");
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
-	gtk_widget_show(lbl);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-	gtk_widget_show(hbox);
 
 	hbox = create_toggled_entry("Specify Window Geometry:", GEOMETRY, 70);
 	gtk_entry_set_text(GTK_ENTRY(widgets[GEOMETRY]), "640x480");
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-	gtk_widget_show(hbox);
 
 	hbox = create_toggled_entry("Enlarge:", ENLARGE, 30);
 	gtk_entry_set_text(GTK_ENTRY(widgets[ENLARGE]), "2");
 	lbl = gtk_label_new("x");
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
-	gtk_widget_show(lbl);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-	gtk_widget_show(hbox);
 
 	hbox = create_toggled_entry("Specify Display/Target ID:",
 							DISPLAY, 125);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-	gtk_widget_show(hbox);
 
 	glist = g_list_append(glist, "Vertical");
 	glist = g_list_append(glist, "Horizontal");
@@ -157,7 +150,6 @@ GtkWidget *create_video_options_page(void)
 	g_list_free(glist);
 	glist = NULL;
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-	gtk_widget_show(hbox);
 
 	glist = g_list_append(glist, "loopy");
 	glist = g_list_append(glist, "quor");
@@ -176,35 +168,28 @@ GtkWidget *create_video_options_page(void)
 	g_list_free(glist);
 	glist = NULL;
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-	gtk_widget_show(hbox);
 
 	hbox = gtk_hbox_new(FALSE, 3);
 	toggles[PALFILE] = gtk_check_button_new_with_label("Palette File:");
 	gtk_box_pack_start(GTK_BOX(hbox), toggles[PALFILE], FALSE, FALSE, 0);
-	gtk_widget_show(toggles[PALFILE]);
 	entry = gtk_entry_new();
 	gtk_widget_set_sensitive(entry, FALSE);
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[PALFILE] = entry;
-	gtk_widget_show(entry);
 	button2 = gtk_button_new_with_label("Browse...");
 	g_signal_connect(toggles[PALFILE], "clicked", G_CALLBACK(pal_file_toggle), button2);
 	g_signal_connect(button2, "clicked", G_CALLBACK(browse_files), GINT_TO_POINTER(PALFILE));
 	gtk_widget_set_sensitive(button2, FALSE);
 	gtk_box_pack_start(GTK_BOX(hbox), button2, FALSE, FALSE, 0);
-	gtk_widget_show(button2);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-	gtk_widget_show(hbox);
 
 	hbox = gtk_hbox_new(FALSE, 3);
 	toggles[NTSC] = gtk_check_button_new_with_label("NTSC Palette:");
 	toggles[NTSC+1] = toggles[NTSC];
 	gtk_box_pack_start(GTK_BOX(hbox), toggles[NTSC], FALSE, FALSE, 0);
 	g_signal_connect(toggles[NTSC], "clicked", G_CALLBACK(ntsc_toggle), NULL);
-	gtk_widget_show(toggles[NTSC]);
 	lbl = gtk_label_new("Hue Angle:");
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
-	gtk_widget_show(lbl);
 	entry = gtk_entry_new();
 	gtk_widget_set_sensitive(entry, FALSE);
 	gtk_widget_set_usize(entry, 50, 20);
@@ -212,10 +197,8 @@ GtkWidget *create_video_options_page(void)
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[NTSCHUE] = entry;
 	g_signal_connect(entry, "activate", G_CALLBACK(correct_ntsc_value), GINT_TO_POINTER(NTSCHUE));
-	gtk_widget_show(entry);
 	lbl = gtk_label_new("Tint Level:");
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
-	gtk_widget_show(lbl);
 	entry = gtk_entry_new();
 	gtk_widget_set_sensitive(entry, FALSE);
 	gtk_widget_set_usize(entry, 30, 20);
@@ -223,24 +206,18 @@ GtkWidget *create_video_options_page(void)
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[NTSCTINT] = entry;
 	g_signal_connect(entry, "activate", G_CALLBACK(correct_ntsc_value), GINT_TO_POINTER(NTSCTINT));
-	gtk_widget_show(entry);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-	gtk_widget_show(hbox);
 
 	button = create_toggle("Display In Root Window", DISPINROOT);
 	gtk_box_pack_start(GTK_BOX(vbox), button, FALSE, FALSE, 0);
-	gtk_widget_show(button);
 
 	button = create_toggle("Static Color Allocation", STATCOLOR);
 	gtk_box_pack_start(GTK_BOX(vbox), button, FALSE, FALSE, 0);
-	gtk_widget_show(button);
 
 	button = create_toggle("Grayscale", GRAYSCALE);
 	gtk_box_pack_start(GTK_BOX(vbox), button, FALSE, FALSE, 0);
-	gtk_widget_show(button);
 
 	gtk_container_add(GTK_CONTAINER(frame), vbox);
-	gtk_widget_show(vbox);
 
 	return frame;
 }

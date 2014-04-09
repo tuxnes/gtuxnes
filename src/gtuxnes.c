@@ -341,9 +341,7 @@ static void add_page(GtkWidget *book, GtkWidget *page, const gchar *title)
 {
 	GtkWidget *label;
 	gtk_container_set_border_width(GTK_CONTAINER(page), 10);
-	gtk_widget_show(page);
 	label = gtk_label_new(title);
-	gtk_widget_show(label);
 	gtk_notebook_append_page (GTK_NOTEBOOK(book), page, label);
 }
 
@@ -375,7 +373,6 @@ int main( int argc, char *argv[] )
 	notebook = gtk_notebook_new ();
 	gtk_notebook_set_tab_pos(GTK_NOTEBOOK (notebook), GTK_POS_TOP);
 	gtk_box_pack_start(GTK_BOX(vbox), notebook, FALSE, FALSE, 0);
-	gtk_widget_show(notebook);
 
 	add_page(notebook, create_general_options_page(), "General");
 	add_page(notebook, create_sound_options_page(),   "Sound");
@@ -392,24 +389,19 @@ int main( int argc, char *argv[] )
 	button = gtk_button_new_with_label("Save Config");
 	gtk_container_add(GTK_CONTAINER(bbox), button);
 	g_signal_connect(button, "clicked", G_CALLBACK(write_config_file), NULL);
-	gtk_widget_show(button);
 */
 	button = gtk_button_new_with_label("Run");
 	g_signal_connect(button, "clicked", G_CALLBACK(run_tuxnes), NULL);
 	gtk_container_add(GTK_CONTAINER(bbox), button);
-	gtk_widget_show(button);
 
 	button = gtk_button_new_with_label("Quit");
 	g_signal_connect(button, "clicked", G_CALLBACK(quit_gtuxnes), NULL);
 	gtk_container_add(GTK_CONTAINER(bbox), button);
-	gtk_widget_show(button);
 
 	gtk_box_pack_start(GTK_BOX(vbox), bbox, TRUE, TRUE, 0);
-	gtk_widget_show(bbox);
 
 	gtk_container_add(GTK_CONTAINER(main_window), vbox);
-	gtk_widget_show(vbox);
-	gtk_widget_show(main_window);
+	gtk_widget_show_all(main_window);
 
 	strcpy(config_file_name, (char*) g_get_home_dir());
 	strcat(config_file_name, "/.gtuxnesrc");

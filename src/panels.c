@@ -83,14 +83,12 @@ GtkWidget *create_toggled_entry(const char *name, intptr_t id, gint width)
 	toggles[id] = gtk_check_button_new_with_label(name);
 	g_signal_connect(toggles[id], "toggled", G_CALLBACK(enable_button_toggled), (gpointer)id);
 	gtk_box_pack_start(GTK_BOX(hbox), toggles[id], FALSE, FALSE, 0);
-	gtk_widget_show(toggles[id]);
 	entry = gtk_entry_new();
 	gtk_widget_set_sensitive(entry, FALSE);
 	gtk_widget_set_usize(entry, width, 20);
 	g_signal_connect(entry, "activate", G_CALLBACK(entry_edited), (gpointer)id);
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[id] = entry;
-	gtk_widget_show(entry);
 
 	return hbox;
 }
@@ -105,7 +103,6 @@ GtkWidget *create_toggled_combo(const char *name, intptr_t id, gint width,
 	toggles[id] = gtk_check_button_new_with_label(name);
 	g_signal_connect(toggles[id], "toggled", G_CALLBACK(enable_button_toggled), (gpointer)id);
 	gtk_box_pack_start(GTK_BOX(hbox), toggles[id], FALSE, FALSE, 0);
-	gtk_widget_show(toggles[id]);
 	combo = gtk_combo_new();
 	gtk_combo_set_popdown_strings(GTK_COMBO(combo), glist);
 	gtk_entry_set_editable(GTK_ENTRY(GTK_COMBO(combo)->entry), editable);
@@ -113,7 +110,6 @@ GtkWidget *create_toggled_combo(const char *name, intptr_t id, gint width,
 	gtk_widget_set_usize(combo, width, 20);
 	gtk_box_pack_start(GTK_BOX(hbox), combo, FALSE, FALSE, 0);
 	widgets[id] = combo;
-	gtk_widget_show(combo);
 
 	return hbox;
 }
