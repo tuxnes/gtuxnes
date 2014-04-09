@@ -22,6 +22,10 @@
 #ifndef GTUXNES_H
 #define GTUXNES_H
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include <gtk/gtk.h>
 #include <unistd.h>
 #include <signal.h>

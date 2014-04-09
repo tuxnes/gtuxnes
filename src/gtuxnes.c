@@ -364,7 +364,7 @@ int main( int argc, char *argv[] )
 	gtk_init (&argc, &argv);
 
 	main_window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-	gtk_window_set_title(GTK_WINDOW(main_window), "GTuxNES");
+	gtk_window_set_title(GTK_WINDOW(main_window), PACKAGE_NAME);
 	g_signal_connect(main_window, "delete_event", G_CALLBACK(quit_gtuxnes), NULL);
 	gtk_container_set_border_width (GTK_CONTAINER (main_window), 10);
 
