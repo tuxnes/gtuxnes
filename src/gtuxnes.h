@@ -35,7 +35,7 @@
 #include "files.h"
 #include "sound.h"
 #include "video.h"
-#include "config.h"
+#include "settings.h"
 
 #define NUM_OF_TOGGLES  31      /* = lastnum + 1 */
 #define VERBOSE          0

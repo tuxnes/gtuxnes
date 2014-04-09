@@ -3,7 +3,7 @@ AM_CPPFLAGS = $(GTK_CFLAGS)
 bin_PROGRAMS = gtuxnes
 
 gtuxnes_SOURCES = \
-	config.c config.h \
+	settings.c settings.h \
 	debug.c \
 	files.c files.h \
 	general.c \
