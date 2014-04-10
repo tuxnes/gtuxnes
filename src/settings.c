@@ -84,7 +84,6 @@ found:
 		}
 
 		GTK_TOGGLE_BUTTON(toggles[toggle_id])->active = TRUE;
-		num_opts++;
 		if (toggle_id > 0 && toggle_id < NUM_OF_ENTRIES) {
 			gtk_widget_set_sensitive(widgets[toggle_id], TRUE);
 			if (value != NULL) {

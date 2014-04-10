@@ -9,7 +9,6 @@
 
 #include "gtuxnes.h"
 
-int num_opts = 0;
 char config_file_name[513];
 GtkWidget *main_window;
 GtkWidget *wait_dlg;
@@ -75,17 +74,15 @@ static void cleanup(char *free_me[], int size, gboolean was_error)
 
 static void run_tuxnes( GtkWidget *w, gpointer data )
 {
-	int i = 1;
+	int i = 0;
 	int j = 0;
 	int k;
 	char *needs_freeing[NUM_OF_ENTRIES-1];
-	const char *options[num_opts+3];
+	const char *options[NUM_OF_TOGGLES+3];
 	pid_t tuxnes_pid;
 	gboolean alloc_error = FALSE;
 
-	options[0] = "tuxnes";
-	options[num_opts+1] = gtk_entry_get_text(GTK_ENTRY(widgets[ROMNAME]));
-	options[num_opts+2] = NULL;
+	options[i++] = "tuxnes";
 
 	if (GTK_TOGGLE_BUTTON(toggles[JOYREMAP])->active) {
 		needs_freeing[j] = g_strconcat("-J",
@@ -316,8 +313,11 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		options[i++] = "-l";
 	}
 
+	options[i++] = gtk_entry_get_text(GTK_ENTRY(widgets[ROMNAME]));
+	options[i++] = NULL;
+
 	g_print("calling:");
-	for (k = 0; k < num_opts + 2; k++)
+	for (k = 0; options[k] != NULL; k++)
 		g_print(" %s", options[k]);
 	g_print("\n");
 

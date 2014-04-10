@@ -37,20 +37,9 @@ static void enable_button_toggled(GtkWidget *button, gpointer e)
 	if (GTK_TOGGLE_BUTTON(button)->active) {
 		gtk_widget_set_sensitive(GTK_WIDGET(widgets[(intptr_t)e]),
 								TRUE);
-		num_opts++;
 	} else {
 		gtk_widget_set_sensitive(GTK_WIDGET(widgets[(intptr_t)e]),
 								FALSE);
-		num_opts--;
-	}
-}
-
-static void button_toggled(GtkWidget *button, gpointer option)
-{
-	if (GTK_TOGGLE_BUTTON(button)->active) {
-		num_opts++;
-	} else {
-		num_opts--;
 	}
 }
 
@@ -69,7 +58,6 @@ void browse_files(GtkWidget *w, gpointer data)
 GtkWidget *create_toggle(const char *name, intptr_t id)
 {
 	toggles[id] = gtk_check_button_new_with_label(name);
-	g_signal_connect(toggles[id], "toggled", G_CALLBACK(button_toggled), (gpointer)id);
 
 	return toggles[id];
 }

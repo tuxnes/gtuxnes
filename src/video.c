@@ -73,11 +73,9 @@ static void ntsc_toggle(GtkWidget *button, gpointer w)
 	if (GTK_TOGGLE_BUTTON(button)->active) {
 		gtk_widget_set_sensitive(widgets[NTSCHUE], TRUE);
 		gtk_widget_set_sensitive(widgets[NTSCTINT], TRUE);
-		num_opts++;
 	} else {
 		gtk_widget_set_sensitive(widgets[NTSCHUE], FALSE);
 		gtk_widget_set_sensitive(widgets[NTSCTINT], FALSE);
-		num_opts--;
 	}
 }
 
@@ -86,11 +84,9 @@ static void pal_file_toggle(GtkWidget *button, gpointer w)
 	if (GTK_TOGGLE_BUTTON(button)->active) {
 		gtk_widget_set_sensitive(widgets[PALFILE], TRUE);
 		gtk_widget_set_sensitive(GTK_WIDGET(w), TRUE);
-		num_opts++;
 	} else {
 		gtk_widget_set_sensitive(widgets[PALFILE], FALSE);
 		gtk_widget_set_sensitive(GTK_WIDGET(w), FALSE);
-		num_opts--;
 	}
 }
 

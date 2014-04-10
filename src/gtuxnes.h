@@ -100,7 +100,6 @@
 GtkWidget *frame;
 GtkWidget *toggles[NUM_OF_TOGGLES];
 GtkWidget *widgets[NUM_OF_ENTRIES];
-extern int num_opts;
 extern char config_file_name[513];
 
 GtkWidget *create_general_options_page(void);
