@@ -13,26 +13,17 @@ char config_file_name[513];
 GtkWidget *main_window;
 GtkWidget *wait_dlg;
 
-static void end_dlg(GtkWidget *w, gpointer dlg)
+static void popup_error_dialog(const char *msg)
 {
-	gtk_widget_destroy(GTK_WIDGET( dlg ));
-}
+	GtkWidget *dialog;
 
-static void popup_info_dialog(const char *msg)
-{
-	GtkWidget *dlg;
-	GtkWidget *lbl;
-	GtkWidget *button;
-
-	dlg = gtk_dialog_new();
-	lbl = gtk_label_new(msg);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), lbl, TRUE, TRUE, 0);
-	button = gtk_button_new_with_label("Okay");
-	g_signal_connect(button, "clicked", G_CALLBACK(end_dlg), dlg);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->action_area), button,
-				TRUE, TRUE, 0);
-
-	gtk_widget_show_all(dlg);
+	dialog = gtk_message_dialog_new(GTK_WINDOW(main_window),
+	                                GTK_DIALOG_DESTROY_WITH_PARENT,
+	                                GTK_MESSAGE_ERROR,
+	                                GTK_BUTTONS_OK,
+	                                msg);
+	gtk_dialog_run(GTK_DIALOG(dialog));
+	gtk_widget_destroy(dialog);
 }
 
 static gint update_wait_progress(gpointer progress)
@@ -72,7 +63,7 @@ static void cleanup(char *free_me[], int size, gboolean was_error)
 {
 	int j;
 	if (was_error)
-		popup_info_dialog("ERROR: couldn't allocate space for string\n");
+		popup_error_dialog("Couldn't allocate space for string");
 	for (j = 0; j < size; j++)
 		g_free(free_me[j]);
 }
@@ -340,7 +331,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 	} else {
 		/* GTuxNES Parent */
 		if (tuxnes_pid < 0)
-			popup_info_dialog("ERROR: couldn't fork!\n");
+			popup_error_dialog("Couldn't fork!");
 		else
 			create_wait_dialog();
 	}
