@@ -25,13 +25,9 @@ GtkWidget *create_general_options_page(void)
 	hbox = gtk_hbox_new(FALSE, 3);
 	lbl = gtk_label_new("ROM Name: ");
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
-	entry = gtk_entry_new();
-	g_signal_connect(entry, "activate", G_CALLBACK(entry_edited), GINT_TO_POINTER(ROMNAME));
-	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
+	entry = gtk_file_chooser_button_new("Choose ROM File", GTK_FILE_CHOOSER_ACTION_OPEN);
+	gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
 	widgets[ROMNAME] = entry;
-	button = gtk_button_new_with_label("Browse...");
-	g_signal_connect(button, "clicked", G_CALLBACK(browse_files), NULL);
-	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
 	button = create_toggle("Fix Mapper", FIXMAPPER);

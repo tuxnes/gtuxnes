@@ -77,7 +77,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 	int i = 0;
 	int j = 0;
 	int k;
-	char *needs_freeing[NUM_OF_ENTRIES-1];
+	char *needs_freeing[NUM_OF_ENTRIES];
 	const char *options[NUM_OF_TOGGLES+3];
 	pid_t tuxnes_pid;
 	gboolean alloc_error = FALSE;
@@ -313,7 +313,12 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		options[i++] = "-l";
 	}
 
-	options[i++] = gtk_entry_get_text(GTK_ENTRY(widgets[ROMNAME]));
+	needs_freeing[j] = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(widgets[ROMNAME]));
+	if (needs_freeing[j] == NULL) {
+		goto fail;
+	}
+	options[i++] = needs_freeing[j++];
+
 	options[i++] = NULL;
 
 	g_print("calling:");

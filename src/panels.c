@@ -9,13 +9,6 @@
 
 #include "gtuxnes.h"
 
-static void update_romname(GtkWidget *b, gpointer fs)
-{
-	gtk_entry_set_text(GTK_ENTRY(widgets[ROMNAME]),
-		gtk_file_selection_get_filename(GTK_FILE_SELECTION(fs)));
-	end_dlg(NULL, fs);
-}
-
 static void update_palfile(GtkWidget *b, gpointer fs)
 {
 	gtk_entry_set_text(GTK_ENTRY(widgets[PALFILE]),
@@ -45,11 +38,7 @@ static void enable_button_toggled(GtkWidget *button, gpointer e)
 
 void browse_files(GtkWidget *w, gpointer data)
 {
-	if (GPOINTER_TO_INT(data) == ROMNAME)
-		create_file_selection_with_ok_handler("Choose ROM File",
-					G_CALLBACK(update_romname),
-					ROMNAME );
-	else if (GPOINTER_TO_INT(data) == PALFILE)
+	if (GPOINTER_TO_INT(data) == PALFILE)
 		create_file_selection_with_ok_handler("Choose Palette File",
 					G_CALLBACK(update_palfile),
 					PALFILE );

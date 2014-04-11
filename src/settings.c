@@ -40,7 +40,7 @@ void read_config_file(void)
 
 	line = lines;
 	if (*line != NULL)
-		gtk_entry_set_text(GTK_ENTRY(widgets[ROMNAME]), *line++);
+		gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(widgets[ROMNAME]), *line++);
 
 	while (*line != NULL) {
 		gchar *key = *line++;
@@ -102,6 +102,7 @@ void write_config_file(void)
 {
 	FILE *config_file;
 	int i;
+	gchar *value;
 
 	config_file = fopen(config_file_name, "w");
 
@@ -111,26 +112,27 @@ void write_config_file(void)
 		return;
 	}
 
-	fprintf(config_file, "%s\n", gtk_entry_get_text(GTK_ENTRY(widgets[ROMNAME])));
+	value = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(widgets[ROMNAME]));
+	if (value != NULL) {
+		fprintf(config_file, "%s\n", value);
+		g_free(value);
 
-	i = 0;
-	while (i < NUM_OF_TOGGLES) {
-		if (GTK_TOGGLE_BUTTON(toggles[i])->active == TRUE) {
-			fprintf(config_file, "%s", option_names[i]);
-			if (i < NUM_OF_ENTRIES && i > 0) {
-				fprintf(config_file, "=");
-				if (GTK_IS_COMBO(widgets[i]))
-					fprintf(config_file, "%s",
-							gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(widgets[i])->entry))
-						);
-				else
-					fprintf(config_file, "%s",
-							gtk_entry_get_text(GTK_ENTRY(widgets[i]))
-						);
+		for (i = 0; i < NUM_OF_TOGGLES; ++i) {
+			if (GTK_TOGGLE_BUTTON(toggles[i])->active == TRUE) {
+				fprintf(config_file, "%s", option_names[i]);
+				if (i > 0 && i < NUM_OF_ENTRIES) {
+					if (GTK_IS_COMBO(widgets[i]))
+						fprintf(config_file, "=%s",
+								gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(widgets[i])->entry))
+							);
+					else
+						fprintf(config_file, "=%s",
+								gtk_entry_get_text(GTK_ENTRY(widgets[i]))
+							);
+				}
+				fprintf(config_file, "\n");
 			}
-			fprintf(config_file, "\n");
 		}
-		i++;
 	}
 
 	fclose(config_file);
