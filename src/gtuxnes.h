@@ -36,7 +36,6 @@
 #include <sys/ioctl.h>
 #include <sys/types.h>
 #include "panels.h"
-#include "files.h"
 #include "sound.h"
 #include "video.h"
 #include "settings.h"

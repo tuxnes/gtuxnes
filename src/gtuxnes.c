@@ -13,6 +13,11 @@ char config_file_name[513];
 GtkWidget *main_window;
 GtkWidget *wait_dlg;
 
+static void end_dlg(GtkWidget *w, gpointer dlg)
+{
+	gtk_widget_destroy(GTK_WIDGET( dlg ));
+}
+
 static void popup_info_dialog(const char *msg)
 {
 	GtkWidget *dlg;
@@ -140,14 +145,16 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		options[i++] = needs_freeing[j++];
 	}
 	if (GTK_TOGGLE_BUTTON(toggles[PALFILE])->active) {
-		needs_freeing[j] = g_strconcat("-p",
-			gtk_entry_get_text(GTK_ENTRY(widgets[PALFILE])),
-			NULL);
-		if (needs_freeing[j] == NULL) {
-			alloc_error = TRUE;
-			goto fail;
+		gchar *temp = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(widgets[PALFILE]));
+		if (temp != NULL) {
+			needs_freeing[j] = g_strconcat("-p", temp, NULL);
+			g_free(temp);
+			if (needs_freeing[j] == NULL) {
+				alloc_error = TRUE;
+				goto fail;
+			}
+			options[i++] = needs_freeing[j++];
 		}
-		options[i++] = needs_freeing[j++];
 	}
 	if (GTK_TOGGLE_BUTTON(toggles[BLTINPAL])->active) {
 		needs_freeing[j] = g_strconcat("-P",

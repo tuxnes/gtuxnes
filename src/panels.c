@@ -9,13 +9,6 @@
 
 #include "gtuxnes.h"
 
-static void update_palfile(GtkWidget *b, gpointer fs)
-{
-	gtk_entry_set_text(GTK_ENTRY(widgets[PALFILE]),
-		gtk_file_selection_get_filename(GTK_FILE_SELECTION(fs)));
-	end_dlg(NULL, fs);
-}
-
 void entry_edited(GtkWidget *entry, gpointer option)
 {
 	/*
@@ -34,14 +27,6 @@ static void enable_button_toggled(GtkWidget *button, gpointer e)
 		gtk_widget_set_sensitive(GTK_WIDGET(widgets[(intptr_t)e]),
 								FALSE);
 	}
-}
-
-void browse_files(GtkWidget *w, gpointer data)
-{
-	if (GPOINTER_TO_INT(data) == PALFILE)
-		create_file_selection_with_ok_handler("Choose Palette File",
-					G_CALLBACK(update_palfile),
-					PALFILE );
 }
 
 GtkWidget *create_toggle(const char *name, intptr_t id)
@@ -64,6 +49,25 @@ GtkWidget *create_toggled_entry(const char *name, intptr_t id, gint width)
 	gtk_widget_set_sensitive(entry, FALSE);
 	gtk_widget_set_usize(entry, width, 20);
 	g_signal_connect(entry, "activate", G_CALLBACK(entry_edited), (gpointer)id);
+	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
+	widgets[id] = entry;
+
+	return hbox;
+}
+
+GtkWidget *create_toggled_file(const char *name, intptr_t id, gint width,
+				const char *dialog_title)
+{
+	GtkWidget *entry;
+	GtkWidget *hbox;
+
+	hbox = gtk_hbox_new(FALSE, 3);
+	toggles[id] = gtk_check_button_new_with_label(name);
+	g_signal_connect(toggles[id], "toggled", G_CALLBACK(enable_button_toggled), (gpointer)id);
+	gtk_box_pack_start(GTK_BOX(hbox), toggles[id], FALSE, FALSE, 0);
+	entry = gtk_file_chooser_button_new(dialog_title, GTK_FILE_CHOOSER_ACTION_OPEN);
+	gtk_widget_set_sensitive(entry, FALSE);
+	gtk_widget_set_usize(entry, width, 20);
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[id] = entry;
 

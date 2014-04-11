@@ -87,10 +87,13 @@ found:
 		if (toggle_id > 0 && toggle_id < NUM_OF_ENTRIES) {
 			gtk_widget_set_sensitive(widgets[toggle_id], TRUE);
 			if (value != NULL) {
-				if (GTK_IS_COMBO(widgets[toggle_id]))
+				if (GTK_IS_COMBO(widgets[toggle_id])) {
 					gtk_entry_set_text(GTK_ENTRY(GTK_COMBO(widgets[toggle_id])->entry), value);
-				else
+				} else if (GTK_IS_FILE_CHOOSER_BUTTON(widgets[toggle_id])) {
+					gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(widgets[toggle_id]), value);
+				} else {
 					gtk_entry_set_text(GTK_ENTRY(widgets[toggle_id]), value);
+				}
 			}
 		}
 	}
@@ -121,14 +124,21 @@ void write_config_file(void)
 			if (GTK_TOGGLE_BUTTON(toggles[i])->active == TRUE) {
 				fprintf(config_file, "%s", option_names[i]);
 				if (i > 0 && i < NUM_OF_ENTRIES) {
-					if (GTK_IS_COMBO(widgets[i]))
+					if (GTK_IS_COMBO(widgets[i])) {
 						fprintf(config_file, "=%s",
 								gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(widgets[i])->entry))
 							);
-					else
+					} else if (GTK_IS_FILE_CHOOSER_BUTTON(widgets[i])) {
+						value = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(widgets[i]));
+						if (value != NULL) {
+							fprintf(config_file, "=%s", value);
+							g_free(value);
+						}
+					} else {
 						fprintf(config_file, "=%s",
 								gtk_entry_get_text(GTK_ENTRY(widgets[i]))
 							);
+					}
 				}
 				fprintf(config_file, "\n");
 			}

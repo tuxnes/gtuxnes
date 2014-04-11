@@ -79,23 +79,11 @@ static void ntsc_toggle(GtkWidget *button, gpointer w)
 	}
 }
 
-static void pal_file_toggle(GtkWidget *button, gpointer w)
-{
-	if (GTK_TOGGLE_BUTTON(button)->active) {
-		gtk_widget_set_sensitive(widgets[PALFILE], TRUE);
-		gtk_widget_set_sensitive(GTK_WIDGET(w), TRUE);
-	} else {
-		gtk_widget_set_sensitive(widgets[PALFILE], FALSE);
-		gtk_widget_set_sensitive(GTK_WIDGET(w), FALSE);
-	}
-}
-
 GtkWidget *create_video_options_page(void)
 {
 	GtkWidget *hbox;
 	GtkWidget *vbox;
 	GtkWidget *button;
-	GtkWidget *button2;
 	GtkWidget *entry;
 	GtkWidget *lbl;
 	GList *glist = NULL;
@@ -165,18 +153,7 @@ GtkWidget *create_video_options_page(void)
 	glist = NULL;
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	hbox = gtk_hbox_new(FALSE, 3);
-	toggles[PALFILE] = gtk_check_button_new_with_label("Palette File:");
-	gtk_box_pack_start(GTK_BOX(hbox), toggles[PALFILE], FALSE, FALSE, 0);
-	entry = gtk_entry_new();
-	gtk_widget_set_sensitive(entry, FALSE);
-	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
-	widgets[PALFILE] = entry;
-	button2 = gtk_button_new_with_label("Browse...");
-	g_signal_connect(toggles[PALFILE], "clicked", G_CALLBACK(pal_file_toggle), button2);
-	g_signal_connect(button2, "clicked", G_CALLBACK(browse_files), GINT_TO_POINTER(PALFILE));
-	gtk_widget_set_sensitive(button2, FALSE);
-	gtk_box_pack_start(GTK_BOX(hbox), button2, FALSE, FALSE, 0);
+	hbox = create_toggled_file("Palette File:", PALFILE, 200, "Choose Palette File");
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
 	hbox = gtk_hbox_new(FALSE, 3);

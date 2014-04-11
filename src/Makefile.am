@@ -5,7 +5,6 @@ bin_PROGRAMS = gtuxnes
 gtuxnes_SOURCES = \
 	settings.c settings.h \
 	debug.c \
-	files.c files.h \
 	general.c \
 	gtuxnes.c gtuxnes.h \
 	input.c \
