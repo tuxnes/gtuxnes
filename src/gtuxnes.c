@@ -185,14 +185,16 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		options[i++] = "-smute";
 	} else {
 		if (GTK_TOGGLE_BUTTON(toggles[SNDDEV])->active) {
-			needs_freeing[j] = g_strconcat("-s",
-				gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(widgets[SNDDEV])->entry)),
-				NULL);
-			if (needs_freeing[j] == NULL) {
-				alloc_error = TRUE;
-				goto fail;
+			gchar *temp = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(widgets[SNDDEV]));
+			if (temp != NULL) {
+				needs_freeing[j] = g_strconcat("-s", temp, NULL);
+				g_free(temp);
+				if (needs_freeing[j] == NULL) {
+					alloc_error = TRUE;
+					goto fail;
+				}
+				options[i++] = needs_freeing[j++];
 			}
-			options[i++] = needs_freeing[j++];
 		}
 		if (GTK_TOGGLE_BUTTON(toggles[SNDFORMAT])->active) {
 			const gchar *temp = translate_sound_combo(SNDFORMAT);
@@ -254,24 +256,28 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		options[i++] = "-X";
 	}
 	if (GTK_TOGGLE_BUTTON(toggles[JOY1])->active) {
-		needs_freeing[j] = g_strconcat("-1",
-			gtk_entry_get_text(GTK_ENTRY(widgets[JOY1])),
-			NULL);
-		if (needs_freeing[j] == NULL) {
-			alloc_error = TRUE;
-			goto fail;
+		gchar *temp = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(widgets[JOY1]));
+		if (temp != NULL) {
+			needs_freeing[j] = g_strconcat("-1", temp, NULL);
+			g_free(temp);
+			if (needs_freeing[j] == NULL) {
+				alloc_error = TRUE;
+				goto fail;
+			}
+			options[i++] = needs_freeing[j++];
 		}
-		options[i++] = needs_freeing[j++];
 	}
 	if (GTK_TOGGLE_BUTTON(toggles[JOY2])->active) {
-		needs_freeing[j] = g_strconcat("-2",
-			gtk_entry_get_text(GTK_ENTRY(widgets[JOY2])),
-			NULL);
-		if (needs_freeing[j] == NULL) {
-			alloc_error = TRUE;
-			goto fail;
+		gchar *temp = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(widgets[JOY2]));
+		if (temp != NULL) {
+			needs_freeing[j] = g_strconcat("-2", temp, NULL);
+			g_free(temp);
+			if (needs_freeing[j] == NULL) {
+				alloc_error = TRUE;
+				goto fail;
+			}
+			options[i++] = needs_freeing[j++];
 		}
-		options[i++] = needs_freeing[j++];
 	}
 	if (GTK_TOGGLE_BUTTON(toggles[IGNOREINST])->active) {
 		options[i++] = "-i";

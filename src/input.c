@@ -26,12 +26,12 @@ GtkWidget *create_input_options_page(void)
 	button = create_toggle("Swap Inputs", SWAPINPUT);
 	gtk_box_pack_start(GTK_BOX(vbox), button, FALSE, FALSE, 0);
 
-	hbox = create_toggled_entry("Enable Joystick 1 Device:", JOY1, 75);
-	gtk_entry_set_text(GTK_ENTRY(widgets[JOY1]), "/dev/js0");
+	hbox = create_toggled_file("Enable Joystick 1 Device:", JOY1, 150, "Choose Joystick 1");
+	gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(widgets[JOY1]), "/dev/js0");
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	hbox = create_toggled_entry("Enable Joystick 2 Device:", JOY2, 75);
-	gtk_entry_set_text(GTK_ENTRY(widgets[JOY2]), "/dev/js1");
+	hbox = create_toggled_file("Enable Joystick 2 Device:", JOY2, 150, "Choose Joystick 2");
+	gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(widgets[JOY2]), "/dev/js1");
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
 	hbox = create_toggled_entry("Remap Joystick:", JOYREMAP, 200);
