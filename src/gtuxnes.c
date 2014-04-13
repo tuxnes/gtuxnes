@@ -33,8 +33,8 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 			NULL);
 	}
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[NTSC]))) {
-		correct_ntsc_value(widgets[NTSCHUE], (gpointer) NTSCHUE);
-		correct_ntsc_value(widgets[NTSCTINT], (gpointer) NTSCTINT);
+		correct_ntsc_value(widgets[NTSCHUE], NULL);
+		correct_ntsc_value(widgets[NTSCTINT], NULL);
 
 		options[i++] = g_strconcat("-N",
 			gtk_entry_get_text(GTK_ENTRY(widgets[NTSCHUE])),

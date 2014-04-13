@@ -40,15 +40,15 @@ void correct_ntsc_value(GtkWidget *entry, gpointer item)
 	double entry_val;
 	entry_val = atof(gtk_entry_get_text(GTK_ENTRY(entry)));
 
-	if (GPOINTER_TO_INT(item) == NTSCHUE) {
+	if (entry == widgets[NTSCHUE]) {
 		if (entry_val > 360.0)
 			gtk_entry_set_text(GTK_ENTRY(entry), "360.0");
-		if (entry_val < 0.0)
+		else if (entry_val < 0.0)
 			gtk_entry_set_text(GTK_ENTRY(entry), "0.0");
-	} else /* item == NTSCTINT */ {
+	} else if (entry == widgets[NTSCTINT]) {
 		if (entry_val > 1.0)
 			gtk_entry_set_text(GTK_ENTRY(entry), "1.0");
-		if (entry_val < 0.0)
+		else if (entry_val < 0.0)
 			gtk_entry_set_text(GTK_ENTRY(entry), "0.0");
 	}
 }
@@ -82,7 +82,7 @@ GtkWidget *create_palette_options_page(void)
 	gtk_entry_set_text(GTK_ENTRY(entry), "332.0");
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[NTSCHUE] = entry;
-	g_signal_connect(entry, "activate", G_CALLBACK(correct_ntsc_value), GINT_TO_POINTER(NTSCHUE));
+	g_signal_connect(entry, "activate", G_CALLBACK(correct_ntsc_value), NULL);
 	lbl = gtk_label_new("Tint Level:");
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
 	entry = gtk_entry_new();
@@ -92,7 +92,7 @@ GtkWidget *create_palette_options_page(void)
 	gtk_entry_set_text(GTK_ENTRY(entry), "0.5");
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[NTSCTINT] = entry;
-	g_signal_connect(entry, "activate", G_CALLBACK(correct_ntsc_value), GINT_TO_POINTER(NTSCTINT));
+	g_signal_connect(entry, "activate", G_CALLBACK(correct_ntsc_value), NULL);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
 	hbox = create_toggle("Static Color Allocation", STATCOLOR);
