@@ -18,7 +18,7 @@ GtkWidget *create_input_options_page(void)
 
 	frame = gtk_frame_new(NULL);
 
-	vbox = gtk_vbox_new(FALSE, 5);
+	vbox = gtk_vbox_new(FALSE, PAD_LINE);
 
 	hbox = create_toggle("Sticky Keys", STICKYKEYS);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);

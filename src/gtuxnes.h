@@ -37,6 +37,10 @@
 #include "panels.h"
 #include "settings.h"
 
+#define PAD_BORDER       8
+#define PAD_LINE         4
+#define PAD_SPACE        4
+
 #define NUM_OF_TOGGLES  31      /* = lastnum + 1 */
 #define VERBOSE          0
 /* 1 reserved for MAPPER (see below) */

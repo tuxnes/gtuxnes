@@ -63,7 +63,7 @@ GtkWidget *create_palette_options_page(void)
 
 	frame = gtk_frame_new(NULL);
 
-	vbox = gtk_vbox_new(FALSE, 5);
+	vbox = gtk_vbox_new(FALSE, PAD_LINE);
 
 	hbox = create_toggled_combo("Builtin Palette:", BLTINPAL, bltinpal);
 	gtk_combo_box_set_active(GTK_COMBO_BOX(widgets[BLTINPAL]), 0);
@@ -72,7 +72,7 @@ GtkWidget *create_palette_options_page(void)
 	hbox = create_toggled_file("Palette File:", PALFILE, 20, "Choose Palette File");
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	hbox = gtk_hbox_new(FALSE, 3);
+	hbox = gtk_hbox_new(FALSE, PAD_SPACE);
 	toggles[NTSC] = gtk_check_button_new_with_label("NTSC Palette:");
 	toggles[NTSC+1] = toggles[NTSC];
 	gtk_box_pack_start(GTK_BOX(hbox), toggles[NTSC], FALSE, FALSE, 0);

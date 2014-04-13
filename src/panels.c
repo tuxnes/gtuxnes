@@ -30,7 +30,7 @@ GtkWidget *create_toggled_entry(const char *name, int id, gint width)
 	GtkWidget *toggle;
 	GtkWidget *entry;
 
-	hbox = gtk_hbox_new(FALSE, 3);
+	hbox = gtk_hbox_new(FALSE, PAD_SPACE);
 
 	toggle = gtk_check_button_new_with_label(name);
 	gtk_box_pack_start(GTK_BOX(hbox), toggle, FALSE, FALSE, 0);
@@ -52,7 +52,7 @@ GtkWidget *create_toggled_file(const char *name, int id, gint width, const char 
 	GtkWidget *toggle;
 	GtkWidget *entry;
 
-	hbox = gtk_hbox_new(FALSE, 3);
+	hbox = gtk_hbox_new(FALSE, PAD_SPACE);
 
 	toggle = gtk_check_button_new_with_label(name);
 	gtk_box_pack_start(GTK_BOX(hbox), toggle, FALSE, FALSE, 0);
@@ -74,7 +74,7 @@ GtkWidget *create_toggled_combo(const char *name, int id, const char *const list
 	GtkWidget *toggle;
 	GtkWidget *entry;
 
-	hbox = gtk_hbox_new(FALSE, 3);
+	hbox = gtk_hbox_new(FALSE, PAD_SPACE);
 
 	toggle = gtk_check_button_new_with_label(name);
 	gtk_box_pack_start(GTK_BOX(hbox), toggle, FALSE, FALSE, 0);

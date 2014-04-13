@@ -317,7 +317,7 @@ fail:
 static void add_page(GtkWidget *book, GtkWidget *page, const gchar *title)
 {
 	GtkWidget *label;
-	gtk_container_set_border_width(GTK_CONTAINER(page), 10);
+	gtk_container_set_border_width(GTK_CONTAINER(page), PAD_BORDER);
 	label = gtk_label_new(title);
 	gtk_notebook_append_page (GTK_NOTEBOOK(book), page, label);
 }
@@ -341,9 +341,9 @@ int main( int argc, char *argv[] )
 	main_window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title(GTK_WINDOW(main_window), PACKAGE_NAME);
 	g_signal_connect(main_window, "delete_event", G_CALLBACK(quit_gtuxnes), NULL);
-	gtk_container_set_border_width (GTK_CONTAINER (main_window), 10);
+	gtk_container_set_border_width (GTK_CONTAINER (main_window), PAD_BORDER);
 
-	vbox = gtk_vbox_new(FALSE, 5);
+	vbox = gtk_vbox_new(FALSE, PAD_BORDER);
 
 
     /* Create the 'notebook' and add the pages to it */
@@ -361,7 +361,7 @@ int main( int argc, char *argv[] )
 
     /* Create the Save, Run and Quit buttons */
 	bbox = gtk_hbutton_box_new();
-	gtk_box_set_spacing(GTK_BOX(bbox), 10);
+	gtk_box_set_spacing(GTK_BOX(bbox), PAD_BORDER);
 	gtk_button_box_set_layout(GTK_BUTTON_BOX(bbox), GTK_BUTTONBOX_END);
 /*
 	button = gtk_button_new_with_label("Save Config");

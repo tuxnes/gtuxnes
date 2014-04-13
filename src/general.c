@@ -20,9 +20,9 @@ GtkWidget *create_general_options_page(void)
 
 	frame = gtk_frame_new(NULL);
 
-	vbox = gtk_vbox_new(FALSE, 5);
+	vbox = gtk_vbox_new(FALSE, PAD_LINE);
 
-	hbox = gtk_hbox_new(FALSE, 3);
+	hbox = gtk_hbox_new(FALSE, PAD_SPACE);
 	lbl = gtk_label_new("ROM Name: ");
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
 	entry = gtk_file_chooser_button_new("Choose ROM File", GTK_FILE_CHOOSER_ACTION_OPEN);

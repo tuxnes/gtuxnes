@@ -76,7 +76,7 @@ GtkWidget *create_video_options_page(void)
 
 	frame = gtk_frame_new(NULL);
 
-	vbox = gtk_vbox_new(FALSE, 5);
+	vbox = gtk_vbox_new(FALSE, PAD_LINE);
 
 	hbox = create_toggled_entry("Enlarge:", ENLARGE, 3);
 	gtk_entry_set_text(GTK_ENTRY(widgets[ENLARGE]), "2");
