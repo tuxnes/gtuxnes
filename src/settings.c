@@ -40,9 +40,15 @@ void read_config_file(const char *filename)
 {
 	gchar *raw_data;
 	gchar **lines, **line;
+	GError *err;
 
-	if (!g_file_get_contents(filename, &raw_data, NULL, NULL))
+	err = NULL;
+	g_file_get_contents(filename, &raw_data, NULL, &err);
+	if (err != NULL) {
+		g_printerr("%s\n", err->message);
+		g_error_free(err);
 		return;
+	}
 
 	lines = g_strsplit(raw_data, "\n", 0);
 	g_free(raw_data);

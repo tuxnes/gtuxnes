@@ -16,6 +16,7 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 {
 	int i = 0;
 	gchar **options;
+	GError *err;
 
 	options = g_malloc0_n(NUM_OF_TOGGLES + 3, sizeof (gchar *));
 
@@ -184,7 +185,12 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 		g_printerr(" %s", options[i]);
 	g_printerr("\n");
 
-	g_spawn_async(NULL, options, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, NULL);
+	err = NULL;
+	g_spawn_async(NULL, options, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, &err);
+	if (err != NULL) {
+		g_printerr("%s\n", err->message);
+		g_error_free(err);
+	}
 
 fail:
 	g_strfreev(options);
