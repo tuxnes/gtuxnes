@@ -9,7 +9,9 @@
 
 #include "gtuxnes.h"
 
-static char config_file_name[513];
+#define CONFIG_FILE_BASENAME "." PACKAGE "rc"
+
+static char *config_file_name;
 static GtkWidget *main_window;
 
 static void run_tuxnes(GtkWidget *w, gpointer data)
@@ -264,12 +266,11 @@ int main(int argc, char *argv[])
 	gtk_container_add(GTK_CONTAINER(main_window), vbox);
 	gtk_widget_show_all(main_window);
 
-	strcpy(config_file_name, (char *)g_get_home_dir());
-	strcat(config_file_name, "/.gtuxnesrc");
-
+	config_file_name = g_build_filename(g_get_home_dir(), CONFIG_FILE_BASENAME, NULL);
 	read_config_file(config_file_name);
 
 	gtk_main();
 
+	g_free(config_file_name);
 	return(0);
 }
