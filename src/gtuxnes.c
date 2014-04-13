@@ -11,7 +11,6 @@
 
 char config_file_name[513];
 GtkWidget *main_window;
-GtkWidget *wait_dlg;
 
 static void popup_error_dialog(const char *msg)
 {
@@ -24,39 +23,6 @@ static void popup_error_dialog(const char *msg)
 	                                msg);
 	gtk_dialog_run(GTK_DIALOG(dialog));
 	gtk_widget_destroy(dialog);
-}
-
-static gint update_wait_progress(gpointer progress)
-{
-	gint curr_val;
-
-	curr_val = gtk_progress_get_value(GTK_PROGRESS(progress));
-	gtk_progress_set_value(GTK_PROGRESS(progress), curr_val+1);
-
-	curr_val++;
-
-	if (curr_val == 100) {
-		gtk_widget_destroy(wait_dlg);
-	}
-
-	return (curr_val < 100);
-}
-
-static void create_wait_dialog(void)
-{
-	GtkWidget *lbl;
-	GtkWidget *progress;
-
-	progress = gtk_progress_bar_new();
-	lbl = gtk_label_new("Executing TuxNES...");
-	wait_dlg = gtk_dialog_new();
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(wait_dlg)->action_area),
-				progress, TRUE, TRUE, 0);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(wait_dlg)->vbox), lbl,
-				TRUE, TRUE, 0);
-	gtk_widget_show_all(wait_dlg);
-	gtk_progress_set_value(GTK_PROGRESS(progress), 0);
-	gtk_timeout_add(10, update_wait_progress, progress);
 }
 
 static void cleanup(char *free_me[], int size, gboolean was_error)
@@ -342,8 +308,6 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		/* GTuxNES Parent */
 		if (tuxnes_pid < 0)
 			popup_error_dialog("Couldn't fork!");
-		else
-			create_wait_dialog();
 	}
 
 fail:
