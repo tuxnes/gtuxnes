@@ -8,7 +8,7 @@ AC_CONFIG_HEADERS([src/config.h])
 AM_INIT_AUTOMAKE
 
 # Checks for programs.
-AC_PROG_CC
+AC_PROG_CC_C99
 PKG_PROG_PKG_CONFIG
 
 # Checks for libraries.
