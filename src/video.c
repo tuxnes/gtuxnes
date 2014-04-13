@@ -99,8 +99,7 @@ GtkWidget *create_video_options_page(void)
 	glist = g_list_append(glist, "GGI Renderer");
 	glist = g_list_append(glist, "W Window System Renderer");
 	glist = g_list_append(glist, "No Video Output");
-	hbox = create_toggled_combo("Specify Renderer", RENDERER, 150,
-								glist, FALSE);
+	hbox = create_toggled_combo("Specify Renderer", RENDERER, 150, glist);
 	g_list_free(glist);
 	glist = NULL;
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
@@ -129,8 +128,7 @@ GtkWidget *create_video_options_page(void)
 	glist = g_list_append(glist, "Horizontal");
 	glist = g_list_append(glist, "Single-Screen");
 	glist = g_list_append(glist, "None");
-	hbox = create_toggled_combo("Specify Mirroring", MIRROR, 80,
-								glist, FALSE);
+	hbox = create_toggled_combo("Specify Mirroring", MIRROR, 80, glist);
 	g_list_free(glist);
 	glist = NULL;
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
@@ -147,8 +145,7 @@ GtkWidget *create_video_options_page(void)
 	glist = g_list_append(glist, "vs-drmar");
 	glist = g_list_append(glist, "vs-cv");
 	glist = g_list_append(glist, "vs-smb");
-	hbox = create_toggled_combo("Builtin Palette:", BLTINPAL, 90,
-								glist, FALSE);
+	hbox = create_toggled_combo("Builtin Palette:", BLTINPAL, 90, glist);
 	g_list_free(glist);
 	glist = NULL;
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);

@@ -14,4 +14,4 @@ GtkWidget *create_toggled_entry(const char *name, intptr_t id, gint width);
 GtkWidget *create_toggled_file(const char *name, intptr_t id, gint width,
 				const char *dialog_title);
 GtkWidget *create_toggled_combo(const char *name, intptr_t id, gint width,
-				GList *glist, gboolean editable);
+				GList *glist);

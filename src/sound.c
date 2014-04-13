@@ -77,8 +77,7 @@ GtkWidget *create_sound_options_page(void)
 	glist = g_list_append(glist, "16-bit Signed (little-endian)");
 	glist = g_list_append(glist, "16-bit Unsigned (big-endian)");
 	glist = g_list_append(glist, "16-bit Signed (big-endian)");
-	hbox = create_toggled_combo("Specify Sample Format:", SNDFORMAT,
-					170, glist, FALSE);
+	hbox = create_toggled_combo("Specify Sample Format:", SNDFORMAT, 170, glist);
 	g_list_free(glist);
 	glist = NULL;
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
@@ -87,7 +86,8 @@ GtkWidget *create_sound_options_page(void)
 	glist = g_list_append(glist, "11025");
 	glist = g_list_append(glist, "22050");
 	glist = g_list_append(glist, "44100");
-	hbox = create_toggled_combo("Specify Rate:", SNDRATE, 75, glist, TRUE);
+	hbox = create_toggled_combo("Specify Rate:", SNDRATE, 75, glist);
+	gtk_entry_set_editable(GTK_ENTRY(GTK_COMBO(widgets[SNDRATE])->entry), TRUE);
 	g_list_free(glist);
 	glist = NULL;
 	lbl = gtk_label_new("Hz");

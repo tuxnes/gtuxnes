@@ -75,7 +75,7 @@ GtkWidget *create_toggled_file(const char *name, intptr_t id, gint width,
 }
 
 GtkWidget *create_toggled_combo(const char *name, intptr_t id, gint width,
-				GList *glist, gboolean editable)
+				GList *glist)
 {
 	GtkWidget *combo;
 	GtkWidget *hbox;
@@ -86,7 +86,7 @@ GtkWidget *create_toggled_combo(const char *name, intptr_t id, gint width,
 	gtk_box_pack_start(GTK_BOX(hbox), toggles[id], FALSE, FALSE, 0);
 	combo = gtk_combo_new();
 	gtk_combo_set_popdown_strings(GTK_COMBO(combo), glist);
-	gtk_entry_set_editable(GTK_ENTRY(GTK_COMBO(combo)->entry), editable);
+	gtk_entry_set_editable(GTK_ENTRY(GTK_COMBO(combo)->entry), FALSE);
 	gtk_widget_set_sensitive(combo, FALSE);
 	gtk_widget_set_usize(combo, width, 20);
 	gtk_box_pack_start(GTK_BOX(hbox), combo, FALSE, FALSE, 0);
