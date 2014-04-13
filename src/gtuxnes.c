@@ -354,6 +354,7 @@ int main( int argc, char *argv[] )
 	add_page(notebook, create_general_options_page(), "General");
 	add_page(notebook, create_sound_options_page(),   "Sound");
 	add_page(notebook, create_video_options_page(),   "Video");
+	add_page(notebook, create_palette_options_page(), "Palette");
 	add_page(notebook, create_input_options_page(),   "Input");
 	add_page(notebook, create_debug_options_page(),   "Debug");
 

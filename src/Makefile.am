@@ -9,6 +9,7 @@ gtuxnes_SOURCES = \
 	general.c \
 	sound.c \
 	video.c \
+	palette.c \
 	input.c \
 	debug.c
 gtuxnes_LDADD = $(GTK_LIBS)
