@@ -148,38 +148,40 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		}
 	}
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[BLTINPAL]))) {
-		needs_freeing[j] = g_strconcat("-P",
-			gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(widgets[BLTINPAL])->entry)),
-			NULL);
-		if (needs_freeing[j] == NULL) {
-			alloc_error = TRUE;
-			goto fail;
+		int active = gtk_combo_box_get_active(GTK_COMBO_BOX(widgets[BLTINPAL]));
+		const char *temp = bltinpal_from_index(active);
+		if (temp != NULL) {
+			needs_freeing[j] = g_strconcat("-P", temp, NULL);
+			if (needs_freeing[j] == NULL) {
+				alloc_error = TRUE;
+				goto fail;
+			}
+			options[i++] = needs_freeing[j++];
 		}
-		options[i++] = needs_freeing[j++];
 	}
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[MIRROR]))) {
-		const char *temp = translate_video_combo(MIRROR);
-		if (temp == NULL) {
-			goto fail;
+		int active = gtk_combo_box_get_active(GTK_COMBO_BOX(widgets[MIRROR]));
+		const char *temp = mirror_from_index(active);
+		if (temp != NULL) {
+			needs_freeing[j] = g_strconcat("-m", temp, NULL);
+			if (needs_freeing[j] == NULL) {
+				alloc_error = TRUE;
+				goto fail;
+			}
+			options[i++] = needs_freeing[j++];
 		}
-		needs_freeing[j] = g_strconcat("-m", temp, NULL);
-		if (needs_freeing[j] == NULL) {
-			alloc_error = TRUE;
-			goto fail;
-		}
-		options[i++] = needs_freeing[j++];
 	}
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[RENDERER]))) {
-		const char *temp = translate_video_combo(RENDERER);
-		if (temp == NULL) {
-			goto fail;
+		int active = gtk_combo_box_get_active(GTK_COMBO_BOX(widgets[RENDERER]));
+		const char *temp = renderer_from_index(active);
+		if (temp != NULL) {
+			needs_freeing[j] = g_strconcat("-r", temp, NULL);
+			if (needs_freeing[j] == NULL) {
+				alloc_error = TRUE;
+				goto fail;
+			}
+			options[i++] = needs_freeing[j++];
 		}
-		needs_freeing[j] = g_strconcat("-r", temp, NULL);
-		if (needs_freeing[j] == NULL) {
-			alloc_error = TRUE;
-			goto fail;
-		}
-		options[i++] = needs_freeing[j++];
 	}
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[MUTESOUND]))) {
 		options[i++] = "-smute";
@@ -197,16 +199,16 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 			}
 		}
 		if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[SNDFORMAT]))) {
-			const gchar *temp = translate_sound_combo(SNDFORMAT);
-			if (temp == NULL) {
-				goto fail;
+			int active = gtk_combo_box_get_active(GTK_COMBO_BOX(widgets[SNDFORMAT]));
+			const gchar *temp = sndformat_from_index(active);
+			if (temp != NULL) {
+				needs_freeing[j] = g_strconcat("-F", temp, NULL);
+				if (needs_freeing[j] == NULL) {
+					alloc_error = TRUE;
+					goto fail;
+				}
+				options[i++] = needs_freeing[j++];
 			}
-			needs_freeing[j] = g_strconcat("-F", temp, NULL);
-			if (needs_freeing[j] == NULL) {
-				alloc_error = TRUE;
-				goto fail;
-			}
-			options[i++] = needs_freeing[j++];
 		}
 		if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[SNDDELAY]))) {
 			needs_freeing[j] = g_strconcat("-D",
@@ -219,14 +221,16 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 			options[i++] = needs_freeing[j++];
 		}
 		if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[SNDRATE]))) {
-			needs_freeing[j] = g_strconcat("-R",
-				gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(widgets[SNDRATE])->entry)),
-				NULL);
-			if (needs_freeing[j] == NULL) {
-				alloc_error = TRUE;
-				goto fail;
+			int active = gtk_combo_box_get_active(GTK_COMBO_BOX(widgets[SNDRATE]));
+			const char *temp = sndrate_from_index(active);
+			if (temp != NULL) {
+				needs_freeing[j] = g_strconcat("-R", temp, NULL);
+				if (needs_freeing[j] == NULL) {
+					alloc_error = TRUE;
+					goto fail;
+				}
+				options[i++] = needs_freeing[j++];
 			}
-			options[i++] = needs_freeing[j++];
 		}
 	}
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[MAPPER]))) {

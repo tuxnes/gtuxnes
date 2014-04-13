@@ -9,45 +9,88 @@
 
 #include "gtuxnes.h"
 
-const gchar *translate_video_combo(int box)
+static const char *const renderer[] = {
+	"auto",
+	"x11",
+	"diff",
+	"old",
+	"ggi",
+	"w",
+	"none",
+	NULL
+};
+
+static const char *const renderer_user[] = {
+	"Automatically Choose",
+	"X11 Renderer",
+	"Differential X11 Renderer",
+	"Tile-based X11 Renderer",
+	"GGI Renderer",
+	"W Window System Renderer",
+	"No Video Output",
+	NULL
+};
+
+static const char *const mirror[] = {
+	"v",
+	"h",
+	"s",
+	"n",
+	NULL
+};
+
+static const char *const mirror_user[] = {
+	"Vertical",
+	"Horizontal",
+	"Single-Screen",
+	"None",
+	NULL
+};
+
+static const char *const bltinpal[] = {
+	"loopy",
+	"quor",
+	"chris",
+	"matt",
+	"pasofami",
+	"crashman",
+	"mess",
+	"zaphod-cv",
+	"zaphod-smb",
+	"vs-drmar",
+	"vs-cv",
+	"vs-smb",
+	NULL
+};
+
+const char *renderer_from_index(int index)
 {
-	const char *combo_text;
-	combo_text = gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(widgets[box])->entry));
-	if (box == RENDERER) {
-		switch(combo_text[0]) {
-		case 'A':
-			return "auto";
-		case 'X':
-			return "x11";
-		case 'D':
-			return "diff";
-		case 'T':
-			return "old";
-		case 'G':
-			return "ggi";
-		case 'W':
-			return "w";
-		case 'N':
-			return "none";
-		default:
-			return NULL;
-		}
-	} else if (box == MIRROR) {
-		switch(combo_text[0]) {
-		case 'V':
-			return "v";
-		case 'H':
-			return "h";
-		case 'S':
-			return "s";
-		case 'N':
-			return "n";
-		default:
-			return NULL;
-		}
-	} else {
-		return NULL;
+	int last = (sizeof renderer / sizeof *renderer) - 1;
+
+	if (index < 0 || index > last) {
+		index = last;
 	}
+	return renderer[index];
+}
+
+const char *mirror_from_index(int index)
+{
+	int last = (sizeof mirror / sizeof *mirror) - 1;
+
+	if (index < 0 || index > last) {
+		index = last;
+	}
+	return mirror[index];
+}
+
+const char *bltinpal_from_index(int index)
+{
+	int last = (sizeof bltinpal / sizeof *bltinpal) - 1;
+
+	if (index < 0 || index > last) {
+		index = last;
+	}
+	return bltinpal[index];
 }
 
 void correct_ntsc_value(GtkWidget *entry, gpointer item)
@@ -84,22 +127,13 @@ GtkWidget *create_video_options_page(void)
 	GtkWidget *button;
 	GtkWidget *entry;
 	GtkWidget *lbl;
-	GList *glist = NULL;
 
 	frame = gtk_frame_new(NULL);
 
 	vbox = gtk_vbox_new(FALSE, 5);
 
-	glist = g_list_append(glist, "Automatically Choose");
-	glist = g_list_append(glist, "X11 Renderer");
-	glist = g_list_append(glist, "Differential X11 Renderer");
-	glist = g_list_append(glist, "Tile-based X11 Renderer");
-	glist = g_list_append(glist, "GGI Renderer");
-	glist = g_list_append(glist, "W Window System Renderer");
-	glist = g_list_append(glist, "No Video Output");
-	hbox = create_toggled_combo("Specify Renderer", RENDERER, 150, glist);
-	g_list_free(glist);
-	glist = NULL;
+	hbox = create_toggled_combo("Specify Renderer", RENDERER, 150, renderer_user);
+	gtk_combo_box_set_active(GTK_COMBO_BOX(widgets[RENDERER]), 0);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
 	hbox = create_toggled_entry("Scanlines   Intensity:", SCANLINES, 30);
@@ -122,30 +156,11 @@ GtkWidget *create_video_options_page(void)
 							DISPLAY, 125);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	glist = g_list_append(glist, "Vertical");
-	glist = g_list_append(glist, "Horizontal");
-	glist = g_list_append(glist, "Single-Screen");
-	glist = g_list_append(glist, "None");
-	hbox = create_toggled_combo("Specify Mirroring", MIRROR, 80, glist);
-	g_list_free(glist);
-	glist = NULL;
+	hbox = create_toggled_combo("Specify Mirroring", MIRROR, 80, mirror_user);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	glist = g_list_append(glist, "loopy");
-	glist = g_list_append(glist, "quor");
-	glist = g_list_append(glist, "chris");
-	glist = g_list_append(glist, "matt");
-	glist = g_list_append(glist, "pasofami");
-	glist = g_list_append(glist, "crashman");
-	glist = g_list_append(glist, "mess");
-	glist = g_list_append(glist, "zaphod-cv");
-	glist = g_list_append(glist, "zaphod-smb");
-	glist = g_list_append(glist, "vs-drmar");
-	glist = g_list_append(glist, "vs-cv");
-	glist = g_list_append(glist, "vs-smb");
-	hbox = create_toggled_combo("Builtin Palette:", BLTINPAL, 90, glist);
-	g_list_free(glist);
-	glist = NULL;
+	hbox = create_toggled_combo("Builtin Palette:", BLTINPAL, 90, bltinpal);
+	gtk_combo_box_set_active(GTK_COMBO_BOX(widgets[BLTINPAL]), 0);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
 	hbox = create_toggled_file("Palette File:", PALFILE, 200, "Choose Palette File");

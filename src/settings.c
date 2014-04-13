@@ -26,6 +26,14 @@ const char *option_names[NUM_OF_TOGGLES] = {
 	"STICKYKEYS","SWAPINPUT0","IGNOREINST"
 };
 
+static int read_int(const char *str, int otherwise)
+{
+	int i;
+	char *end;
+
+	i = (int)g_ascii_strtoll(str, &end, 10);
+	return (end != str) ? i : otherwise;
+}
 
 void read_config_file(void)
 {
@@ -87,11 +95,12 @@ found:
 		if (toggle_id > 0 && toggle_id < NUM_OF_ENTRIES) {
 			gtk_widget_set_sensitive(widgets[toggle_id], TRUE);
 			if (value != NULL) {
-				if (GTK_IS_COMBO(widgets[toggle_id])) {
-					gtk_entry_set_text(GTK_ENTRY(GTK_COMBO(widgets[toggle_id])->entry), value);
+				if (GTK_IS_COMBO_BOX_TEXT(widgets[toggle_id])) {
+					int active = read_int(value, -1);
+					gtk_combo_box_set_active(GTK_COMBO_BOX(widgets[toggle_id]), active);
 				} else if (GTK_IS_FILE_CHOOSER_BUTTON(widgets[toggle_id])) {
 					gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(widgets[toggle_id]), value);
-				} else {
+				} else if (GTK_IS_ENTRY(widgets[toggle_id])) {
 					gtk_entry_set_text(GTK_ENTRY(widgets[toggle_id]), value);
 				}
 			}
@@ -124,9 +133,9 @@ void write_config_file(void)
 			if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[i]))) {
 				fprintf(config_file, "%s", option_names[i]);
 				if (i > 0 && i < NUM_OF_ENTRIES) {
-					if (GTK_IS_COMBO(widgets[i])) {
-						fprintf(config_file, "=%s",
-								gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(widgets[i])->entry))
+					if (GTK_IS_COMBO_BOX_TEXT(widgets[i])) {
+						fprintf(config_file, "=%d",
+								gtk_combo_box_get_active(GTK_COMBO_BOX(widgets[i]))
 							);
 					} else if (GTK_IS_FILE_CHOOSER_BUTTON(widgets[i])) {
 						value = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(widgets[i]));
@@ -134,7 +143,7 @@ void write_config_file(void)
 							fprintf(config_file, "=%s", value);
 							g_free(value);
 						}
-					} else {
+					} else if (GTK_IS_ENTRY(widgets[i])) {
 						fprintf(config_file, "=%s",
 								gtk_entry_get_text(GTK_ENTRY(widgets[i]))
 							);

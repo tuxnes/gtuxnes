@@ -35,8 +35,6 @@
 #include <sys/ioctl.h>
 #include <sys/types.h>
 #include "panels.h"
-#include "sound.h"
-#include "video.h"
 #include "settings.h"
 
 #define NUM_OF_TOGGLES  31      /* = lastnum + 1 */

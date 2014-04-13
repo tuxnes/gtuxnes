@@ -3,12 +3,12 @@ AM_CPPFLAGS = $(GTK_CFLAGS)
 bin_PROGRAMS = gtuxnes
 
 gtuxnes_SOURCES = \
-	settings.c settings.h \
-	debug.c \
-	general.c \
 	gtuxnes.c gtuxnes.h \
-	input.c \
+	settings.c settings.h \
 	panels.c panels.h \
-	sound.c sound.h \
-	video.c video.h
+	general.c \
+	sound.c \
+	video.c \
+	input.c \
+	debug.c
 gtuxnes_LDADD = $(GTK_LIBS)

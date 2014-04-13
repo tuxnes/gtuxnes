@@ -12,4 +12,12 @@ GtkWidget *create_toggled_entry(const char *name, int id, gint width);
 GtkWidget *create_toggled_file(const char *name, int id, gint width,
 				const char *dialog_title);
 GtkWidget *create_toggled_combo(const char *name, int id, gint width,
-				GList *glist);
+				const char *const list[]);
+
+const char *renderer_from_index(int index);
+const char *mirror_from_index(int index);
+const char *bltinpal_from_index(int index);
+const char *sndformat_from_index(int index);
+const char *sndrate_from_index(int index);
+
+void correct_ntsc_value(GtkWidget *entry, gpointer item);

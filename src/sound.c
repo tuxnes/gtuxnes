@@ -9,43 +9,58 @@
 
 #include "gtuxnes.h"
 
-const gchar *translate_sound_combo(int box)
+static const char *const sndformat[] = {
+	"mu8",
+	"8",
+	"8s",
+	"16u",
+	"16",
+	"le16u",
+	"le16",
+	"be16u",
+	"be16",
+	NULL
+};
+
+static const char *const sndformat_user[] = {
+	"8-bit Mu-Law",
+	"8-bit Unsigned",
+	"8-bit Signed",
+	"16-bit Unsigned",
+	"16-bit Signed",
+	"16-bit Unsigned (little-endian)",
+	"16-bit Signed (little-endian)",
+	"16-bit Unsigned (big-endian)",
+	"16-bit Signed (big-endian)",
+	NULL
+};
+
+static const char *const sndrate[] = {
+	"8000",
+	"11025",
+	"22050",
+	"44100",
+	NULL
+};
+
+const char *sndformat_from_index(int index)
 {
-	const char *combo_text;
-	if (box == SNDFORMAT) {
-		combo_text = gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(widgets[SNDFORMAT])->entry));
-		if (combo_text[0] == '8') {
-			switch(combo_text[6]) {
-			case 'M':
-				return "mu8";
-			case 'U':
-				return "8";
-			case 'S':
-				return "8s";
-			default:
-				return NULL;
-			}
-		} else {
-			switch(combo_text[7]) {
-			case 'U':
-				if (strlen(combo_text) > 15)
-					return (combo_text[17] == 'l' ?
-								"le16u" : "be16u");
-				else
-					return "16u";
-			case 'S':
-				if (strlen(combo_text) > 13)
-					return (combo_text[15] == 'l' ?
-								"le16" : "be16");
-				else
-					return "16";
-			default:
-				return NULL;
-			}
-		}
-	} else {
-		return NULL;
+	int last = (sizeof sndformat / sizeof *sndformat) - 1;
+
+	if (index < 0 || index > last) {
+		index = last;
 	}
+	return sndformat[index];
+}
+
+const char *sndrate_from_index(int index)
+{
+	int last = (sizeof sndrate / sizeof *sndrate) - 1;
+
+	if (index < 0 || index > last) {
+		index = last;
+	}
+	return sndrate[index];
 }
 
 GtkWidget *create_sound_options_page(void)
@@ -54,7 +69,6 @@ GtkWidget *create_sound_options_page(void)
 	GtkWidget *vbox;
 	GtkWidget *button;
 	GtkWidget *lbl;
-	GList *glist=NULL;
 
 
 	frame = gtk_frame_new(NULL);
@@ -68,32 +82,15 @@ GtkWidget *create_sound_options_page(void)
 	gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(widgets[SNDDEV]), "/dev/dsp");
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	glist = g_list_append(glist, "8-bit Mu-Law");
-	glist = g_list_append(glist, "8-bit Unsigned");
-	glist = g_list_append(glist, "8-bit Signed");
-	glist = g_list_append(glist, "16-bit Unsigned");
-	glist = g_list_append(glist, "16-bit Signed");
-	glist = g_list_append(glist, "16-bit Unsigned (little-endian)");
-	glist = g_list_append(glist, "16-bit Signed (little-endian)");
-	glist = g_list_append(glist, "16-bit Unsigned (big-endian)");
-	glist = g_list_append(glist, "16-bit Signed (big-endian)");
-	hbox = create_toggled_combo("Specify Sample Format:", SNDFORMAT, 170, glist);
-	g_list_free(glist);
-	glist = NULL;
+	hbox = create_toggled_combo("Specify Sample Format:", SNDFORMAT, 170, sndformat_user);
+	gtk_combo_box_set_active(GTK_COMBO_BOX(widgets[SNDFORMAT]), 1);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	glist = g_list_append(glist, "8000");
-	glist = g_list_append(glist, "11025");
-	glist = g_list_append(glist, "22050");
-	glist = g_list_append(glist, "44100");
-	hbox = create_toggled_combo("Specify Rate:", SNDRATE, 75, glist);
-	gtk_entry_set_editable(GTK_ENTRY(GTK_COMBO(widgets[SNDRATE])->entry), TRUE);
-	g_list_free(glist);
-	glist = NULL;
+	hbox = create_toggled_combo("Specify Rate:", SNDRATE, 75, sndrate);
+	gtk_combo_box_set_active(GTK_COMBO_BOX(widgets[SNDRATE]), 3);
 	lbl = gtk_label_new("Hz");
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-	gtk_entry_set_text(GTK_ENTRY(GTK_COMBO(widgets[SNDRATE])->entry), "44100");
 
 	hbox = create_toggled_entry("Specify Maximum Delay:", SNDDELAY, 30);
 	lbl = gtk_label_new("seconds");
