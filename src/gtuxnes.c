@@ -25,11 +25,9 @@ static void popup_error_dialog(const char *msg)
 	gtk_widget_destroy(dialog);
 }
 
-static void cleanup(char *free_me[], int size, gboolean was_error)
+static void cleanup(char *free_me[], int size)
 {
 	int j;
-	if (was_error)
-		popup_error_dialog("Couldn't allocate space for string");
 	for (j = 0; j < size; j++)
 		g_free(free_me[j]);
 }
@@ -42,7 +40,6 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 	char *needs_freeing[NUM_OF_ENTRIES];
 	const char *options[NUM_OF_TOGGLES+3];
 	pid_t tuxnes_pid;
-	gboolean alloc_error = FALSE;
 
 	options[i++] = "tuxnes";
 
@@ -50,20 +47,12 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 		needs_freeing[j] = g_strconcat("-J",
 			gtk_entry_get_text(GTK_ENTRY(widgets[JOYREMAP])),
 			NULL);
-		if (needs_freeing[j] == NULL) {
-			alloc_error = TRUE;
-			goto fail;
-		}
 		options[i++] = needs_freeing[j++];
 	}
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[DISPLAY]))) {
 		needs_freeing[j] = g_strconcat("--display=",
 			gtk_entry_get_text(GTK_ENTRY(widgets[DISPLAY])),
 			NULL);
-		if (needs_freeing[j] == NULL) {
-			alloc_error = TRUE;
-			goto fail;
-		}
 		options[i++] = needs_freeing[j++];
 	}
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[NTSC]))) {
@@ -75,30 +64,18 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 			",",
 			gtk_entry_get_text(GTK_ENTRY(widgets[NTSCTINT])),
 			NULL);
-		if (needs_freeing[j] == NULL) {
-			alloc_error = TRUE;
-			goto fail;
-		}
 		options[i++] = needs_freeing[j++];
 	}
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[GEOMETRY]))) {
 		needs_freeing[j] = g_strconcat("-G",
 			gtk_entry_get_text(GTK_ENTRY(widgets[GEOMETRY])),
 			NULL);
-		if (needs_freeing[j] == NULL) {
-			alloc_error = TRUE;
-			goto fail;
-		}
 		options[i++] = needs_freeing[j++];
 	}
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[SCANLINES]))) {
 		needs_freeing[j] = g_strconcat("-L",
 			gtk_entry_get_text(GTK_ENTRY(widgets[SCANLINES])),
 			NULL);
-		if (needs_freeing[j] == NULL) {
-			alloc_error = TRUE;
-			goto fail;
-		}
 		options[i++] = needs_freeing[j++];
 	}
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[PALFILE]))) {
@@ -106,10 +83,6 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 		if (temp != NULL) {
 			needs_freeing[j] = g_strconcat("-p", temp, NULL);
 			g_free(temp);
-			if (needs_freeing[j] == NULL) {
-				alloc_error = TRUE;
-				goto fail;
-			}
 			options[i++] = needs_freeing[j++];
 		}
 	}
@@ -118,10 +91,6 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 		const char *temp = bltinpal_from_index(active);
 		if (temp != NULL) {
 			needs_freeing[j] = g_strconcat("-P", temp, NULL);
-			if (needs_freeing[j] == NULL) {
-				alloc_error = TRUE;
-				goto fail;
-			}
 			options[i++] = needs_freeing[j++];
 		}
 	}
@@ -130,10 +99,6 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 		const char *temp = mirror_from_index(active);
 		if (temp != NULL) {
 			needs_freeing[j] = g_strconcat("-m", temp, NULL);
-			if (needs_freeing[j] == NULL) {
-				alloc_error = TRUE;
-				goto fail;
-			}
 			options[i++] = needs_freeing[j++];
 		}
 	}
@@ -142,10 +107,6 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 		const char *temp = renderer_from_index(active);
 		if (temp != NULL) {
 			needs_freeing[j] = g_strconcat("-r", temp, NULL);
-			if (needs_freeing[j] == NULL) {
-				alloc_error = TRUE;
-				goto fail;
-			}
 			options[i++] = needs_freeing[j++];
 		}
 	}
@@ -157,10 +118,6 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 			if (temp != NULL) {
 				needs_freeing[j] = g_strconcat("-s", temp, NULL);
 				g_free(temp);
-				if (needs_freeing[j] == NULL) {
-					alloc_error = TRUE;
-					goto fail;
-				}
 				options[i++] = needs_freeing[j++];
 			}
 		}
@@ -169,10 +126,6 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 			const gchar *temp = sndformat_from_index(active);
 			if (temp != NULL) {
 				needs_freeing[j] = g_strconcat("-F", temp, NULL);
-				if (needs_freeing[j] == NULL) {
-					alloc_error = TRUE;
-					goto fail;
-				}
 				options[i++] = needs_freeing[j++];
 			}
 		}
@@ -180,10 +133,6 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 			needs_freeing[j] = g_strconcat("-D",
 				gtk_entry_get_text(GTK_ENTRY(widgets[SNDDELAY])),
 				NULL);
-			if (needs_freeing[j] == NULL) {
-				alloc_error = TRUE;
-				goto fail;
-			}
 			options[i++] = needs_freeing[j++];
 		}
 		if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[SNDRATE]))) {
@@ -191,10 +140,6 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 			const char *temp = sndrate_from_index(active);
 			if (temp != NULL) {
 				needs_freeing[j] = g_strconcat("-R", temp, NULL);
-				if (needs_freeing[j] == NULL) {
-					alloc_error = TRUE;
-					goto fail;
-				}
 				options[i++] = needs_freeing[j++];
 			}
 		}
@@ -203,20 +148,12 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 		needs_freeing[j] = g_strconcat("-M",
 			gtk_entry_get_text(GTK_ENTRY(widgets[MAPPER])),
 			NULL);
-		if (needs_freeing[j] == NULL) {
-			alloc_error = TRUE;
-			goto fail;
-		}
 		options[i++] = needs_freeing[j++];
 	}
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[GAMEGENIE]))) {
 		needs_freeing[j] = g_strconcat("-g",
 			gtk_entry_get_text(GTK_ENTRY(widgets[GAMEGENIE])),
 			NULL);
-		if (needs_freeing[j] == NULL) {
-			alloc_error = TRUE;
-			goto fail;
-		}
 		options[i++] = needs_freeing[j++];
 	}
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[STICKYKEYS]))) {
@@ -230,10 +167,6 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 		if (temp != NULL) {
 			needs_freeing[j] = g_strconcat("-1", temp, NULL);
 			g_free(temp);
-			if (needs_freeing[j] == NULL) {
-				alloc_error = TRUE;
-				goto fail;
-			}
 			options[i++] = needs_freeing[j++];
 		}
 	}
@@ -242,10 +175,6 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 		if (temp != NULL) {
 			needs_freeing[j] = g_strconcat("-2", temp, NULL);
 			g_free(temp);
-			if (needs_freeing[j] == NULL) {
-				alloc_error = TRUE;
-				goto fail;
-			}
 			options[i++] = needs_freeing[j++];
 		}
 	}
@@ -265,10 +194,6 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 		needs_freeing[j] = g_strconcat("-E",
 			gtk_entry_get_text(GTK_ENTRY(widgets[ENLARGE])),
 			NULL);
-		if (needs_freeing[j] == NULL) {
-			alloc_error = TRUE;
-			goto fail;
-		}
 		options[i++] = needs_freeing[j++];
 	}
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[VERBOSE]))) {
@@ -311,7 +236,7 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 	}
 
 fail:
-	cleanup(needs_freeing, j, alloc_error);
+	cleanup(needs_freeing, j);
 }
 
 static void add_page(GtkWidget *book, GtkWidget *page, const gchar *title)
