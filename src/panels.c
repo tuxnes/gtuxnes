@@ -39,7 +39,7 @@ GtkWidget *create_toggled_entry(const char *name, int id, gint width)
 	gtk_box_pack_start(GTK_BOX(hbox), toggles[id], FALSE, FALSE, 0);
 	entry = gtk_entry_new();
 	gtk_widget_set_sensitive(entry, FALSE);
-	gtk_widget_set_size_request(entry, width, 20);
+	gtk_widget_set_size_request(entry, width, -1);
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[id] = entry;
 
@@ -58,7 +58,7 @@ GtkWidget *create_toggled_file(const char *name, int id, gint width,
 	gtk_box_pack_start(GTK_BOX(hbox), toggles[id], FALSE, FALSE, 0);
 	entry = gtk_file_chooser_button_new(dialog_title, GTK_FILE_CHOOSER_ACTION_OPEN);
 	gtk_widget_set_sensitive(entry, FALSE);
-	gtk_widget_set_size_request(entry, width, 20);
+	gtk_widget_set_size_request(entry, width, -1);
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[id] = entry;
 
@@ -79,7 +79,7 @@ GtkWidget *create_toggled_combo(const char *name, int id, gint width,
 	gtk_combo_set_popdown_strings(GTK_COMBO(combo), glist);
 	gtk_entry_set_editable(GTK_ENTRY(GTK_COMBO(combo)->entry), FALSE);
 	gtk_widget_set_sensitive(combo, FALSE);
-	gtk_widget_set_size_request(combo, width, 20);
+	gtk_widget_set_size_request(combo, width, -1);
 	gtk_box_pack_start(GTK_BOX(hbox), combo, FALSE, FALSE, 0);
 	widgets[id] = combo;
 
