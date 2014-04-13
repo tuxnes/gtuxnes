@@ -5,7 +5,7 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation.  Please see the file COPYING for the
  * full text of the License.
-*/
+ */
 
 #include "gtuxnes.h"
 
@@ -23,7 +23,7 @@ GtkWidget *create_general_options_page(void)
 	vbox = gtk_vbox_new(FALSE, PAD_LINE);
 
 	hbox = gtk_hbox_new(FALSE, PAD_SPACE);
-	lbl = gtk_label_new("ROM Name: ");
+	lbl = gtk_label_new("ROM Name:");
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
 	entry = gtk_file_chooser_button_new("Choose ROM File", GTK_FILE_CHOOSER_ACTION_OPEN);
 	gtk_file_chooser_button_set_width_chars(GTK_FILE_CHOOSER_BUTTON(entry), 20);

@@ -17,7 +17,7 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation.  Please see the file COPYING for the
  * full text of the License.
-*/
+ */
 
 #ifndef GTUXNES_H
 #define GTUXNES_H

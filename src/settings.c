@@ -5,16 +5,17 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation.  Please see the file COPYING for the
  * full text of the License.
-*/
+ */
 
-/* Config File Format:
+/*
+ * Config File Format:
  *   Line 1: /full/path/to/rom
  *   Line X: KEY0000000[=VALUE]
  *
  *  All keys are exactly 10 characters long (padded with '0's if necessary).
  *  A key with no value is assumed to have the value 1 or 'on'.  A key which
  *  does not appear in the file is assumed to have the value 0 or 'off'.
-*/
+ */
 
 #include "gtuxnes.h"
 
