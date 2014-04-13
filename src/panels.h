@@ -7,6 +7,8 @@
  * full text of the License.
 */
 
+void enable_button_toggled(GtkWidget *entry, gpointer e);
+
 GtkWidget *create_toggle(const char *name, int id);
 GtkWidget *create_toggled_entry(const char *name, int id, gint width);
 GtkWidget *create_toggled_file(const char *name, int id, gint width, const char *dialog_title);

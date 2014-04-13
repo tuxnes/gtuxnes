@@ -53,15 +53,6 @@ void correct_ntsc_value(GtkWidget *entry, gpointer item)
 	}
 }
 
-static void ntsc_toggle(GtkWidget *button, gpointer w)
-{
-	gboolean active;
-
-	active = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button));
-	gtk_widget_set_sensitive(widgets[NTSCHUE], active);
-	gtk_widget_set_sensitive(widgets[NTSCTINT], active);
-}
-
 GtkWidget *create_palette_options_page(void)
 {
 	GtkWidget *frame;
@@ -85,11 +76,11 @@ GtkWidget *create_palette_options_page(void)
 	toggles[NTSC] = gtk_check_button_new_with_label("NTSC Palette:");
 	toggles[NTSC+1] = toggles[NTSC];
 	gtk_box_pack_start(GTK_BOX(hbox), toggles[NTSC], FALSE, FALSE, 0);
-	g_signal_connect(toggles[NTSC], "clicked", G_CALLBACK(ntsc_toggle), NULL);
 	lbl = gtk_label_new("Hue Angle:");
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
 	entry = gtk_entry_new();
 	gtk_widget_set_sensitive(entry, FALSE);
+	g_signal_connect_swapped(toggles[NTSC], "clicked", G_CALLBACK(enable_button_toggled), entry);
 	gtk_entry_set_width_chars(GTK_ENTRY(entry), 5);
 	gtk_entry_set_text(GTK_ENTRY(entry), "332.0");
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
@@ -99,6 +90,7 @@ GtkWidget *create_palette_options_page(void)
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
 	entry = gtk_entry_new();
 	gtk_widget_set_sensitive(entry, FALSE);
+	g_signal_connect_swapped(toggles[NTSC], "clicked", G_CALLBACK(enable_button_toggled), entry);
 	gtk_entry_set_width_chars(GTK_ENTRY(entry), 3);
 	gtk_entry_set_text(GTK_ENTRY(entry), "0.5");
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);

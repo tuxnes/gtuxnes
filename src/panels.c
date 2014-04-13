@@ -9,14 +9,12 @@
 
 #include "gtuxnes.h"
 
-static void enable_button_toggled(GtkWidget *button, gpointer e)
+void enable_button_toggled(GtkWidget *entry, gpointer e)
 {
-	GtkWidget *entry;
 	gboolean active;
 
-	entry = widgets[GPOINTER_TO_INT(e)];
-	active = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button));
-	gtk_widget_set_sensitive(GTK_WIDGET(entry), active);
+	active = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(e));
+	gtk_widget_set_sensitive(entry, active);
 }
 
 GtkWidget *create_toggle(const char *name, int id)
@@ -28,15 +26,19 @@ GtkWidget *create_toggle(const char *name, int id)
 
 GtkWidget *create_toggled_entry(const char *name, int id, gint width)
 {
-	GtkWidget *entry;
 	GtkWidget *hbox;
+	GtkWidget *toggle;
+	GtkWidget *entry;
 
 	hbox = gtk_hbox_new(FALSE, 3);
-	toggles[id] = gtk_check_button_new_with_label(name);
-	g_signal_connect(toggles[id], "toggled", G_CALLBACK(enable_button_toggled), GINT_TO_POINTER(id));
-	gtk_box_pack_start(GTK_BOX(hbox), toggles[id], FALSE, FALSE, 0);
+
+	toggle = gtk_check_button_new_with_label(name);
+	gtk_box_pack_start(GTK_BOX(hbox), toggle, FALSE, FALSE, 0);
+	toggles[id] = toggle;
+
 	entry = gtk_entry_new();
 	gtk_widget_set_sensitive(entry, FALSE);
+	g_signal_connect_swapped(toggle, "toggled", G_CALLBACK(enable_button_toggled), entry);
 	gtk_entry_set_width_chars(GTK_ENTRY(entry), width);
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[id] = entry;
@@ -46,15 +48,19 @@ GtkWidget *create_toggled_entry(const char *name, int id, gint width)
 
 GtkWidget *create_toggled_file(const char *name, int id, gint width, const char *dialog_title)
 {
-	GtkWidget *entry;
 	GtkWidget *hbox;
+	GtkWidget *toggle;
+	GtkWidget *entry;
 
 	hbox = gtk_hbox_new(FALSE, 3);
-	toggles[id] = gtk_check_button_new_with_label(name);
-	g_signal_connect(toggles[id], "toggled", G_CALLBACK(enable_button_toggled), GINT_TO_POINTER(id));
-	gtk_box_pack_start(GTK_BOX(hbox), toggles[id], FALSE, FALSE, 0);
+
+	toggle = gtk_check_button_new_with_label(name);
+	gtk_box_pack_start(GTK_BOX(hbox), toggle, FALSE, FALSE, 0);
+	toggles[id] = toggle;
+
 	entry = gtk_file_chooser_button_new(dialog_title, GTK_FILE_CHOOSER_ACTION_OPEN);
 	gtk_widget_set_sensitive(entry, FALSE);
+	g_signal_connect_swapped(toggle, "toggled", G_CALLBACK(enable_button_toggled), entry);
 	gtk_file_chooser_button_set_width_chars(GTK_FILE_CHOOSER_BUTTON(entry), width);
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[id] = entry;
@@ -64,20 +70,24 @@ GtkWidget *create_toggled_file(const char *name, int id, gint width, const char 
 
 GtkWidget *create_toggled_combo(const char *name, int id, const char *const list[])
 {
-	GtkWidget *combo;
 	GtkWidget *hbox;
+	GtkWidget *toggle;
+	GtkWidget *entry;
 
 	hbox = gtk_hbox_new(FALSE, 3);
-	toggles[id] = gtk_check_button_new_with_label(name);
-	g_signal_connect(toggles[id], "toggled", G_CALLBACK(enable_button_toggled), GINT_TO_POINTER(id));
-	gtk_box_pack_start(GTK_BOX(hbox), toggles[id], FALSE, FALSE, 0);
-	combo = gtk_combo_box_text_new();
+
+	toggle = gtk_check_button_new_with_label(name);
+	gtk_box_pack_start(GTK_BOX(hbox), toggle, FALSE, FALSE, 0);
+	toggles[id] = toggle;
+
+	entry = gtk_combo_box_text_new();
+	gtk_widget_set_sensitive(entry, FALSE);
+	g_signal_connect_swapped(toggle, "toggled", G_CALLBACK(enable_button_toggled), entry);
 	while (*list != NULL) {
-		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), *list++);
+		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(entry), *list++);
 	}
-	gtk_widget_set_sensitive(combo, FALSE);
-	gtk_box_pack_start(GTK_BOX(hbox), combo, FALSE, FALSE, 0);
-	widgets[id] = combo;
+	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
+	widgets[id] = entry;
 
 	return hbox;
 }
