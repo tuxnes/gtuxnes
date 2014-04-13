@@ -360,8 +360,8 @@ int main( int argc, char *argv[] )
 
     /* Create the Save, Run and Quit buttons */
 	bbox = gtk_hbutton_box_new();
-	gtk_hbutton_box_set_spacing_default(10);
-	gtk_hbutton_box_set_layout_default(GTK_BUTTONBOX_END);
+	gtk_box_set_spacing(GTK_BOX(bbox), 10);
+	gtk_button_box_set_layout(GTK_BUTTON_BOX(bbox), GTK_BUTTONBOX_END);
 /*
 	button = gtk_button_new_with_label("Save Config");
 	gtk_container_add(GTK_CONTAINER(bbox), button);
