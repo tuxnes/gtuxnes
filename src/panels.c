@@ -9,15 +9,6 @@
 
 #include "gtuxnes.h"
 
-void entry_edited(GtkWidget *entry, gpointer option)
-{
-	/*
-	g_free();
-	g_malloc();
-	strcpy();
-	*/
-}
-
 static void enable_button_toggled(GtkWidget *button, gpointer e)
 {
 	GtkWidget *entry;
@@ -49,7 +40,6 @@ GtkWidget *create_toggled_entry(const char *name, int id, gint width)
 	entry = gtk_entry_new();
 	gtk_widget_set_sensitive(entry, FALSE);
 	gtk_widget_set_usize(entry, width, 20);
-	g_signal_connect(entry, "activate", G_CALLBACK(entry_edited), GINT_TO_POINTER(id));
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[id] = entry;
 
