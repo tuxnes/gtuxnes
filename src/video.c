@@ -162,7 +162,7 @@ GtkWidget *create_video_options_page(void)
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
 	entry = gtk_entry_new();
 	gtk_widget_set_sensitive(entry, FALSE);
-	gtk_widget_set_usize(entry, 50, 20);
+	gtk_widget_set_size_request(entry, 50, 20);
 	gtk_entry_set_text(GTK_ENTRY(entry), "332.0");
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[NTSCHUE] = entry;
@@ -171,7 +171,7 @@ GtkWidget *create_video_options_page(void)
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
 	entry = gtk_entry_new();
 	gtk_widget_set_sensitive(entry, FALSE);
-	gtk_widget_set_usize(entry, 30, 20);
+	gtk_widget_set_size_request(entry, 30, 20);
 	gtk_entry_set_text(GTK_ENTRY(entry), "0.5");
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[NTSCTINT] = entry;
