@@ -206,7 +206,7 @@ static void add_page(GtkWidget *book, GtkWidget *page, const gchar *title)
 	gtk_container_add(GTK_CONTAINER(frame), page);
 
 	label = gtk_label_new(title);
-	gtk_notebook_append_page (GTK_NOTEBOOK(book), frame, label);
+	gtk_notebook_append_page(GTK_NOTEBOOK(book), frame, label);
 }
 
 static gint quit_gtuxnes(GtkWidget *w, gpointer data)
@@ -223,19 +223,19 @@ int main(int argc, char *argv[])
 	GtkWidget *vbox;
 	GtkWidget *bbox;
 
-	gtk_init (&argc, &argv);
+	gtk_init(&argc, &argv);
 
-	main_window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+	main_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title(GTK_WINDOW(main_window), PACKAGE_NAME);
 	g_signal_connect(main_window, "delete_event", G_CALLBACK(quit_gtuxnes), NULL);
-	gtk_container_set_border_width (GTK_CONTAINER (main_window), PAD_BORDER);
+	gtk_container_set_border_width(GTK_CONTAINER(main_window), PAD_BORDER);
 
 	vbox = gtk_vbox_new(FALSE, PAD_BORDER);
 
 
 	/* Create the 'notebook' and add the pages to it */
-	notebook = gtk_notebook_new ();
-	gtk_notebook_set_tab_pos(GTK_NOTEBOOK (notebook), GTK_POS_TOP);
+	notebook = gtk_notebook_new();
+	gtk_notebook_set_tab_pos(GTK_NOTEBOOK(notebook), GTK_POS_TOP);
 	gtk_box_pack_start(GTK_BOX(vbox), notebook, FALSE, FALSE, 0);
 
 	add_page(notebook, create_general_options_page(), "General");
