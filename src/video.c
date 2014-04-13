@@ -137,24 +137,23 @@ GtkWidget *create_video_options_page(void)
 	gtk_combo_box_set_active(GTK_COMBO_BOX(widgets[RENDERER]), 0);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	hbox = create_toggled_entry("Scanlines   Intensity:", SCANLINES, 30);
+	hbox = create_toggled_entry("Scanlines   Intensity:", SCANLINES, 3);
 	gtk_entry_set_text(GTK_ENTRY(widgets[SCANLINES]), "0");
 	lbl = gtk_label_new("%");
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	hbox = create_toggled_entry("Specify Window Geometry:", GEOMETRY, 70);
+	hbox = create_toggled_entry("Specify Window Geometry:", GEOMETRY, 9);
 	gtk_entry_set_text(GTK_ENTRY(widgets[GEOMETRY]), "640x480");
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	hbox = create_toggled_entry("Enlarge:", ENLARGE, 30);
+	hbox = create_toggled_entry("Enlarge:", ENLARGE, 3);
 	gtk_entry_set_text(GTK_ENTRY(widgets[ENLARGE]), "2");
 	lbl = gtk_label_new("x");
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	hbox = create_toggled_entry("Specify Display/Target ID:",
-							DISPLAY, 125);
+	hbox = create_toggled_entry("Specify Display/Target ID:", DISPLAY, 9);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
 	hbox = create_toggled_combo("Specify Mirroring", MIRROR, 80, mirror_user);
@@ -176,7 +175,7 @@ GtkWidget *create_video_options_page(void)
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
 	entry = gtk_entry_new();
 	gtk_widget_set_sensitive(entry, FALSE);
-	gtk_widget_set_size_request(entry, 50, -1);
+	gtk_entry_set_width_chars(GTK_ENTRY(entry), 5);
 	gtk_entry_set_text(GTK_ENTRY(entry), "332.0");
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[NTSCHUE] = entry;
@@ -185,7 +184,7 @@ GtkWidget *create_video_options_page(void)
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
 	entry = gtk_entry_new();
 	gtk_widget_set_sensitive(entry, FALSE);
-	gtk_widget_set_size_request(entry, 30, -1);
+	gtk_entry_set_width_chars(GTK_ENTRY(entry), 3);
 	gtk_entry_set_text(GTK_ENTRY(entry), "0.5");
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[NTSCTINT] = entry;

@@ -93,7 +93,7 @@ GtkWidget *create_sound_options_page(void)
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	hbox = create_toggled_entry("Specify Maximum Delay:", SNDDELAY, 30);
+	hbox = create_toggled_entry("Specify Maximum Delay:", SNDDELAY, 3);
 	lbl = gtk_label_new("seconds");
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
 	gtk_entry_set_text(GTK_ENTRY(widgets[SNDDELAY]), ".5");

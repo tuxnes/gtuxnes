@@ -37,7 +37,7 @@ GtkWidget *create_toggled_entry(const char *name, int id, gint width)
 	gtk_box_pack_start(GTK_BOX(hbox), toggles[id], FALSE, FALSE, 0);
 	entry = gtk_entry_new();
 	gtk_widget_set_sensitive(entry, FALSE);
-	gtk_widget_set_size_request(entry, width, -1);
+	gtk_entry_set_width_chars(GTK_ENTRY(entry), width);
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[id] = entry;
 

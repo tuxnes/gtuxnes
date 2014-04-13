@@ -34,7 +34,7 @@ GtkWidget *create_general_options_page(void)
 	button = create_toggle("Fix Mapper", FIXMAPPER);
 	gtk_box_pack_start(GTK_BOX(vbox), button, FALSE, FALSE, 0);
 
-	hbox = create_toggled_entry("Use Specific Mapper:", MAPPER, 30);
+	hbox = create_toggled_entry("Use Specific Mapper:", MAPPER, 3);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
 	button = create_toggle("Ignore Unknown Instructions", IGNOREINST);
@@ -43,7 +43,7 @@ GtkWidget *create_general_options_page(void)
 	button = create_toggle("Link branches", LINK);
 	gtk_box_pack_start(GTK_BOX(vbox), button, FALSE, FALSE, 0);
 
-	hbox = create_toggled_entry("Game Genie Code:", GAMEGENIE, 100);
+	hbox = create_toggled_entry("Game Genie Code:", GAMEGENIE, 8);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
 	gtk_container_add(GTK_CONTAINER(frame), vbox);

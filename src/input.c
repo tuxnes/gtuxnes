@@ -35,7 +35,7 @@ GtkWidget *create_input_options_page(void)
 	gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(widgets[JOY2]), "/dev/js1");
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	hbox = create_toggled_entry("Remap Joystick:", JOYREMAP, 200);
+	hbox = create_toggled_entry("Remap Joystick:", JOYREMAP, 25);
 	gtk_entry_set_text(GTK_ENTRY(widgets[JOYREMAP]), "1:B0,B1,B2,B3,A0,A1,B4");
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
