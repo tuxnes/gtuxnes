@@ -70,9 +70,8 @@ const char *mirror_from_index(int index)
 GtkWidget *create_video_options_page(void)
 {
 	GtkWidget *frame;
-	GtkWidget *hbox;
 	GtkWidget *vbox;
-	GtkWidget *button;
+	GtkWidget *hbox;
 	GtkWidget *lbl;
 
 	frame = gtk_frame_new(NULL);
@@ -105,8 +104,8 @@ GtkWidget *create_video_options_page(void)
 	hbox = create_toggled_entry("Specify Display/Target ID:", DISPLAY, 9);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	button = create_toggle("Display In Root Window", DISPINROOT);
-	gtk_box_pack_start(GTK_BOX(vbox), button, FALSE, FALSE, 0);
+	hbox = create_toggle("Display In Root Window", DISPINROOT);
+	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
 	gtk_container_add(GTK_CONTAINER(frame), vbox);
 

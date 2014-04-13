@@ -13,21 +13,21 @@ GtkWidget *create_debug_options_page(void)
 {
 	GtkWidget *frame;
 	GtkWidget *vbox;
-	GtkWidget *button;
+	GtkWidget *hbox;
 
 
 	frame = gtk_frame_new(NULL);
 
 	vbox = gtk_vbox_new(FALSE, 5);
 
-	button = create_toggle("Verbose Output", VERBOSE);
-	gtk_box_pack_start(GTK_BOX(vbox), button, FALSE, FALSE, 0);
+	hbox = create_toggle("Verbose Output", VERBOSE);
+	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	button = create_toggle("Show Header", SHOWHEADER);
-	gtk_box_pack_start(GTK_BOX(vbox), button, FALSE, FALSE, 0);
+	hbox = create_toggle("Show Header", SHOWHEADER);
+	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	button = create_toggle("Disassemble", DISASM);
-	gtk_box_pack_start(GTK_BOX(vbox), button, FALSE, FALSE, 0);
+	hbox = create_toggle("Disassemble", DISASM);
+	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
 	gtk_container_add(GTK_CONTAINER(frame), vbox);
 

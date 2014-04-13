@@ -65,9 +65,8 @@ static void ntsc_toggle(GtkWidget *button, gpointer w)
 GtkWidget *create_palette_options_page(void)
 {
 	GtkWidget *frame;
-	GtkWidget *hbox;
 	GtkWidget *vbox;
-	GtkWidget *button;
+	GtkWidget *hbox;
 	GtkWidget *entry;
 	GtkWidget *lbl;
 
@@ -107,11 +106,11 @@ GtkWidget *create_palette_options_page(void)
 	g_signal_connect(entry, "activate", G_CALLBACK(correct_ntsc_value), GINT_TO_POINTER(NTSCTINT));
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	button = create_toggle("Static Color Allocation", STATCOLOR);
-	gtk_box_pack_start(GTK_BOX(vbox), button, FALSE, FALSE, 0);
+	hbox = create_toggle("Static Color Allocation", STATCOLOR);
+	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	button = create_toggle("Grayscale", GRAYSCALE);
-	gtk_box_pack_start(GTK_BOX(vbox), button, FALSE, FALSE, 0);
+	hbox = create_toggle("Grayscale", GRAYSCALE);
+	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
 	gtk_container_add(GTK_CONTAINER(frame), vbox);
 
