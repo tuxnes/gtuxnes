@@ -10,7 +10,7 @@
 #include "gtuxnes.h"
 
 static char config_file_name[513];
-GtkWidget *main_window;
+static GtkWidget *main_window;
 
 static void popup_error_dialog(const char *msg)
 {
