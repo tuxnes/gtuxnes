@@ -90,18 +90,18 @@ GtkWidget *create_video_options_page(void)
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	hbox = create_toggled_combo("Specify Mirroring", MIRROR, mirror_user);
+	hbox = create_toggled_combo("Mirroring", MIRROR, mirror_user);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	hbox = create_toggled_combo("Specify Renderer", RENDERER, renderer_user);
+	hbox = create_toggled_combo("Renderer", RENDERER, renderer_user);
 	gtk_combo_box_set_active(GTK_COMBO_BOX(widgets[RENDERER]), 0);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	hbox = create_toggled_entry("Specify Window Geometry:", GEOMETRY, 9);
+	hbox = create_toggled_entry("Window Geometry:", GEOMETRY, 9);
 	gtk_entry_set_text(GTK_ENTRY(widgets[GEOMETRY]), "640x480");
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	hbox = create_toggled_entry("Specify Display/Target ID:", DISPLAY, 9);
+	hbox = create_toggled_entry("Display/Target ID:", DISPLAY, 9);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
 	hbox = create_toggle("Display In Root Window", DISPINROOT);

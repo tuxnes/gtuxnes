@@ -78,21 +78,21 @@ GtkWidget *create_sound_options_page(void)
 	hbox = create_toggle("Mute Sound", MUTESOUND);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	hbox = create_toggled_file("Specify Sound Device:", SNDDEV, 10, "Choose Sound Device");
+	hbox = create_toggled_file("Sound Device:", SNDDEV, 10, "Choose Sound Device");
 	gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(widgets[SNDDEV]), "/dev/dsp");
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	hbox = create_toggled_combo("Specify Sample Format:", SNDFORMAT, sndformat_user);
+	hbox = create_toggled_combo("Sample Format:", SNDFORMAT, sndformat_user);
 	gtk_combo_box_set_active(GTK_COMBO_BOX(widgets[SNDFORMAT]), 1);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	hbox = create_toggled_combo("Specify Rate:", SNDRATE, sndrate);
+	hbox = create_toggled_combo("Sample Rate:", SNDRATE, sndrate);
 	gtk_combo_box_set_active(GTK_COMBO_BOX(widgets[SNDRATE]), 3);
 	lbl = gtk_label_new("Hz");
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	hbox = create_toggled_entry("Specify Maximum Delay:", SNDDELAY, 3);
+	hbox = create_toggled_entry("Maximum Delay:", SNDDELAY, 3);
 	lbl = gtk_label_new("seconds");
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
 	gtk_entry_set_text(GTK_ENTRY(widgets[SNDDELAY]), ".5");
