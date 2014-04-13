@@ -70,13 +70,11 @@ void correct_ntsc_value(GtkWidget *entry, gpointer item)
 
 static void ntsc_toggle(GtkWidget *button, gpointer w)
 {
-	if (GTK_TOGGLE_BUTTON(button)->active) {
-		gtk_widget_set_sensitive(widgets[NTSCHUE], TRUE);
-		gtk_widget_set_sensitive(widgets[NTSCTINT], TRUE);
-	} else {
-		gtk_widget_set_sensitive(widgets[NTSCHUE], FALSE);
-		gtk_widget_set_sensitive(widgets[NTSCTINT], FALSE);
-	}
+	gboolean active;
+
+	active = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button));
+	gtk_widget_set_sensitive(widgets[NTSCHUE], active);
+	gtk_widget_set_sensitive(widgets[NTSCTINT], active);
 }
 
 GtkWidget *create_video_options_page(void)

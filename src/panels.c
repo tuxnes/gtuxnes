@@ -12,13 +12,11 @@
 static void enable_button_toggled(GtkWidget *button, gpointer e)
 {
 	GtkWidget *entry;
+	gboolean active;
 
 	entry = widgets[GPOINTER_TO_INT(e)];
-	if (GTK_TOGGLE_BUTTON(button)->active) {
-		gtk_widget_set_sensitive(GTK_WIDGET(entry), TRUE);
-	} else {
-		gtk_widget_set_sensitive(GTK_WIDGET(entry), FALSE);
-	}
+	active = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button));
+	gtk_widget_set_sensitive(GTK_WIDGET(entry), active);
 }
 
 GtkWidget *create_toggle(const char *name, int id)

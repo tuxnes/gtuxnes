@@ -80,7 +80,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 
 	options[i++] = "tuxnes";
 
-	if (GTK_TOGGLE_BUTTON(toggles[JOYREMAP])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[JOYREMAP]))) {
 		needs_freeing[j] = g_strconcat("-J",
 			gtk_entry_get_text(GTK_ENTRY(widgets[JOYREMAP])),
 			NULL);
@@ -90,7 +90,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		}
 		options[i++] = needs_freeing[j++];
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[DISPLAY])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[DISPLAY]))) {
 		needs_freeing[j] = g_strconcat("--display=",
 			gtk_entry_get_text(GTK_ENTRY(widgets[DISPLAY])),
 			NULL);
@@ -100,7 +100,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		}
 		options[i++] = needs_freeing[j++];
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[NTSC])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[NTSC]))) {
 		correct_ntsc_value(widgets[NTSCHUE], (gpointer) NTSCHUE);
 		correct_ntsc_value(widgets[NTSCTINT], (gpointer) NTSCTINT);
 
@@ -115,7 +115,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		}
 		options[i++] = needs_freeing[j++];
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[GEOMETRY])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[GEOMETRY]))) {
 		needs_freeing[j] = g_strconcat("-G",
 			gtk_entry_get_text(GTK_ENTRY(widgets[GEOMETRY])),
 			NULL);
@@ -125,7 +125,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		}
 		options[i++] = needs_freeing[j++];
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[SCANLINES])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[SCANLINES]))) {
 		needs_freeing[j] = g_strconcat("-L",
 			gtk_entry_get_text(GTK_ENTRY(widgets[SCANLINES])),
 			NULL);
@@ -135,7 +135,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		}
 		options[i++] = needs_freeing[j++];
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[PALFILE])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[PALFILE]))) {
 		gchar *temp = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(widgets[PALFILE]));
 		if (temp != NULL) {
 			needs_freeing[j] = g_strconcat("-p", temp, NULL);
@@ -147,7 +147,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 			options[i++] = needs_freeing[j++];
 		}
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[BLTINPAL])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[BLTINPAL]))) {
 		needs_freeing[j] = g_strconcat("-P",
 			gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(widgets[BLTINPAL])->entry)),
 			NULL);
@@ -157,7 +157,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		}
 		options[i++] = needs_freeing[j++];
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[MIRROR])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[MIRROR]))) {
 		const char *temp = translate_video_combo(MIRROR);
 		if (temp == NULL) {
 			goto fail;
@@ -169,7 +169,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		}
 		options[i++] = needs_freeing[j++];
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[RENDERER])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[RENDERER]))) {
 		const char *temp = translate_video_combo(RENDERER);
 		if (temp == NULL) {
 			goto fail;
@@ -181,10 +181,10 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		}
 		options[i++] = needs_freeing[j++];
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[MUTESOUND])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[MUTESOUND]))) {
 		options[i++] = "-smute";
 	} else {
-		if (GTK_TOGGLE_BUTTON(toggles[SNDDEV])->active) {
+		if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[SNDDEV]))) {
 			gchar *temp = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(widgets[SNDDEV]));
 			if (temp != NULL) {
 				needs_freeing[j] = g_strconcat("-s", temp, NULL);
@@ -196,7 +196,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 				options[i++] = needs_freeing[j++];
 			}
 		}
-		if (GTK_TOGGLE_BUTTON(toggles[SNDFORMAT])->active) {
+		if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[SNDFORMAT]))) {
 			const gchar *temp = translate_sound_combo(SNDFORMAT);
 			if (temp == NULL) {
 				goto fail;
@@ -208,7 +208,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 			}
 			options[i++] = needs_freeing[j++];
 		}
-		if (GTK_TOGGLE_BUTTON(toggles[SNDDELAY])->active) {
+		if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[SNDDELAY]))) {
 			needs_freeing[j] = g_strconcat("-D",
 				gtk_entry_get_text(GTK_ENTRY(widgets[SNDDELAY])),
 				NULL);
@@ -218,7 +218,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 			}
 			options[i++] = needs_freeing[j++];
 		}
-		if (GTK_TOGGLE_BUTTON(toggles[SNDRATE])->active) {
+		if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[SNDRATE]))) {
 			needs_freeing[j] = g_strconcat("-R",
 				gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(widgets[SNDRATE])->entry)),
 				NULL);
@@ -229,7 +229,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 			options[i++] = needs_freeing[j++];
 		}
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[MAPPER])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[MAPPER]))) {
 		needs_freeing[j] = g_strconcat("-M",
 			gtk_entry_get_text(GTK_ENTRY(widgets[MAPPER])),
 			NULL);
@@ -239,7 +239,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		}
 		options[i++] = needs_freeing[j++];
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[GAMEGENIE])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[GAMEGENIE]))) {
 		needs_freeing[j] = g_strconcat("-g",
 			gtk_entry_get_text(GTK_ENTRY(widgets[GAMEGENIE])),
 			NULL);
@@ -249,13 +249,13 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		}
 		options[i++] = needs_freeing[j++];
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[STICKYKEYS])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[STICKYKEYS]))) {
 		options[i++] = "-K";
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[SWAPINPUT])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[SWAPINPUT]))) {
 		options[i++] = "-X";
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[JOY1])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[JOY1]))) {
 		gchar *temp = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(widgets[JOY1]));
 		if (temp != NULL) {
 			needs_freeing[j] = g_strconcat("-1", temp, NULL);
@@ -267,7 +267,7 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 			options[i++] = needs_freeing[j++];
 		}
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[JOY2])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[JOY2]))) {
 		gchar *temp = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(widgets[JOY2]));
 		if (temp != NULL) {
 			needs_freeing[j] = g_strconcat("-2", temp, NULL);
@@ -279,19 +279,19 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 			options[i++] = needs_freeing[j++];
 		}
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[IGNOREINST])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[IGNOREINST]))) {
 		options[i++] = "-i";
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[DISPINROOT])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[DISPINROOT]))) {
 		options[i++] = "-I";
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[STATCOLOR])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[STATCOLOR]))) {
 		options[i++] = "-S";
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[GRAYSCALE])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[GRAYSCALE]))) {
 		options[i++] = "-b";
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[ENLARGE])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[ENLARGE]))) {
 		needs_freeing[j] = g_strconcat("-E",
 			gtk_entry_get_text(GTK_ENTRY(widgets[ENLARGE])),
 			NULL);
@@ -301,19 +301,19 @@ static void run_tuxnes( GtkWidget *w, gpointer data )
 		}
 		options[i++] = needs_freeing[j++];
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[VERBOSE])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[VERBOSE]))) {
 		options[i++] = "-v";
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[FIXMAPPER])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[FIXMAPPER]))) {
 		options[i++] = "-f";
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[SHOWHEADER])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[SHOWHEADER]))) {
 		options[i++] = "-H";
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[DISASM])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[DISASM]))) {
 		options[i++] = "-d";
 	}
-	if (GTK_TOGGLE_BUTTON(toggles[LINK])->active) {
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[LINK]))) {
 		options[i++] = "-l";
 	}
 

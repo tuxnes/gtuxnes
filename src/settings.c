@@ -68,7 +68,7 @@ found:
 			gtk_widget_set_sensitive(widgets[NTSCTINT], TRUE);
 			gtk_entry_set_text(GTK_ENTRY(widgets[NTSCHUE]), value);
 
-			if (GTK_TOGGLE_BUTTON(toggles[NTSC])->active == TRUE)
+			if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[NTSC])))
 				continue;
 			else
 				toggle_id = NTSC;
@@ -77,13 +77,13 @@ found:
 			gtk_widget_set_sensitive(widgets[NTSCTINT], TRUE);
 			gtk_entry_set_text(GTK_ENTRY(widgets[NTSCTINT]), value);
 
-			if (GTK_TOGGLE_BUTTON(toggles[NTSC])->active == TRUE)
+			if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[NTSC])))
 				continue;
 			else
 				toggle_id = NTSC;
 		}
 
-		GTK_TOGGLE_BUTTON(toggles[toggle_id])->active = TRUE;
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(toggles[toggle_id]), TRUE);
 		if (toggle_id > 0 && toggle_id < NUM_OF_ENTRIES) {
 			gtk_widget_set_sensitive(widgets[toggle_id], TRUE);
 			if (value != NULL) {
@@ -121,7 +121,7 @@ void write_config_file(void)
 		g_free(value);
 
 		for (i = 0; i < NUM_OF_TOGGLES; ++i) {
-			if (GTK_TOGGLE_BUTTON(toggles[i])->active == TRUE) {
+			if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[i]))) {
 				fprintf(config_file, "%s", option_names[i]);
 				if (i > 0 && i < NUM_OF_ENTRIES) {
 					if (GTK_IS_COMBO(widgets[i])) {
