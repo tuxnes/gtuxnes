@@ -11,6 +11,7 @@
 
 GtkWidget *create_debug_options_page(void)
 {
+	GtkWidget *frame;
 	GtkWidget *vbox;
 	GtkWidget *button;
 

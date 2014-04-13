@@ -65,6 +65,7 @@ const char *sndrate_from_index(int index)
 
 GtkWidget *create_sound_options_page(void)
 {
+	GtkWidget *frame;
 	GtkWidget *hbox;
 	GtkWidget *vbox;
 	GtkWidget *button;

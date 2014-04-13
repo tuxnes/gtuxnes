@@ -122,6 +122,7 @@ static void ntsc_toggle(GtkWidget *button, gpointer w)
 
 GtkWidget *create_video_options_page(void)
 {
+	GtkWidget *frame;
 	GtkWidget *hbox;
 	GtkWidget *vbox;
 	GtkWidget *button;

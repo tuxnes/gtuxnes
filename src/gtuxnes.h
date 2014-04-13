@@ -93,7 +93,6 @@
 #define NTSCHUE         18
 #define NTSCTINT        19
 
-GtkWidget *frame;
 GtkWidget *toggles[NUM_OF_TOGGLES];
 GtkWidget *widgets[NUM_OF_ENTRIES];
 extern char config_file_name[513];

@@ -11,6 +11,7 @@
 
 GtkWidget *create_general_options_page(void)
 {
+	GtkWidget *frame;
 	GtkWidget *hbox;
 	GtkWidget *vbox;
 	GtkWidget *button;
