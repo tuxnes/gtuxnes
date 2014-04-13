@@ -83,11 +83,11 @@ GtkWidget *create_sound_options_page(void)
 	gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(widgets[SNDDEV]), "/dev/dsp");
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	hbox = create_toggled_combo("Specify Sample Format:", SNDFORMAT, 170, sndformat_user);
+	hbox = create_toggled_combo("Specify Sample Format:", SNDFORMAT, sndformat_user);
 	gtk_combo_box_set_active(GTK_COMBO_BOX(widgets[SNDFORMAT]), 1);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	hbox = create_toggled_combo("Specify Rate:", SNDRATE, 75, sndrate);
+	hbox = create_toggled_combo("Specify Rate:", SNDRATE, sndrate);
 	gtk_combo_box_set_active(GTK_COMBO_BOX(widgets[SNDRATE]), 3);
 	lbl = gtk_label_new("Hz");
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);

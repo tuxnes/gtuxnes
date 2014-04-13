@@ -133,7 +133,7 @@ GtkWidget *create_video_options_page(void)
 
 	vbox = gtk_vbox_new(FALSE, 5);
 
-	hbox = create_toggled_combo("Specify Renderer", RENDERER, 150, renderer_user);
+	hbox = create_toggled_combo("Specify Renderer", RENDERER, renderer_user);
 	gtk_combo_box_set_active(GTK_COMBO_BOX(widgets[RENDERER]), 0);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
@@ -156,10 +156,10 @@ GtkWidget *create_video_options_page(void)
 	hbox = create_toggled_entry("Specify Display/Target ID:", DISPLAY, 9);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	hbox = create_toggled_combo("Specify Mirroring", MIRROR, 80, mirror_user);
+	hbox = create_toggled_combo("Specify Mirroring", MIRROR, mirror_user);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	hbox = create_toggled_combo("Builtin Palette:", BLTINPAL, 90, bltinpal);
+	hbox = create_toggled_combo("Builtin Palette:", BLTINPAL, bltinpal);
 	gtk_combo_box_set_active(GTK_COMBO_BOX(widgets[BLTINPAL]), 0);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 

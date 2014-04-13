@@ -63,8 +63,7 @@ GtkWidget *create_toggled_file(const char *name, int id, gint width,
 	return hbox;
 }
 
-GtkWidget *create_toggled_combo(const char *name, int id, gint width,
-				const char *const list[])
+GtkWidget *create_toggled_combo(const char *name, int id, const char *const list[])
 {
 	GtkWidget *combo;
 	GtkWidget *hbox;
@@ -78,7 +77,6 @@ GtkWidget *create_toggled_combo(const char *name, int id, gint width,
 		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), *list++);
 	}
 	gtk_widget_set_sensitive(combo, FALSE);
-	gtk_widget_set_size_request(combo, width, -1);
 	gtk_box_pack_start(GTK_BOX(hbox), combo, FALSE, FALSE, 0);
 	widgets[id] = combo;
 
