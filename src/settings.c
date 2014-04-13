@@ -120,7 +120,7 @@ void write_config_file(const char *filename)
 	config_file = fopen(filename, "w");
 
 	if (config_file == NULL) {
-		g_print("Error: Could not open '%s' for writing.\n"
+		g_printerr("Error: Could not open '%s' for writing.\n"
 			"Changes will not be saved.\n", filename);
 		return;
 	}

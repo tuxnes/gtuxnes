@@ -12,19 +12,6 @@
 static char config_file_name[513];
 static GtkWidget *main_window;
 
-static void popup_error_dialog(const char *msg)
-{
-	GtkWidget *dialog;
-
-	dialog = gtk_message_dialog_new(GTK_WINDOW(main_window),
-	                                GTK_DIALOG_DESTROY_WITH_PARENT,
-	                                GTK_MESSAGE_ERROR,
-	                                GTK_BUTTONS_OK,
-	                                msg);
-	gtk_dialog_run(GTK_DIALOG(dialog));
-	gtk_widget_destroy(dialog);
-}
-
 static void cleanup(char *free_me[], int size)
 {
 	int j;
@@ -220,10 +207,10 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 
 	options[i++] = NULL;
 
-	g_print("calling:");
+	g_printerr("calling:");
 	for (k = 0; options[k] != NULL; k++)
-		g_print(" %s", options[k]);
-	g_print("\n");
+		g_printerr(" %s", options[k]);
+	g_printerr("\n");
 
 	if ((tuxnes_pid = fork()) == 0) {
 		/* TuxNES child */
@@ -232,7 +219,7 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 	} else {
 		/* GTuxNES Parent */
 		if (tuxnes_pid < 0)
-			popup_error_dialog("Couldn't fork!");
+			g_printerr("Couldn't fork!");
 	}
 
 fail:
