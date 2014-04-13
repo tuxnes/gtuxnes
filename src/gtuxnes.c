@@ -245,11 +245,11 @@ int main(int argc, char *argv[])
 	gtk_box_set_spacing(GTK_BOX(bbox), PAD_BORDER);
 	gtk_button_box_set_layout(GTK_BUTTON_BOX(bbox), GTK_BUTTONBOX_END);
 
-	button = gtk_button_new_with_label("Run");
+	button = gtk_button_new_from_stock(GTK_STOCK_EXECUTE);
 	g_signal_connect(button, "clicked", G_CALLBACK(run_tuxnes), NULL);
 	gtk_container_add(GTK_CONTAINER(bbox), button);
 
-	button = gtk_button_new_with_label("Quit");
+	button = gtk_button_new_from_stock(GTK_STOCK_QUIT);
 	g_signal_connect(button, "clicked", G_CALLBACK(quit_gtuxnes), NULL);
 	gtk_container_add(GTK_CONTAINER(bbox), button);
 
