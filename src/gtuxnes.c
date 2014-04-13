@@ -16,7 +16,6 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 {
 	int i = 0;
 	gchar **options;
-	pid_t tuxnes_pid;
 
 	options = g_malloc0_n(NUM_OF_TOGGLES + 3, sizeof (gchar *));
 
@@ -185,15 +184,7 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 		g_printerr(" %s", options[i]);
 	g_printerr("\n");
 
-	if ((tuxnes_pid = fork()) == 0) {
-		/* TuxNES child */
-		execvp(options[0], (char *const *)options);
-		exit(1);
-	} else {
-		/* GTuxNES Parent */
-		if (tuxnes_pid < 0)
-			g_printerr("Couldn't fork!");
-	}
+	g_spawn_async(NULL, options, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, NULL);
 
 fail:
 	g_strfreev(options);

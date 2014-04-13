@@ -17,13 +17,12 @@ PKG_CHECK_MODULES([GTK],[gtk+-2.0],
 	[AC_MSG_ERROR([cannot find gtk+-2.0])])
 
 # Checks for header files.
-AC_CHECK_HEADERS([stdlib.h string.h sys/ioctl.h unistd.h])
+AC_CHECK_HEADERS([stdlib.h string.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
-AC_TYPE_PID_T
+AC_TYPE_SIZE_T
 
 # Checks for library functions.
-AC_FUNC_FORK
 
 AC_CONFIG_FILES([Makefile src/Makefile])
 AC_OUTPUT
