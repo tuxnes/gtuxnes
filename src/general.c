@@ -11,14 +11,10 @@
 
 GtkWidget *create_general_options_page(void)
 {
-	GtkWidget *frame;
 	GtkWidget *vbox;
 	GtkWidget *hbox;
 	GtkWidget *entry;
 	GtkWidget *lbl;
-
-
-	frame = gtk_frame_new(NULL);
 
 	vbox = gtk_vbox_new(FALSE, PAD_LINE);
 
@@ -46,7 +42,5 @@ GtkWidget *create_general_options_page(void)
 	hbox = create_toggled_entry("Game Genie Code:", GAMEGENIE, 8);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	gtk_container_add(GTK_CONTAINER(frame), vbox);
-
-	return frame;
+	return vbox;
 }

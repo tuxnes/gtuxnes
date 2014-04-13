@@ -11,12 +11,8 @@
 
 GtkWidget *create_input_options_page(void)
 {
-	GtkWidget *frame;
 	GtkWidget *vbox;
 	GtkWidget *hbox;
-
-
-	frame = gtk_frame_new(NULL);
 
 	vbox = gtk_vbox_new(FALSE, PAD_LINE);
 
@@ -38,7 +34,5 @@ GtkWidget *create_input_options_page(void)
 	gtk_entry_set_text(GTK_ENTRY(widgets[JOYREMAP]), "1:B0,B1,B2,B3,A0,A1,B4");
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	gtk_container_add(GTK_CONTAINER(frame), vbox);
-
-	return frame;
+	return vbox;
 }

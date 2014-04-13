@@ -192,10 +192,15 @@ fail:
 
 static void add_page(GtkWidget *book, GtkWidget *page, const gchar *title)
 {
+	GtkWidget *frame;
 	GtkWidget *label;
-	gtk_container_set_border_width(GTK_CONTAINER(page), PAD_BORDER);
+
+	frame = gtk_frame_new(NULL);
+	gtk_container_set_border_width(GTK_CONTAINER(frame), PAD_BORDER);
+	gtk_container_add(GTK_CONTAINER(frame), page);
+
 	label = gtk_label_new(title);
-	gtk_notebook_append_page (GTK_NOTEBOOK(book), page, label);
+	gtk_notebook_append_page (GTK_NOTEBOOK(book), frame, label);
 }
 
 static gint quit_gtuxnes(GtkWidget *w, gpointer data)
