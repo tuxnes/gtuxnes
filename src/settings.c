@@ -35,12 +35,12 @@ static int read_int(const char *str, int otherwise)
 	return (end != str) ? i : otherwise;
 }
 
-void read_config_file(void)
+void read_config_file(const char *filename)
 {
 	gchar *raw_data;
 	gchar **lines, **line;
 
-	if (!g_file_get_contents(config_file_name, &raw_data, NULL, NULL))
+	if (!g_file_get_contents(filename, &raw_data, NULL, NULL))
 		return;
 
 	lines = g_strsplit(raw_data, "\n", 0);
@@ -110,17 +110,17 @@ found:
 	g_strfreev(lines);
 }
 
-void write_config_file(void)
+void write_config_file(const char *filename)
 {
 	FILE *config_file;
 	int i;
 	gchar *value;
 
-	config_file = fopen(config_file_name, "w");
+	config_file = fopen(filename, "w");
 
 	if (config_file == NULL) {
 		g_print("Error: Could not open '%s' for writing.\n"
-			"Changes will not be saved.\n", config_file_name);
+			"Changes will not be saved.\n", filename);
 		return;
 	}
 

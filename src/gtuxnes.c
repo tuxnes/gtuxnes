@@ -9,7 +9,7 @@
 
 #include "gtuxnes.h"
 
-char config_file_name[513];
+static char config_file_name[513];
 GtkWidget *main_window;
 
 static void popup_error_dialog(const char *msg)
@@ -324,7 +324,7 @@ static void add_page(GtkWidget *book, GtkWidget *page, const gchar *title)
 
 static gint quit_gtuxnes( GtkWidget *w, gpointer data )
 {
-	write_config_file();
+	write_config_file(config_file_name);
 	gtk_main_quit();
 	return(FALSE);
 }
@@ -359,15 +359,11 @@ int main( int argc, char *argv[] )
 	add_page(notebook, create_debug_options_page(),   "Debug");
 
 
-    /* Create the Save, Run and Quit buttons */
+    /* Create the Run and Quit buttons */
 	bbox = gtk_hbutton_box_new();
 	gtk_box_set_spacing(GTK_BOX(bbox), PAD_BORDER);
 	gtk_button_box_set_layout(GTK_BUTTON_BOX(bbox), GTK_BUTTONBOX_END);
-/*
-	button = gtk_button_new_with_label("Save Config");
-	gtk_container_add(GTK_CONTAINER(bbox), button);
-	g_signal_connect(button, "clicked", G_CALLBACK(write_config_file), NULL);
-*/
+
 	button = gtk_button_new_with_label("Run");
 	g_signal_connect(button, "clicked", G_CALLBACK(run_tuxnes), NULL);
 	gtk_container_add(GTK_CONTAINER(bbox), button);
@@ -384,7 +380,7 @@ int main( int argc, char *argv[] )
 	strcpy(config_file_name, (char*) g_get_home_dir());
 	strcat(config_file_name, "/.gtuxnesrc");
 
-	read_config_file();
+	read_config_file(config_file_name);
 
 	gtk_main();
 
