@@ -79,7 +79,7 @@ GtkWidget *create_sound_options_page(void)
 	button = create_toggle("Mute Sound", MUTESOUND);
 	gtk_box_pack_start(GTK_BOX(vbox), button, FALSE, FALSE, 0);
 
-	hbox = create_toggled_file("Specify Sound Device:", SNDDEV, 150, "Choose Sound Device");
+	hbox = create_toggled_file("Specify Sound Device:", SNDDEV, 10, "Choose Sound Device");
 	gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(widgets[SNDDEV]), "/dev/dsp");
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 

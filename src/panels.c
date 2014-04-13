@@ -44,8 +44,7 @@ GtkWidget *create_toggled_entry(const char *name, int id, gint width)
 	return hbox;
 }
 
-GtkWidget *create_toggled_file(const char *name, int id, gint width,
-				const char *dialog_title)
+GtkWidget *create_toggled_file(const char *name, int id, gint width, const char *dialog_title)
 {
 	GtkWidget *entry;
 	GtkWidget *hbox;
@@ -56,7 +55,7 @@ GtkWidget *create_toggled_file(const char *name, int id, gint width,
 	gtk_box_pack_start(GTK_BOX(hbox), toggles[id], FALSE, FALSE, 0);
 	entry = gtk_file_chooser_button_new(dialog_title, GTK_FILE_CHOOSER_ACTION_OPEN);
 	gtk_widget_set_sensitive(entry, FALSE);
-	gtk_widget_set_size_request(entry, width, -1);
+	gtk_file_chooser_button_set_width_chars(GTK_FILE_CHOOSER_BUTTON(entry), width);
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	widgets[id] = entry;
 

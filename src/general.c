@@ -27,6 +27,7 @@ GtkWidget *create_general_options_page(void)
 	lbl = gtk_label_new("ROM Name: ");
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
 	entry = gtk_file_chooser_button_new("Choose ROM File", GTK_FILE_CHOOSER_ACTION_OPEN);
+	gtk_file_chooser_button_set_width_chars(GTK_FILE_CHOOSER_BUTTON(entry), 20);
 	gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
 	widgets[ROMNAME] = entry;
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
