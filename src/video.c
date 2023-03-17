@@ -73,9 +73,9 @@ GtkWidget *create_video_options_page(void)
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	hbox = create_toggled_entry("Scanlines   Intensity:", SCANLINES, 3);
-	gtk_entry_set_text(GTK_ENTRY(widgets[SCANLINES]), "0");
-	lbl = gtk_label_new("%");
+	hbox = create_toggled_entry("HQX scaling:", HQX, 3);
+	gtk_entry_set_text(GTK_ENTRY(widgets[HQX]), "2");
+	lbl = gtk_label_new("x");
 	gtk_box_pack_start(GTK_BOX(hbox), lbl, FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 

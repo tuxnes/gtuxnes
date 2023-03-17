@@ -49,9 +49,9 @@ static void run_tuxnes(GtkWidget *w, gpointer data)
 			gtk_entry_get_text(GTK_ENTRY(widgets[GEOMETRY])),
 			NULL);
 	}
-	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[SCANLINES]))) {
-		options[i++] = g_strconcat("-L",
-			gtk_entry_get_text(GTK_ENTRY(widgets[SCANLINES])),
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[HQX]))) {
+		options[i++] = g_strconcat("-Q",
+			gtk_entry_get_text(GTK_ENTRY(widgets[HQX])),
 			NULL);
 	}
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggles[PALFILE]))) {

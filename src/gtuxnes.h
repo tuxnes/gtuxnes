@@ -5,7 +5,7 @@
  * Please see the file AUTHORS.
  *
  * cmd-line options implemented:
- * v f M g H d l i m G E L S r I K X s F R D p P b 1 2 N J
+ * v f M g H d l i m G E Q S r I K X s F R D p P b 1 2 N J
  * --display=
  *
  * cmd-line options not yet implemented:
@@ -50,7 +50,7 @@
 /* 9 reserved for BLTINPAL (see below) */
 /* 10 reserved for PALFILE (see below) */
 /* 11 reserved for GEOMETRY (see below) */
-/* 12 reserved for SCANLINES (see below) */
+/* 12 reserved for HQX (see below) */
 /* 13 reserved for ENLARGE (see below) */
 /* 14 reserved for JOY1 (see below) */
 /* 15 reserved for JOY2 (see below) */
@@ -84,7 +84,7 @@
 #define BLTINPAL         9
 #define PALFILE         10
 #define GEOMETRY        11
-#define SCANLINES       12
+#define HQX             12
 #define ENLARGE         13
 #define JOY1            14
 #define JOY2            15
