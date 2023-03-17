@@ -218,6 +218,9 @@ static gint quit_gtuxnes(GtkWidget *w, gpointer data)
 	return(FALSE);
 }
 
+GtkWidget *toggles[NUM_OF_TOGGLES];
+GtkWidget *widgets[NUM_OF_ENTRIES];
+
 int main(int argc, char *argv[])
 {
 	GtkWidget *button;

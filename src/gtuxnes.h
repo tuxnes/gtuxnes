@@ -93,8 +93,8 @@
 #define NTSCHUE         18
 #define NTSCTINT        19
 
-GtkWidget *toggles[NUM_OF_TOGGLES];
-GtkWidget *widgets[NUM_OF_ENTRIES];
+extern GtkWidget *toggles[NUM_OF_TOGGLES];
+extern GtkWidget *widgets[NUM_OF_ENTRIES];
 
 GtkWidget *create_general_options_page(void);
 GtkWidget *create_sound_options_page(void);
