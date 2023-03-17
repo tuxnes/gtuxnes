@@ -12,10 +12,6 @@
 static const char *const renderer[] = {
 	"auto",
 	"x11",
-	"diff",
-	"old",
-	"ggi",
-	"w",
 	"none",
 	NULL
 };
@@ -23,10 +19,6 @@ static const char *const renderer[] = {
 static const char *const renderer_user[] = {
 	"Automatically Choose",
 	"X11 Renderer",
-	"Differential X11 Renderer",
-	"Tile-based X11 Renderer",
-	"GGI Renderer",
-	"W Window System Renderer",
 	"No Video Output",
 	NULL
 };
