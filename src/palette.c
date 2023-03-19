@@ -25,6 +25,22 @@ static const char *const bltinpal[] = {
 	NULL
 };
 
+static const char *const bltinpal_user[] = {
+	"Loopy's NES palette",
+	"Quor's palette from Nestra 0.63",
+	"Chris Covell's NES palette",
+	"Matthew Conte's NES palette",
+	"Palette from PasoFami/99",
+	"CrashMan's NES palette",
+	"palette from the MESS NES driver",
+	"Zaphod's VS Castlevania palette",
+	"Zaphod's VS SMB palette",
+	"VS Dr. Mario palette",
+	"VS Castlevania palette",
+	"VS SMB/VS Ice Climber palette",
+	NULL
+};
+
 const char *bltinpal_from_index(int index)
 {
 	int last = (sizeof bltinpal / sizeof *bltinpal) - 1;
@@ -62,7 +78,7 @@ GtkWidget *create_palette_options_page(void)
 
 	vbox = gtk_vbox_new(FALSE, PAD_LINE);
 
-	hbox = create_toggled_combo("Builtin Palette:", BLTINPAL, bltinpal);
+	hbox = create_toggled_combo("Builtin Palette:", BLTINPAL, bltinpal_user);
 	gtk_combo_box_set_active(GTK_COMBO_BOX(widgets[BLTINPAL]), 0);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
