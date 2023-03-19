@@ -1,3 +1,10 @@
+Pending release
+-Major cleanup
+-Replaced custom Makefile with autotools build system
+-Ported to GTK 2.0
+-Improved config file writing and parsing
+-Fixed reaping of zombie TuxNES processes
+
 v0.75 - April.17.2001
 -Config file now auto-saves on program exit
 -Changed version number to reflect compatible TuxNES release
@@ -45,6 +52,3 @@ v0.1.1 - June.20.2000
 
 v0.1 - June.19.2000
 -Initial Release
-
---Scott Weber--
-scott@scottweber.com
