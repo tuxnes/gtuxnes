@@ -4,6 +4,7 @@ Pending release
 -Ported to GTK 2.0
 -Improved config file writing and parsing
 -Fixed reaping of zombie TuxNES processes
+-Added and removed options to conform to latest TuxNES on Github
 
 v0.75 - April.17.2001
 -Config file now auto-saves on program exit
