@@ -13,7 +13,12 @@ Can I use GTuxNES?
 Sure!  All you need is to get and install the GTK 2.0 libraries from your
 distribution's package manager.  Then go get the development TuxNES from
 <https://github.com/tuxnes/tuxnes>.  Once you've compiled and installed
-that, GTuxNES should work for you.
+that, GTuxNES should work for you.  Compile and install GTuxNES using:
+
+$ autoreconf -if
+$ ./configure
+$ make
+# make install
 
 
 Where does GTuxNES look for the TuxNES binary?
