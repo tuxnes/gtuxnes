@@ -5,13 +5,13 @@ What is GTuxNES?
 GTuxNES is a graphical launcher for the Nintendo Emulator TuxNES.  TuxNES
 is entirely command line based and I got tired of typing the dozen options
 I wanted to use every time I started the emulator.  So my response was to
-build GTuxNES.  GTuxNES is built using GTK libraries version 1.2.8.
+build GTuxNES.  GTuxNES is built using GTK version 2.0.
 
 
 Can I use GTuxNES?
 -------------------
-Sure!  All you need is to get and install the GTK libraries from
-http://www.gtk.org/.  Then go get the development TuxNES from
+Sure!  All you need is to get and install the GTK 2.0 libraries from your
+distribution's package manager.  Then go get the development TuxNES from
 http://tuxnes.sourceforge.net/.  Once you've compiled and installed
 that, GTuxNES should work for you.
 
