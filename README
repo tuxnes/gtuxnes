@@ -52,9 +52,8 @@ README file in the TuxNES archive.
 GTuxNES doesn't work!  You suck!
 ---------------------------------
 Hmm.  That's unfortunate.  Well, if you think you've found a bug, by all
-means let me know.  My email is scott@scottweber.com.  Feel free to fix
-the bug yourself if you like, then just mail me the diff and I'll take a
-look at your patch.  
+means let me know.  Feel free to fix the bug yourself if you like, then
+submit a new Issue or Pull Request at <https://github.com/tuxnes/gtuxnes>.
 
 If you just have something against me, please direct your comments to
 your local bit-bucket.
