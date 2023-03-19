@@ -1,8 +1,9 @@
-/* GTuxNES - A GUI launcher built for TuxNES.
- * version: 0.3.0
- * tuxnes version: devel (3/5/2001)
- *
- * Please see the file AUTHORS.
+// SPDX-FileCopyrightText: 2000-2001 Scott Weber <scott@scottweber.com>
+// SPDX-FileCopyrightText: 2014-2023 Kyle Guinn <elyk03@gmail.com>
+// SPDX-License-Identifier: GPL-1.0-or-later
+
+/*
+ * GTuxNES - A GUI launcher built for TuxNES.
  *
  * cmd-line options implemented:
  * v f M g H d l i m G E Q S r I K X s F R D p P b 1 2 N J
@@ -10,13 +11,6 @@
  *
  * cmd-line options not yet implemented:
  *
- *
- * Copyright (C) 2000-2001  Scott Weber  <scott@scottweber.com>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation.  Please see the file COPYING for the
- * full text of the License.
  */
 
 #ifndef GTUXNES_H

@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2014-2023 Kyle Guinn <elyk03@gmail.com>
+# SPDX-License-Identifier: GPL-1.0-or-later
+
 AM_CPPFLAGS = $(GTK_CFLAGS)
 
 bin_PROGRAMS = gtuxnes

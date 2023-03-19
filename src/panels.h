@@ -1,11 +1,6 @@
-/*
- * Copyright (C) 2000-2001  Scott Weber  <scott@scottweber.com>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation.  Please see the file COPYING for the
- * full text of the License.
- */
+// SPDX-FileCopyrightText: 2000-2001 Scott Weber <scott@scottweber.com>
+// SPDX-FileCopyrightText: 2014-2023 Kyle Guinn <elyk03@gmail.com>
+// SPDX-License-Identifier: GPL-1.0-or-later
 
 void enable_button_toggled(GtkWidget *entry, gpointer e);
 
