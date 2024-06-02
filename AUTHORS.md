@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2000-2001 Scott Weber <scott@scottweber.com>
+SPDX-License-Identifier: GPL-2.0-or-later
+-->
+
 GTuxNES authors and contributors
 --------------------------------
 - Scott Weber <scott@scottweber.com> for original design and development

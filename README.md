@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2000-2001 Scott Weber <scott@scottweber.com>
+SPDX-License-Identifier: GPL-2.0-or-later
+-->
+
 What is GTuxNES?
 ----------------
 GTuxNES is a graphical launcher for the Nintendo emulator TuxNES.  TuxNES
