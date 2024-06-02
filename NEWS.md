@@ -1,5 +1,5 @@
-Unreleased
-----------
+Changes since latest release
+----------------------------
 - Major cleanup
 - Replace custom Makefile with autotools build system
 - Port to GTK 2.0, replace file/option selection widgets
