@@ -71,9 +71,10 @@ at <scott@scottweber.com>.
 
 How is GTuxNES licensed?
 ------------------------
-GTuxNES is licensed under the GNU General Public License (GPL), any
-version.  Please see the file COPYING which you should have received with
-this archive for the complete text of the GPL, version 2.
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
 
 
 Would you like to plug anything?
