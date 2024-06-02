@@ -9,8 +9,8 @@ AC_INIT([GTuxNES],[0.75],[https://github.com/tuxnes/gtuxnes])
 AC_CONFIG_SRCDIR([src/gtuxnes.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
-AC_CONFIG_HEADERS([src/config.h])
-AM_INIT_AUTOMAKE([foreign])
+AM_INIT_AUTOMAKE([foreign subdir-objects])
+AM_SILENT_RULES([yes])
 
 # Checks for programs.
 AC_PROG_CC_C99
@@ -30,4 +30,5 @@ AC_TYPE_SIZE_T
 # Checks for library functions.
 
 AC_CONFIG_FILES([Makefile src/Makefile])
+AC_CONFIG_HEADERS([src/config.h])
 AC_OUTPUT
